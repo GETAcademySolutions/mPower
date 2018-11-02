@@ -44,6 +44,7 @@
  * This file contains the source code for a sample server application with multiple peripheral connections using the LED Button service.
  */
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
 #include "nordic_common.h"
@@ -70,19 +71,22 @@
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
 
+#include "our_service.h"
 
-#define DEVICE_NAME                     "mPower"                         /**< Name of device. Will be included in the advertising data. */
+
+#define DEVICE_NAME                     "mPower"                                /**< Name of device. Will be included in the advertising data. */
+#define MANUFACTURER_NAME               "Are Consulting"                        /**< Manufacturer. Will be passed to Device Information Service. */
 
 #define APP_BLE_CONN_CFG_TAG            1                                       /**< A tag identifying the SoftDevice BLE configuration. */
 #define LINK_TOTAL                      NRF_SDH_BLE_PERIPHERAL_LINK_COUNT + \
                                         NRF_SDH_BLE_CENTRAL_LINK_COUNT
-
+//TODO need to remove ?!?!?!?!
 #define ADVERTISING_LED                 BSP_BOARD_LED_0                         /**< Is on when device is advertising. */
 #define CONNECTED_LED                   BSP_BOARD_LED_1                         /**< Is on when device has connected. */
 #define LEDBUTTON_LED                   BSP_BOARD_LED_2                         /**< LED to be toggled with the help of the LED Button Service. */
 #define LEDBUTTON_BUTTON                BSP_BUTTON_0                            /**< Button that will trigger the notification event with the LED Button Service */
 
-#define APP_ADV_INTERVAL                64                                      /**< The advertising interval (in units of 0.625 ms; this value corresponds to 40 ms). */
+#define APP_ADV_INTERVAL                300                                     /**< The advertising interval (in units of 0.625 ms. This value corresponds to 187.5 ms). */
 #define APP_ADV_DURATION                BLE_GAP_ADV_TIMEOUT_GENERAL_UNLIMITED   /**< The advertising duration (180 seconds) in units of 10 milliseconds. */
 
 #define MIN_CONN_INTERVAL               MSEC_TO_UNITS(100, UNIT_1_25_MS)        /**< Minimum acceptable connection interval (0.5 seconds). */
@@ -127,6 +131,15 @@ static ble_gap_adv_data_t m_adv_data =
 BLE_LBS_DEF(m_lbs);                                                             /**< LED Button Service instance. */
 NRF_BLE_GATT_DEF(m_gatt);                                                       /**< GATT module instance. */
 NRF_BLE_QWRS_DEF(m_qwr, NRF_SDH_BLE_TOTAL_LINK_COUNT);                          /**< Context for the Queued Write module.*/
+
+// FROM_SERVICE_TUTORIAL: Declare a service structure for our application
+ble_os_t m_our_service;
+
+// Use UUIDs for service(s) used in your application.
+static ble_uuid_t m_adv_uuids[] =                                               /**< Universally unique service identifiers. */
+{
+    {BLE_UUID_OUR_SERVICE_UUID, BLE_UUID_TYPE_VENDOR_BEGIN}
+};
 
 /**@brief Function for assert macro callback.
  *
@@ -230,8 +243,11 @@ static void advertising_init(void)
 
 
     memset(&srdata, 0, sizeof(srdata));
-    srdata.uuids_complete.uuid_cnt = sizeof(adv_uuids) / sizeof(adv_uuids[0]);
-    srdata.uuids_complete.p_uuids  = adv_uuids;
+    srdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
+    srdata.uuids_complete.p_uuids  = m_adv_uuids;
+    //original
+    //srdata.uuids_complete.uuid_cnt = sizeof(adv_uuids) / sizeof(adv_uuids[0]);
+    //srdata.uuids_complete.p_uuids  = adv_uuids;
 
     err_code = ble_advdata_encode(&advdata, m_adv_data.adv_data.p_data, &m_adv_data.adv_data.len);
     APP_ERROR_CHECK(err_code);
@@ -304,13 +320,16 @@ static void services_init(void)
         APP_ERROR_CHECK(err_code);
     }
 
+    //FROM_SERVICE_TUTORIAL: Add code to initialize the services used by the application.
+    our_service_init(&m_our_service);
+
     // Initialize LBS.
-    init.led_write_handler = led_write_handler;
+    //init.led_write_handler = led_write_handler;
 
-    err_code = ble_lbs_init(&m_lbs, &init);
-    APP_ERROR_CHECK(err_code);
+    //err_code = ble_lbs_init(&m_lbs, &init);
+    //APP_ERROR_CHECK(err_code);
 
-    ble_conn_state_init();
+    //ble_conn_state_init();
 }
 
 
@@ -426,6 +445,78 @@ static void on_disconnected(ble_gap_evt_t const * const p_gap_evt)
 }
 
 
+// Max port number set to 4 in test
+#define MAX_USB_PORT_NUMBER 4
+#define TURN_USB_POWER_OFF  0
+#define TURN_USB_POWER_ON   1
+
+void onNewCommand(ble_evt_t const *p_ble_evt) {
+    // Edgar: Write event - decode the data set by client:
+    // 1st byte: command - 0=off, 1=on
+    // 2nd byte: port number
+
+    NRF_LOG_INFO("onNewCommand() enter");
+
+    //ble_gatts_evt_write_t const *p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
+
+    uint8_t *p_data = p_ble_evt->evt.gatts_evt.params.write.data;
+    uint16_t length = p_ble_evt->evt.gatts_evt.params.write.len;
+    uint8_t command = 0xff;
+    uint8_t port = 0xff;
+    uint32_t ack_msg = 0;
+
+    if (length >= 2) {
+      command = p_data[0];
+      port = p_data[1];
+
+      NRF_LOG_INFO("data received: length=%0x, command=%d, port=%d", length, command, port);
+      
+      //port = port > 0 && port <= MAX_USB_PORT_NUMBER ? port : 1;
+      // check port status on port given- chetPort()
+    
+    } else if (length == 1) {
+      command = p_data[0];
+      
+      // Allocate free USB port
+      port = 1;
+
+      NRF_LOG_INFO("data received: length=%0x, command=%0x, port=allocate", length, command);
+    } else {
+        NRF_LOG_INFO("data received: length=%0x, illegal command", length, command);
+        ack_msg = 0x00; 
+        our_notification(&m_our_service, &ack_msg);
+        return;
+    }
+
+    if (command == TURN_USB_POWER_ON) {
+        NRF_LOG_INFO("Turn power ON on port %x", port);
+        // It seems that the _set function turns the LED off and _clear turns it ON
+        //nrf_gpio_pin_set(port - 1 + LED_START);
+        nrf_gpio_pin_write(port - 1 + LED_START, !command);
+        
+        // update port status
+
+        // send ack
+        ack_msg = (port << 8) | 0x01; 
+        our_notification(&m_our_service, &ack_msg);
+    } else if (command == TURN_USB_POWER_OFF) {
+        NRF_LOG_INFO("Turn power OFF on port %x", port);
+        //nrf_gpio_pin_clear(port - 1 + LED_START);
+        nrf_gpio_pin_write(port - 1 + LED_START, !command);
+
+        // update port status
+
+        // send ack
+
+        ack_msg = (port << 8) | 0x01; 
+        our_notification(&m_our_service, &ack_msg);
+    } else {
+        NRF_LOG_INFO("Illegal command %d", port);        
+    }
+    NRF_LOG_INFO("onNewCommand() leave");
+}
+
+
 /**@brief Function for handling BLE events.
  *
  * @param[in]   p_ble_evt   Bluetooth stack event.
@@ -488,6 +579,13 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             APP_ERROR_CHECK(err_code);
             break;
 
+        case BLE_GATTS_EVT_WRITE:
+            // Edgar: Write event
+            NRF_LOG_INFO("Write operation performed.");
+
+            onNewCommand(p_ble_evt);
+
+            break;
         default:
             // No implementation needed.
             break;
