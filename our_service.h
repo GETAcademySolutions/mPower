@@ -39,6 +39,18 @@ typedef struct {
     uint16_t  notAvailableTicks;
 } portStatus;
 
+
+void innitPortStatus(uint8_t port, usbStatus status, uint16_t ticks);
+usbStatus getPortStatus(uint8_t port);
+void setPortStatus(uint8_t port, usbStatus status);
+bool isPortFree(uint8_t port);
+bool isPortTemporarilyInUSe(uint8_t port);
+bool isPortActive(uint8_t port);
+uint16_t getRamainingChargeTicks(uint8_t port);
+void setRamainingChargeTicks(uint8_t port, uint16_t ticks);
+bool decrementChargingTicks(uint8_t port);
+bool isChargingTicksExpired(uint8_t port);
+
 /**@brief Function for handling BLE Stack events related to our service and characteristic.
  *
  * @details Handles all events from the BLE stack of interest to Our Service.
@@ -65,16 +77,5 @@ void our_service_init(ble_os_t * p_our_service);
 void our_temperature_characteristic_update(ble_os_t *p_our_service, int32_t *temperature_value);
 
 void our_notification(ble_os_t *p_our_service, uint32_t *p_data);
-
-void innitPortStatus(uint8_t port, usbStatus status, uint16_t ticks);
-usbStatus getPortStatus(uint8_t port);
-void setPortStatus(uint8_t port, usbStatus status);
-bool isPortFree(uint8_t port);
-bool isPortTemporarilyInUSe(uint8_t port);
-bool isPortActive(uint8_t port);
-uint16_t getRamainingChargeTicks(uint8_t port);
-void setRamainingChargeTicks(uint8_t port, uint16_t ticks);
-bool decrementChargingTicks(uint8_t port);
-bool isChargingTicksExpired(uint8_t port);
 
 #endif  /* _ OUR_SERVICE_H__ */

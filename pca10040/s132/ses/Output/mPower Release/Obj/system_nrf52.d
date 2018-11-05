@@ -1,7 +1,7 @@
 Output/mPower\ Release/Obj/system_nrf52.o: \
  C:\Nordic_Semi\nRF5_SDK_15.0.0_a53641a\modules\nrfx\mdk\system_nrf52.c \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.52a/include/stdint.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.52a/include/stdbool.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.50/include/stdint.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.50/include/stdbool.h \
  C:\Nordic_Semi\nRF5_SDK_15.0.0_a53641a\modules\nrfx\mdk\nrf.h \
  C:\Nordic_Semi\nRF5_SDK_15.0.0_a53641a\modules\nrfx\mdk\nrf52.h \
  ../../../../../../../components/toolchain/cmsis/include/core_cm4.h \
