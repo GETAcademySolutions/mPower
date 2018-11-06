@@ -17,8 +17,8 @@ Output/mPower\ Release/Obj/main.o: \
  ../../../../../../../modules/nrfx/mdk/nrf51_to_nrf52.h \
  ../../../../../../../modules/nrfx/mdk/nrf52_name_change.h \
  ../../../../../../../modules/nrfx/mdk/compiler_abstraction.h \
- ../../../../../../../components/boards/boards.h \
- ../../../../../../../modules/nrfx/hal/nrf_gpio.h \
+ ../../../../../../../integration/nrfx/legacy/nrf_drv_gpiote.h \
+ ../../../../../../../modules/nrfx/drivers/include/nrfx_gpiote.h \
  ../../../../../../../modules/nrfx/nrfx.h \
  ../../../../../../../integration/nrfx/nrfx_config.h \
  ../config/sdk_config.h \
@@ -51,6 +51,10 @@ Output/mPower\ Release/Obj/main.o: \
  ../../../../../../../components/libraries/util/sdk_resources.h \
  ../../../../../../../components/softdevice/s132/headers/nrf_sd_def.h \
  ../../../../../../../modules/nrfx/drivers/nrfx_errors.h \
+ ../../../../../../../modules/nrfx/hal/nrf_gpiote.h \
+ ../../../../../../../modules/nrfx/hal/nrf_gpio.h \
+ ../../../../../../../components/boards/boards.h \
+ ../../../../../../../modules/nrfx/hal/nrf_gpio.h \
  ../../../../../../../components/boards/pca10040.h \
  ../../../../../../../components/libraries/util/app_error.h \
  ../../../../../../../components/softdevice/s132/headers/ble.h \

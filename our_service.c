@@ -33,15 +33,15 @@ void setPortStatus(uint8_t port, usbStatus status) {
 }
 
 bool isPortFree(uint8_t port) {
-  return portArray[port]->status == FREE;
+  return portArray[port]->status == AVAILABLE;
 }
 
 bool isPortTemporarilyInUSe(uint8_t port) {
-  return portArray[port]->status == BUSY;
+  return portArray[port]->status == FREE_CHARGE;
 }
 
 bool isPortActive(uint8_t port) {
-  return portArray[port]->status == ACTIVE;
+  return portArray[port]->status == ACTIVE_CHARGE;
 }
 
 uint16_t getRamainingChargeTicks(uint8_t port) {

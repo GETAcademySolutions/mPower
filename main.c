@@ -1,4 +1,4 @@
-/**
+/** Hei hei.
  * Copyright (c) 2015 - 2018, Nordic Semiconductor ASA
  * 
  * All rights reserved.
@@ -49,6 +49,9 @@
 #include <string.h>
 #include "nordic_common.h"
 #include "nrf.h"
+
+#include "nrf_drv_gpiote.h"
+
 #include "boards.h"
 #include "app_error.h"
 #include "ble.h"
@@ -101,6 +104,52 @@
 #define BUTTON_DETECTION_DELAY          APP_TIMER_TICKS(50)                     /**< Delay from a GPIOTE event until a button is reported as pushed (in number of timer ticks). */
 
 #define DEAD_BEEF                       0xDEADBEEF                              /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
+
+//pin change handeler
+#ifdef BSP_BUTTON_0
+    #define PIN_IN BSP_BUTTON_0
+#endif
+#ifndef PIN_IN
+    #error "Please indicate input pin"
+#endif
+
+#ifdef BSP_LED_0
+    #define PIN_OUT BSP_LED_0
+#endif
+#ifndef PIN_OUT
+    #error "Please indicate output pin"
+#endif
+
+void in_pin_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
+{
+    nrf_drv_gpiote_out_toggle(PIN_OUT);
+}
+/**
+ * @brief Function for configuring: PIN_IN pin for input, PIN_OUT pin for output,
+ * and configures GPIOTE to give an interrupt on pin change.
+ */
+static void gpio_init(void)
+{
+    ret_code_t err_code;
+
+    err_code = nrf_drv_gpiote_init();
+    APP_ERROR_CHECK(err_code);  
+
+    nrf_drv_gpiote_out_config_t out_config = GPIOTE_CONFIG_OUT_SIMPLE(false);
+
+    err_code = nrf_drv_gpiote_out_init(PIN_OUT, &out_config);
+    APP_ERROR_CHECK(err_code);
+
+    nrf_drv_gpiote_in_config_t in_config = GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
+    in_config.pull = NRF_GPIO_PIN_PULLUP;
+
+    err_code = nrf_drv_gpiote_in_init(PIN_IN, &in_config, in_pin_handler);
+    APP_ERROR_CHECK(err_code);
+
+    nrf_drv_gpiote_in_event_enable(PIN_IN, true);
+}
+
+
 
 /**@brief   Priority of the application BLE event handler.
  * @note    You shouldn't need to modify this value.
@@ -471,7 +520,7 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
 
       NRF_LOG_INFO("data received: length=%0x, command=%d, port=%d", length, command, port);
       
-      //port = port > 0 && port <= MAX_USB_PORT_NUMBER ? port : 1;
+      // port = port > 0 && port <= MAX_USB_PORT_NUMBER ? port : 1;
       // check port status on port given- chetPort()
     
     } else if (length == 1) {
@@ -743,11 +792,18 @@ int main(void)
     ble_stack_init();
     gap_params_init();
     gatt_init();
+
     services_init();
     advertising_init();
+
+    //innitPortStatus()
+
     conn_params_init();
 
-    // Start execution.
+    //pin_change init
+    //gpio_init();  
+
+    // Start execution.           
     NRF_LOG_INFO("Multiperipheral example started.");
     advertising_start();
 

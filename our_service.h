@@ -27,10 +27,10 @@ typedef struct
 }ble_os_t;
 
 typedef enum {
-    FREE = 0,
-    BUSY,         // Port busy but not yet paid for
-    ACTIVE,       // Port active; port busy and paid for
-    NOT_AVAILABLE // port busy; free charging time expired
+    AVAILABLE = 0,
+    FREE_CHARGE,              // Port busy but not yet paid for
+    ACTIVE_CHARGE,            // Port active; port busy and paid for
+    FREE_CHARGE_NOT_AVAILABLE // port busy; free charging time expired
 } usbStatus;
 
 typedef struct {

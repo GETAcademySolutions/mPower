@@ -56,12 +56,10 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="5" y="728" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="723" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="97" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../../components/libraries/util/app_error_weak.c" selected="0" top="77" codecName=""/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="51" y="11408" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="11399" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="10" y="250" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../our_service.c" selected="0" top="225" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="19" y="9" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../our_service.h" selected="0" top="42" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="157" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../../components/libraries/util/sdk_errors.h" selected="0" top="140" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="487" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="466" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1364" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="1353" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="20" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../our_service.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="14" y="28" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../our_service.h" selected="0" top="13" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="mPower" fileDialogDefaultFilter="" autoConnectTarget="J-Link" buildConfiguration="Release" debugSearchFileMap="" fileDialogInitialDirectory="C:/Nordic_Semi/nRF5_SDK_15.0.0_a53641a/examples/ble_peripheral/experimental/mPower" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="mPower" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" debugSearchFileMap="" fileDialogInitialDirectory="C:/Nordic_Semi/nRF5_SDK_15.0.0_a53641a/examples/ble_peripheral/experimental/mPower" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
