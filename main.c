@@ -1,4 +1,4 @@
-/** Hei hei.
+/**
  * Copyright (c) 2015 - 2018, Nordic Semiconductor ASA
  * 
  * All rights reserved.
@@ -804,7 +804,7 @@ int main(void)
     //gpio_init();  
 
     // Start execution.           
-    NRF_LOG_INFO("Multiperipheral example started.");
+    NRF_LOG_INFO("mPower started.");
     advertising_start();
 
     // Enter main loop.

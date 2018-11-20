@@ -1,8 +1,5 @@
 <!DOCTYPE CrossStudio_Project_File>
-<solution
-  Name="ble_app_multiperipheral_pca10040_s132"
-  target="8"
-  version="2">
+<solution Name="Pure Charging" target="8" version="2">
   <project Name="mPower">
     <configuration
       Name="Common"
@@ -30,7 +27,7 @@
       linker_printf_fmt_level="long"
       linker_printf_width_precision_supported="Yes"
       linker_section_placement_file="flash_placement.xml"
-      linker_section_placement_macros="FLASH_PH_START=0x0;FLASH_PH_SIZE=0x80000;RAM_PH_START=0x20000000;RAM_PH_SIZE=0x10000;FLASH_START=0x26000;FLASH_SIZE=0x5a000;RAM_START=0x20006620;RAM_SIZE=0xc890"
+      linker_section_placement_macros="FLASH_PH_START=0x0;FLASH_PH_SIZE=0x80000;RAM_PH_START=0x20000000;RAM_PH_SIZE=0x10000;FLASH_START=0x26000;FLASH_SIZE=0x5a000;RAM_START=0x20003770;RAM_SIZE=0xc890"
       linker_section_placements_segments="FLASH RX 0x0 0x80000;RAM RWX 0x20000000 0x10000"
       macros="CMSIS_CONFIG_TOOL=../../../../../../../external_tools/cmsisconfig/CMSIS_Configuration_Wizard.jar"
       project_directory=""
@@ -89,6 +86,7 @@
       <file file_name="../../../main.c" />
       <file file_name="../config/sdk_config.h" />
       <file file_name="../../../our_service.c" />
+      <file file_name="../../../our_service.h" />
     </folder>
     <folder Name="nRF_Segger_RTT">
       <file file_name="../../../../../../../external/segger_rtt/SEGGER_RTT.c" />

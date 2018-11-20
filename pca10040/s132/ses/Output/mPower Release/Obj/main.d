@@ -1,9 +1,9 @@
 Output/mPower\ Release/Obj/main.o: \
  C:\Nordic_Semi\nRF5_SDK_15.0.0_a53641a\examples\ble_peripheral\experimental\mPower\main.c \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.50/include/stdbool.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.50/include/stdint.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.50/include/string.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.50/include/__crossworks.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.52a/include/stdbool.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.52a/include/stdint.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.52a/include/string.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.52a/include/__crossworks.h \
  ../../../../../../../components/libraries/util/nordic_common.h \
  ../../../../../../../modules/nrfx/mdk/nrf.h \
  ../../../../../../../modules/nrfx/mdk/nrf52.h \
@@ -23,7 +23,7 @@ Output/mPower\ Release/Obj/main.o: \
  ../../../../../../../integration/nrfx/nrfx_config.h \
  ../config/sdk_config.h \
  ../../../../../../../modules/nrfx/drivers/nrfx_common.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.50/include/stddef.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.52a/include/stddef.h \
  ../../../../../../../modules/nrfx/mdk/nrf_peripherals.h \
  ../../../../../../../modules/nrfx/mdk/nrf52832_peripherals.h \
  ../../../../../../../integration/nrfx/nrfx_glue.h \
@@ -42,7 +42,7 @@ Output/mPower\ Release/Obj/main.o: \
  ../../../../../../../components/softdevice/s132/headers/nrf_nvic.h \
  ../../../../../../../components/libraries/util/nrf_assert.h \
  ../../../../../../../components/libraries/util/app_error.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.50/include/stdio.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.52a/include/stdio.h \
  ../../../../../../../components/libraries/util/sdk_errors.h \
  ../../../../../../../components/softdevice/s132/headers/nrf_error.h \
  ../../../../../../../components/libraries/util/app_error_weak.h \
@@ -103,7 +103,7 @@ Output/mPower\ Release/Obj/main.o: \
  ../../../../../../../components/libraries/experimental_log/src/nrf_log_ctrl_internal.h \
  ../../../../../../../components/libraries/experimental_log/nrf_log_backend_interface.h \
  ../../../../../../../components/libraries/experimental_memobj/nrf_memobj.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.50/include/stdlib.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.52a/include/stdlib.h \
  ../../../../../../../components/libraries/balloc/nrf_balloc.h \
  ../../../../../../../components/libraries/experimental_log/nrf_log_default_backends.h \
  C:\Nordic_Semi\nRF5_SDK_15.0.0_a53641a\examples\ble_peripheral\experimental\mPower\our_service.h

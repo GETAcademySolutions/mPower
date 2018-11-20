@@ -31,18 +31,18 @@ typedef enum {
     FREE_CHARGE,              // Port busy but not yet paid for
     ACTIVE_CHARGE,            // Port active; port busy and paid for
     FREE_CHARGE_NOT_AVAILABLE // port busy; free charging time expired
-} usbStatus;
+} UsbStatus;
 
 typedef struct {
-    usbStatus status;   
+    UsbStatus status;   
     uint16_t  remainingChargeTicks;
     uint16_t  notAvailableTicks;
-} portStatus;
+} PortStatus;
 
 
-void innitPortStatus(uint8_t port, usbStatus status, uint16_t ticks);
-usbStatus getPortStatus(uint8_t port);
-void setPortStatus(uint8_t port, usbStatus status);
+void initPortStatus(uint8_t port, UsbStatus status, uint16_t ticks);
+UsbStatus getPortStatus(uint8_t port);
+void setPortStatus(uint8_t port, UsbStatus status);
 bool isPortFree(uint8_t port);
 bool isPortTemporarilyInUSe(uint8_t port);
 bool isPortActive(uint8_t port);

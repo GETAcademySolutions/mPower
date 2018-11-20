@@ -13,51 +13,51 @@
 #define MAX_FREE_TIME = 5*60*1000  //5 min
 
 
-portStatus* portArray[MAX_PORT];
+PortStatus* portStatus[MAX_PORT];
 
 
-void innitPortStatus(uint8_t port, usbStatus status, uint16_t ticks) {
-  portStatus *portStat = portArray[port];
+void initPortStatus(uint8_t port, UsbStatus status, uint16_t ticks) {
+  PortStatus *portStat = portStatus[port];
 
   portStat->status = status;
   portStat->remainingChargeTicks = ticks;
-  portArray[port] = portStat;
+  portStatus[port] = portStat;
 }
 
-usbStatus getPortStatus(uint8_t port) {
-  return portArray[port]->status;
+UsbStatus getPortStatus(uint8_t port) {
+  return portStatus[port]->status;
 }
 
-void setPortStatus(uint8_t port, usbStatus status) {
- portArray[port]->status = status;
+void setPortStatus(uint8_t port, UsbStatus status) {
+ portStatus[port]->status = status;
 }
 
 bool isPortFree(uint8_t port) {
-  return portArray[port]->status == AVAILABLE;
+  return portStatus[port]->status == AVAILABLE;
 }
 
 bool isPortTemporarilyInUSe(uint8_t port) {
-  return portArray[port]->status == FREE_CHARGE;
+  return portStatus[port]->status == FREE_CHARGE;
 }
 
 bool isPortActive(uint8_t port) {
-  return portArray[port]->status == ACTIVE_CHARGE;
+  return portStatus[port]->status == ACTIVE_CHARGE;
 }
 
 uint16_t getRamainingChargeTicks(uint8_t port) {
-  return portArray[port]->remainingChargeTicks;
+  return portStatus[port]->remainingChargeTicks;
 } 
 
 void setRamainingChargeTicks(uint8_t port, uint16_t ticks) {
-  portArray[port]->remainingChargeTicks = ticks;
+  portStatus[port]->remainingChargeTicks = ticks;
 } 
 
 bool decrementChargingTicks(uint8_t port) {
-  return (--portArray[port]->remainingChargeTicks <= 0);
+  return (--portStatus[port]->remainingChargeTicks <= 0);
 }
 
 bool isChargingTicksExpired(uint8_t port) {
-  return (portArray[port]->remainingChargeTicks <= 0);
+  return (portStatus[port]->remainingChargeTicks <= 0);
 }
 
 
@@ -85,8 +85,8 @@ void ble_our_service_on_ble_evt(ble_evt_t const * p_ble_evt, void * p_context)
 
 static void init_port_status() {
     for (int i = 0; i < MAX_PORT; i++) {
-      portArray[i] = malloc(sizeof(portStatus));
-      memset(portArray[i], 0, sizeof(portArray));
+      portStatus[i] = (PortStatus*) malloc(sizeof(PortStatus));
+      memset(portStatus[i], 0, sizeof(portStatus));
     }
 }
 
