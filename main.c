@@ -423,7 +423,7 @@ static void advertising_start(void)
     err_code = sd_ble_gap_adv_start(m_adv_handle, APP_BLE_CONN_CFG_TAG);
 
     APP_ERROR_CHECK(err_code);
-    bsp_board_led_on(ADVERTISING_LED);
+    //bsp_board_led_on(ADVERTISING_LED);
 }
 
 
@@ -453,7 +453,8 @@ static void on_connected(const ble_gap_evt_t * const p_gap_evt)
     APP_ERROR_CHECK(err_code);
 
     // Update LEDs
-    bsp_board_led_on(CONNECTED_LED);
+    //TODO turn on LED on connect ????
+    //bsp_board_led_on(CONNECTED_LED);
     if (periph_link_cnt == NRF_SDH_BLE_PERIPHERAL_LINK_COUNT)
     {
         bsp_board_led_off(ADVERTISING_LED);
@@ -503,12 +504,13 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
     // Edgar: Write event - decode the data set by client:
     // 1st byte: command - 0=off, 1=on
     // 2nd byte: port number
+    //           legal port number is: 1 - MAX_USB_PORT_NUMBER
 
     NRF_LOG_INFO("onNewCommand() enter");
 
     //ble_gatts_evt_write_t const *p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
 
-    uint8_t *p_data = p_ble_evt->evt.gatts_evt.params.write.data;
+    uint8_t *p_data = (uint8_t*) p_ble_evt->evt.gatts_evt.params.write.data;
     uint16_t length = p_ble_evt->evt.gatts_evt.params.write.len;
     uint8_t command = 0xff;
     uint8_t port = 0xff;
@@ -520,14 +522,12 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
 
       NRF_LOG_INFO("data received: length=%0x, command=%d, port=%d", length, command, port);
       
-      // port = port > 0 && port <= MAX_USB_PORT_NUMBER ? port : 1;
+      //port = port > 0 && port <= MAX_USB_PORT_NUMBER ? port : 1;
       // check port status on port given- chetPort()
     
     } else if (length == 1) {
       command = p_data[0];
-      
-      // Allocate free USB port
-      port = 1;
+      port = CHOOSE_AVAILABLE_PORT;
 
       NRF_LOG_INFO("data received: length=%0x, command=%0x, port=allocate", length, command);
     } else {
@@ -537,31 +537,64 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
         return;
     }
 
-    if (command == TURN_USB_POWER_ON) {
-        NRF_LOG_INFO("Turn power ON on port %x", port);
-        // It seems that the _set function turns the LED off and _clear turns it ON
-        //nrf_gpio_pin_set(port - 1 + LED_START);
-        nrf_gpio_pin_write(port - 1 + LED_START, !command);
-        
-        // update port status
-
-        // send ack
-        ack_msg = (port << 8) | 0x01; 
-        our_notification(&m_our_service, &ack_msg);
-    } else if (command == TURN_USB_POWER_OFF) {
-        NRF_LOG_INFO("Turn power OFF on port %x", port);
-        //nrf_gpio_pin_clear(port - 1 + LED_START);
-        nrf_gpio_pin_write(port - 1 + LED_START, !command);
-
-        // update port status
-
-        // send ack
-
-        ack_msg = (port << 8) | 0x01; 
-        our_notification(&m_our_service, &ack_msg);
-    } else {
-        NRF_LOG_INFO("Illegal command %d", port);        
+    //edgar: jeg har lagt til en egen funksjon for å allokere ledig port
+    /*
+    if (port == CHOOSE_AVAILABLE_PORT)
+    {
+      for(int i = 1; i <= MAX_USB_PORT_NUMBER; i++){
+        if (isPortFree(i)){
+          port = i;
+          break;
+        }
+      }
+      NRF_LOG_INFO("RANDOM!!!! port = %0x", port);
     }
+    */
+    
+    if (port == CHOOSE_AVAILABLE_PORT) {
+      port = allocateFreePort();
+      NRF_LOG_INFO("port is %x", port);
+    }
+
+    if (port == ERROR_NO_AVAILABLE_PORT || port == ERROR_ILLEGAL_PORT || getPortStatus(port) == ACTIVE_CHARGE) {
+      NRF_LOG_INFO("Illegal port or No port available")
+      
+      ack_msg = (port << 8) | 0x00;
+      our_notification(&m_our_service, &ack_msg);
+    } else {
+      if (command == TURN_USB_POWER_ON) {
+          NRF_LOG_INFO("Turn power ON on port %x", port);
+          // It seems that the _set function turns the LED off and _clear turns it ON
+          //nrf_gpio_pin_set(port - 1 + LED_START);
+          nrf_gpio_pin_write(port - 1 + LED_START, !command);
+        
+          // update port status
+          //TODO CHANGE TIME TO ACTUAL CHARGE TIME
+          initPortStatus(port, ACTIVE_CHARGE, TEST_TIME);
+
+          // send ack
+          ack_msg = (port << 8) | 0x01; 
+          our_notification(&m_our_service, &ack_msg);
+      } else if (command == TURN_USB_POWER_OFF) {
+          NRF_LOG_INFO("Turn power OFF on port %x", port);
+          //nrf_gpio_pin_clear(port - 1 + LED_START);
+          nrf_gpio_pin_write(port - 1 + LED_START, !command);
+
+          // update port status
+          //TODO CHANGE TIME TO ACTUAL CHARGE TIME
+          initPortStatus(port, AVAILABLE, TEST_TIME);
+
+          // send ack
+          ack_msg = (port << 8) | 0x01; 
+          our_notification(&m_our_service, &ack_msg);
+      } else {
+          NRF_LOG_INFO("Illegal command %d", port);        
+      }
+    }
+    //TODO testStuff status
+    UsbPortStatus portStatusValue = getPortStatus(port);
+    NRF_LOG_INFO("Status is %x", portStatusValue);
+
     NRF_LOG_INFO("onNewCommand() leave");
 }
 

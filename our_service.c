@@ -8,56 +8,95 @@
 #include "app_error.h"
 
 
-#define MAX_PORT 10
-#define MAX_CHARGE_TIME 60*60*1000 //1 time
-#define MAX_FREE_TIME = 5*60*1000  //5 min
+UsbPort* usbPorts[MAX_USB_PORT_NUMBER + 1];
 
 
-PortStatus* portStatus[MAX_PORT];
+void initPortStatus(uint8_t port, UsbPortStatus status, uint16_t ticks) {
+  NRF_LOG_INFO("setting port %x %x", port, status);
+  if (port < FIRST_PORT_NUMBER || port > MAX_USB_PORT_NUMBER) {
+    return ERROR_ILLEGAL_PORT;
+  }
 
-
-void initPortStatus(uint8_t port, UsbStatus status, uint16_t ticks) {
-  PortStatus *portStat = portStatus[port];
-
-  portStat->status = status;
-  portStat->remainingChargeTicks = ticks;
-  portStatus[port] = portStat;
+  usbPorts[port]->status = status;
+  usbPorts[port]->remainingChargeTicks = ticks;
 }
 
-UsbStatus getPortStatus(uint8_t port) {
-  return portStatus[port]->status;
+UsbPortStatus getPortStatus(uint8_t port) {
+  if (port < FIRST_PORT_NUMBER || port > MAX_USB_PORT_NUMBER) {
+    return ERROR_ILLEGAL_PORT;
+  }
+  return usbPorts[port]->status;
 }
 
-void setPortStatus(uint8_t port, UsbStatus status) {
- portStatus[port]->status = status;
+void setPortStatus(uint8_t port, UsbPortStatus status) {
+  if (port < FIRST_PORT_NUMBER || port > MAX_USB_PORT_NUMBER) {
+    return ERROR_ILLEGAL_PORT;
+  }
+  usbPorts[port]->status = status;
 }
 
 bool isPortFree(uint8_t port) {
-  return portStatus[port]->status == AVAILABLE;
+  if (port < FIRST_PORT_NUMBER || port > MAX_USB_PORT_NUMBER) {
+    return ERROR_ILLEGAL_PORT;
+  }
+  return usbPorts[port]->status == AVAILABLE;
 }
 
 bool isPortTemporarilyInUSe(uint8_t port) {
-  return portStatus[port]->status == FREE_CHARGE;
+  if (port < FIRST_PORT_NUMBER || port > MAX_USB_PORT_NUMBER) {
+    return ERROR_ILLEGAL_PORT;
+  }
+  return usbPorts[port]->status == FREE_CHARGE;
 }
 
 bool isPortActive(uint8_t port) {
-  return portStatus[port]->status == ACTIVE_CHARGE;
+  if (port < FIRST_PORT_NUMBER || port > MAX_USB_PORT_NUMBER) {
+    return ERROR_ILLEGAL_PORT;
+  }
+  return usbPorts[port]->status == ACTIVE_CHARGE;
 }
 
 uint16_t getRamainingChargeTicks(uint8_t port) {
-  return portStatus[port]->remainingChargeTicks;
+  if (port < FIRST_PORT_NUMBER || port > MAX_USB_PORT_NUMBER) {
+    return ERROR_ILLEGAL_PORT;
+  }
+  return usbPorts[port]->remainingChargeTicks;
 } 
 
 void setRamainingChargeTicks(uint8_t port, uint16_t ticks) {
-  portStatus[port]->remainingChargeTicks = ticks;
+  if (port < FIRST_PORT_NUMBER || port > MAX_USB_PORT_NUMBER) {
+    return ERROR_ILLEGAL_PORT;
+  }
+  usbPorts[port]->remainingChargeTicks = ticks;
 } 
 
 bool decrementChargingTicks(uint8_t port) {
-  return (--portStatus[port]->remainingChargeTicks <= 0);
+  if (port < FIRST_PORT_NUMBER || port > MAX_USB_PORT_NUMBER) {
+    return ERROR_ILLEGAL_PORT;
+  }
+  return (--usbPorts[port]->remainingChargeTicks <= 0);
 }
 
 bool isChargingTicksExpired(uint8_t port) {
-  return (portStatus[port]->remainingChargeTicks <= 0);
+  if (port < FIRST_PORT_NUMBER || port > MAX_USB_PORT_NUMBER) {
+    return ERROR_ILLEGAL_PORT;
+  }
+  return (usbPorts[port]->remainingChargeTicks <= 0);
+}
+
+/*
+  allocateFreePort
+  return: <port number> if a port is available and sets the port status to ACTIVE_CHARGE
+          ERROR_NO_AVAILABLE_PORT if no ports are available
+*/
+uint8_t allocateFreePort() {
+
+  for (int port = FIRST_PORT_NUMBER; port <= MAX_USB_PORT_NUMBER; port++) {
+    if (usbPorts[port]->status == AVAILABLE) {
+      return port;
+    }
+  }
+  return ERROR_NO_AVAILABLE_PORT;
 }
 
 
@@ -84,9 +123,9 @@ void ble_our_service_on_ble_evt(ble_evt_t const * p_ble_evt, void * p_context)
 }
 
 static void init_port_status() {
-    for (int i = 0; i < MAX_PORT; i++) {
-      portStatus[i] = (PortStatus*) malloc(sizeof(PortStatus));
-      memset(portStatus[i], 0, sizeof(portStatus));
+    for (int i = 0; i <= MAX_USB_PORT_NUMBER; i++) {
+      usbPorts[i] = malloc(sizeof(UsbPort));
+      memset(usbPorts[i], 0, sizeof(usbPorts));
     }
 }
 

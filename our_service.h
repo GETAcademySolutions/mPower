@@ -31,25 +31,30 @@ typedef enum {
     FREE_CHARGE,              // Port busy but not yet paid for
     ACTIVE_CHARGE,            // Port active; port busy and paid for
     FREE_CHARGE_NOT_AVAILABLE // port busy; free charging time expired
-} UsbStatus;
+} UsbPortStatus;
 
 typedef struct {
-    UsbStatus status;   
-    uint16_t  remainingChargeTicks;
-    uint16_t  notAvailableTicks;
-} PortStatus;
+    UsbPortStatus status;   
+    int16_t  remainingChargeTicks;
+    int16_t  notAvailableTicks;
+} UsbPort;
 
 
-void initPortStatus(uint8_t port, UsbStatus status, uint16_t ticks);
-UsbStatus getPortStatus(uint8_t port);
-void setPortStatus(uint8_t port, UsbStatus status);
-bool isPortFree(uint8_t port);
-bool isPortTemporarilyInUSe(uint8_t port);
-bool isPortActive(uint8_t port);
-uint16_t getRamainingChargeTicks(uint8_t port);
-void setRamainingChargeTicks(uint8_t port, uint16_t ticks);
-bool decrementChargingTicks(uint8_t port);
-bool isChargingTicksExpired(uint8_t port);
+//#define MAX_PORT 10
+#define FIRST_PORT_NUMBER       1
+#define MAX_USB_PORT_NUMBER     4
+#define TURN_USB_POWER_OFF      0
+#define TURN_USB_POWER_ON       1
+#define CHOOSE_AVAILABLE_PORT   255 // = 0xFF
+//TODO Test data
+#define TEST_TIME               1000 * 20
+
+#define MAX_CHARGE_TIME         60*60*1000 //1 time
+#define MAX_FREE_TIME           5*60*1000  //5 min
+
+#define ERROR_ILLEGAL_PORT      240 // = 0xF0
+#define ERROR_NO_AVAILABLE_PORT 241 // = 0xF1
+
 
 /**@brief Function for handling BLE Stack events related to our service and characteristic.
  *
@@ -77,5 +82,17 @@ void our_service_init(ble_os_t * p_our_service);
 void our_temperature_characteristic_update(ble_os_t *p_our_service, int32_t *temperature_value);
 
 void our_notification(ble_os_t *p_our_service, uint32_t *p_data);
+
+void initPortStatus(uint8_t port, UsbPortStatus status, uint16_t ticks);
+UsbPortStatus getPortStatus(uint8_t port);
+void setPortStatus(uint8_t port, UsbPortStatus status);
+bool isPortFree(uint8_t port);
+bool isPortTemporarilyInUSe(uint8_t port);
+bool isPortActive(uint8_t port);
+uint16_t getRamainingChargeTicks(uint8_t port);
+void setRamainingChargeTicks(uint8_t port, uint16_t ticks);
+bool decrementChargingTicks(uint8_t port);
+bool isChargingTicksExpired(uint8_t port);
+uint8_t allocateFreePort();
 
 #endif  /* _ OUR_SERVICE_H__ */
