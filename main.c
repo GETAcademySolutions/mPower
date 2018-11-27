@@ -511,6 +511,7 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
     //ble_gatts_evt_write_t const *p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
 
     uint8_t *p_data = (uint8_t*) p_ble_evt->evt.gatts_evt.params.write.data;
+    uint16_t conn_handle = p_ble_evt->evt.gatts_evt.conn_handle;
     uint16_t length = p_ble_evt->evt.gatts_evt.params.write.len;
     uint8_t command = 0xff;
     uint8_t port = 0xff;
@@ -533,7 +534,7 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
     } else {
         NRF_LOG_INFO("data received: length=%0x, illegal command", length, command);
         ack_msg = 0x00; 
-        our_notification(&m_our_service, &ack_msg);
+        our_notification(&m_our_service, conn_handle, &ack_msg);
         return;
     }
 
@@ -560,7 +561,7 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
       NRF_LOG_INFO("Illegal port or No port available")
       
       ack_msg = (port << 8) | 0x00;
-      our_notification(&m_our_service, &ack_msg);
+      our_notification(&m_our_service, conn_handle, &ack_msg);
     } else {
       if (command == TURN_USB_POWER_ON) {
           NRF_LOG_INFO("Turn power ON on port %x", port);
@@ -574,7 +575,7 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
 
           // send ack
           ack_msg = (port << 8) | 0x01; 
-          our_notification(&m_our_service, &ack_msg);
+          our_notification(&m_our_service, conn_handle, &ack_msg);
       } else if (command == TURN_USB_POWER_OFF) {
           NRF_LOG_INFO("Turn power OFF on port %x", port);
           //nrf_gpio_pin_clear(port - 1 + LED_START);
@@ -586,7 +587,7 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
 
           // send ack
           ack_msg = (port << 8) | 0x01; 
-          our_notification(&m_our_service, &ack_msg);
+          our_notification(&m_our_service, conn_handle, &ack_msg);
       } else {
           NRF_LOG_INFO("Illegal command %d", port);        
       }
@@ -816,11 +817,15 @@ static void idle_state_handle(void)
  */
 int main(void)
 {
+
     // Initialize.
     log_init();
+    
+    //pin_change init
+    gpio_init();  
     timers_init();
     leds_init();
-    buttons_init();
+    //buttons_init();
     power_management_init();
     ble_stack_init();
     gap_params_init();
@@ -832,9 +837,6 @@ int main(void)
     //innitPortStatus()
 
     conn_params_init();
-
-    //pin_change init
-    //gpio_init();  
 
     // Start execution.           
     NRF_LOG_INFO("mPower started.");

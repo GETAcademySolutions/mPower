@@ -81,7 +81,7 @@ void our_service_init(ble_os_t * p_our_service);
 
 void our_temperature_characteristic_update(ble_os_t *p_our_service, int32_t *temperature_value);
 
-void our_notification(ble_os_t *p_our_service, uint32_t *p_data);
+void our_notification(ble_os_t *p_our_service, uint16_t conn_handle, uint32_t *p_data);
 
 void initPortStatus(uint8_t port, UsbPortStatus status, uint16_t ticks);
 UsbPortStatus getPortStatus(uint8_t port);

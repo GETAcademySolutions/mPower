@@ -287,7 +287,7 @@ void our_temperature_characteristic_update(ble_os_t *p_our_service, int32_t *tem
 }
 
 
-void our_notification(ble_os_t *p_our_service, uint32_t *p_data)
+void our_notification(ble_os_t *p_our_service, uint16_t conn_handle, uint32_t *p_data)
 {
    if (true)
     {
@@ -301,8 +301,9 @@ void our_notification(ble_os_t *p_our_service, uint32_t *p_data)
         hvx_params.p_len  = &len;
         hvx_params.p_data = p_data;
 
-        NRF_LOG_INFO("our_notification: conn_handle=%0x, len=%d, value=%0x", p_our_service->conn_handle, len, *p_data);
+        NRF_LOG_INFO("our_notification: conn_handle=%0x, len=%d, value=%0x", conn_handle, len, *p_data);
 
-        sd_ble_gatts_hvx(p_our_service->conn_handle, &hvx_params);
+        uint32_t error = sd_ble_gatts_hvx(conn_handle, &hvx_params);
+        APP_ERROR_CHECK(error);
     }
 }
