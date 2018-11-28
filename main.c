@@ -74,7 +74,8 @@
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
 
-#include "our_service.h"
+#include "usb_port.h"
+#include "ble_service.h"
 
 
 #define DEVICE_NAME                     "mPower"                                /**< Name of device. Will be included in the advertising data. */
@@ -120,10 +121,7 @@
     #error "Please indicate output pin"
 #endif
 
-void in_pin_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
-{
-    nrf_drv_gpiote_out_toggle(PIN_OUT);
-}
+
 /**
  * @brief Function for configuring: PIN_IN pin for input, PIN_OUT pin for output,
  * and configures GPIOTE to give an interrupt on pin change.
@@ -137,13 +135,14 @@ static void gpio_init(void)
 
     nrf_drv_gpiote_out_config_t out_config = GPIOTE_CONFIG_OUT_SIMPLE(false);
 
+    // TODO: var det ikke så at man må abonnerer på event fra alle pin's
     err_code = nrf_drv_gpiote_out_init(PIN_OUT, &out_config);
     APP_ERROR_CHECK(err_code);
 
     nrf_drv_gpiote_in_config_t in_config = GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
     in_config.pull = NRF_GPIO_PIN_PULLUP;
 
-    err_code = nrf_drv_gpiote_in_init(PIN_IN, &in_config, in_pin_handler);
+    err_code = nrf_drv_gpiote_in_init(PIN_IN, &in_config, inPinHandler);
     APP_ERROR_CHECK(err_code);
 
     nrf_drv_gpiote_in_event_enable(PIN_IN, true);
@@ -177,17 +176,16 @@ static ble_gap_adv_data_t m_adv_data =
 };
 
 
-BLE_LBS_DEF(m_lbs);                                                             /**< LED Button Service instance. */
+// Declare a service structure for our application
+ble_mp_t m_ble_mp;
 NRF_BLE_GATT_DEF(m_gatt);                                                       /**< GATT module instance. */
 NRF_BLE_QWRS_DEF(m_qwr, NRF_SDH_BLE_TOTAL_LINK_COUNT);                          /**< Context for the Queued Write module.*/
 
-// FROM_SERVICE_TUTORIAL: Declare a service structure for our application
-ble_os_t m_our_service;
 
 // Use UUIDs for service(s) used in your application.
 static ble_uuid_t m_adv_uuids[] =                                               /**< Universally unique service identifiers. */
 {
-    {BLE_UUID_OUR_SERVICE_UUID, BLE_UUID_TYPE_VENDOR_BEGIN}
+    {BLE_UUID_MP_SERVICE, BLE_UUID_TYPE_VENDOR_BEGIN}
 };
 
 /**@brief Function for assert macro callback.
@@ -216,17 +214,42 @@ static void leds_init(void)
     bsp_board_init(BSP_INIT_LEDS);
 }
 
+// Declare an app_timer id variable and define our timer interval and define a timer interval
+APP_TIMER_DEF(m_mp_char_timer_id);
+#define MP_CHAR_TIMER_INTERVAL     APP_TIMER_TICKS(1000) // 1000 ms intervals
+
+
+/**@brief Function for Timer event handler
+ */
+static void timer_timeout_handler(void * p_context)
+{
+    checkUsbPorts();
+}
+
+
+/**@brief Function for starting timers.
+ */
+static void application_timers_start(void)
+{
+    // Start the MP timer
+    app_timer_start(m_mp_char_timer_id, MP_CHAR_TIMER_INTERVAL, NULL);
+}
+
 
 /**@brief Function for the Timer initialization.
  *
- * @details Initializes the timer module.
+ * @details Initializes the timer module. This creates and starts application timers.
  */
 static void timers_init(void)
 {
-    // Initialize timer module, making it use the scheduler
+    // Initialize timer module.
     ret_code_t err_code = app_timer_init();
     APP_ERROR_CHECK(err_code);
+
+    // Initiate timer
+    app_timer_create(&m_mp_char_timer_id, APP_TIMER_MODE_REPEATED, timer_timeout_handler);		
 }
+
 
 
 /**@brief Function for the GAP initialization.
@@ -281,8 +304,6 @@ static void advertising_init(void)
     ble_gap_adv_params_t adv_params;
 
 
-    ble_uuid_t adv_uuids[] = {{LBS_UUID_SERVICE, m_lbs.uuid_type}};
-
     // Build and set advertising data.
     memset(&advdata, 0, sizeof(advdata));
 
@@ -294,9 +315,6 @@ static void advertising_init(void)
     memset(&srdata, 0, sizeof(srdata));
     srdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
     srdata.uuids_complete.p_uuids  = m_adv_uuids;
-    //original
-    //srdata.uuids_complete.uuid_cnt = sizeof(adv_uuids) / sizeof(adv_uuids[0]);
-    //srdata.uuids_complete.p_uuids  = adv_uuids;
 
     err_code = ble_advdata_encode(&advdata, m_adv_data.adv_data.p_data, &m_adv_data.adv_data.len);
     APP_ERROR_CHECK(err_code);
@@ -332,26 +350,6 @@ static void nrf_qwr_error_handler(uint32_t nrf_error)
 }
 
 
-/**@brief Function for handling write events to the LED characteristic.
- *
- * @param[in] p_lbs     Instance of LED Button Service to which the write applies.
- * @param[in] led_state Written/desired state of the LED.
- */
-static void led_write_handler(uint16_t conn_handle, ble_lbs_t * p_lbs, uint8_t led_state)
-{
-    if (led_state)
-    {
-        bsp_board_led_on(LEDBUTTON_LED);
-        NRF_LOG_INFO("Received LED ON from link 0x%x!", conn_handle);
-    }
-    else
-    {
-        bsp_board_led_off(LEDBUTTON_LED);
-        NRF_LOG_INFO("Received LED OFF from link 0x%x!", conn_handle);
-    }
-}
-
-
 /**@brief Function for initializing services that will be used by the application.
  */
 static void services_init(void)
@@ -369,14 +367,8 @@ static void services_init(void)
         APP_ERROR_CHECK(err_code);
     }
 
-    //FROM_SERVICE_TUTORIAL: Add code to initialize the services used by the application.
-    our_service_init(&m_our_service);
-
-    // Initialize LBS.
-    //init.led_write_handler = led_write_handler;
-
-    //err_code = ble_lbs_init(&m_lbs, &init);
-    //APP_ERROR_CHECK(err_code);
+    // Initialize the services used by the application.
+    mpServiceInit(&m_ble_mp);
 
     //ble_conn_state_init();
 }
@@ -495,111 +487,6 @@ static void on_disconnected(ble_gap_evt_t const * const p_gap_evt)
 }
 
 
-// Max port number set to 4 in test
-#define MAX_USB_PORT_NUMBER 4
-#define TURN_USB_POWER_OFF  0
-#define TURN_USB_POWER_ON   1
-
-void onNewCommand(ble_evt_t const *p_ble_evt) {
-    // Edgar: Write event - decode the data set by client:
-    // 1st byte: command - 0=off, 1=on
-    // 2nd byte: port number
-    //           legal port number is: 1 - MAX_USB_PORT_NUMBER
-
-    NRF_LOG_INFO("onNewCommand() enter");
-
-    //ble_gatts_evt_write_t const *p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
-
-    uint8_t *p_data = (uint8_t*) p_ble_evt->evt.gatts_evt.params.write.data;
-    uint16_t conn_handle = p_ble_evt->evt.gatts_evt.conn_handle;
-    uint16_t length = p_ble_evt->evt.gatts_evt.params.write.len;
-    uint8_t command = 0xff;
-    uint8_t port = 0xff;
-    uint32_t ack_msg = 0;
-
-    if (length >= 2) {
-      command = p_data[0];
-      port = p_data[1];
-
-      NRF_LOG_INFO("data received: length=%0x, command=%d, port=%d", length, command, port);
-      
-      //port = port > 0 && port <= MAX_USB_PORT_NUMBER ? port : 1;
-      // check port status on port given- chetPort()
-    
-    } else if (length == 1) {
-      command = p_data[0];
-      port = CHOOSE_AVAILABLE_PORT;
-
-      NRF_LOG_INFO("data received: length=%0x, command=%0x, port=allocate", length, command);
-    } else {
-        NRF_LOG_INFO("data received: length=%0x, illegal command", length, command);
-        ack_msg = 0x00; 
-        our_notification(&m_our_service, conn_handle, &ack_msg);
-        return;
-    }
-
-    //edgar: jeg har lagt til en egen funksjon for å allokere ledig port
-    /*
-    if (port == CHOOSE_AVAILABLE_PORT)
-    {
-      for(int i = 1; i <= MAX_USB_PORT_NUMBER; i++){
-        if (isPortFree(i)){
-          port = i;
-          break;
-        }
-      }
-      NRF_LOG_INFO("RANDOM!!!! port = %0x", port);
-    }
-    */
-    
-    if (port == CHOOSE_AVAILABLE_PORT) {
-      port = allocateFreePort();
-      NRF_LOG_INFO("port is %x", port);
-    }
-
-    if (port == ERROR_NO_AVAILABLE_PORT || port == ERROR_ILLEGAL_PORT || getPortStatus(port) == ACTIVE_CHARGE) {
-      NRF_LOG_INFO("Illegal port or No port available")
-      
-      ack_msg = (port << 8) | 0x00;
-      our_notification(&m_our_service, conn_handle, &ack_msg);
-    } else {
-      if (command == TURN_USB_POWER_ON) {
-          NRF_LOG_INFO("Turn power ON on port %x", port);
-          // It seems that the _set function turns the LED off and _clear turns it ON
-          //nrf_gpio_pin_set(port - 1 + LED_START);
-          nrf_gpio_pin_write(port - 1 + LED_START, !command);
-        
-          // update port status
-          //TODO CHANGE TIME TO ACTUAL CHARGE TIME
-          initPortStatus(port, ACTIVE_CHARGE, TEST_TIME);
-
-          // send ack
-          ack_msg = (port << 8) | 0x01; 
-          our_notification(&m_our_service, conn_handle, &ack_msg);
-      } else if (command == TURN_USB_POWER_OFF) {
-          NRF_LOG_INFO("Turn power OFF on port %x", port);
-          //nrf_gpio_pin_clear(port - 1 + LED_START);
-          nrf_gpio_pin_write(port - 1 + LED_START, !command);
-
-          // update port status
-          //TODO CHANGE TIME TO ACTUAL CHARGE TIME
-          initPortStatus(port, AVAILABLE, TEST_TIME);
-
-          // send ack
-          ack_msg = (port << 8) | 0x01; 
-          our_notification(&m_our_service, conn_handle, &ack_msg);
-      } else {
-          NRF_LOG_INFO("Illegal command %d", port);        
-      }
-    }
-    //TODO testStuff status
-    UsbPortStatus portStatusValue = getPortStatus(port);
-    NRF_LOG_INFO("Status is %x", portStatusValue);
-
-    NRF_LOG_INFO("onNewCommand() leave");
-}
-
-
 /**@brief Function for handling BLE events.
  *
  * @param[in]   p_ble_evt   Bluetooth stack event.
@@ -664,11 +551,9 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 
         case BLE_GATTS_EVT_WRITE:
             // Edgar: Write event
-            NRF_LOG_INFO("Write operation performed.");
-
-            onNewCommand(p_ble_evt);
-
+            NRF_LOG_INFO("Write operation");
             break;
+
         default:
             // No implementation needed.
             break;
@@ -699,38 +584,9 @@ static void ble_stack_init(void)
 
     // Register a handler for BLE events.
     NRF_SDH_BLE_OBSERVER(m_ble_observer, APP_BLE_OBSERVER_PRIO, ble_evt_handler, NULL);
-}
 
-
-/**@brief Function for writing to the LED characteristic of all connected clients.
- *
- * @details Based on if the button is pressed or released, this function writes a high or low
- *          LED status to the server.
- *
- * @param[in] button_action The button action (press/release).
- *            Determines if the LEDs of the servers will be ON or OFF.
- *
- * @return If successful NRF_SUCCESS is returned. Otherwise, the error code from @ref ble_lbs_led_status_send.
- */
-static uint32_t led_status_send_to_all(uint8_t button_action)
-{
-    ret_code_t                        err_code;
-    ble_conn_state_conn_handle_list_t conn_handles = ble_conn_state_periph_handles();
-
-    for (uint8_t i = 0; i < conn_handles.len; i++)
-    {
-        err_code = ble_lbs_on_button_change(conn_handles.conn_handles[i], &m_lbs, button_action);
-
-        if (err_code != NRF_SUCCESS &&
-            err_code != BLE_ERROR_INVALID_CONN_HANDLE &&
-            err_code != NRF_ERROR_INVALID_STATE &&
-            err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)
-        {
-            APP_ERROR_CHECK(err_code);
-            NRF_LOG_DEBUG("Sent button change 0x%x on connection handle 0x%x.", button_action, conn_handles.conn_handles[i]);
-        }
-    }
-    return NRF_SUCCESS;
+    // Call MP service onBleEvent() to do housekeeping of ble connections related to our service and characteristics
+    NRF_SDH_BLE_OBSERVER(m_mp_service_observer, APP_BLE_OBSERVER_PRIO, onBleEvent, (void*) &m_ble_mp);	
 }
 
 
@@ -746,7 +602,7 @@ static void button_event_handler(uint8_t pin_no, uint8_t button_action)
     switch (pin_no)
     {
         case LEDBUTTON_BUTTON:
-            err_code = led_status_send_to_all(button_action);
+            err_code = sendPortStatusToAll(button_action);
             if (err_code == NRF_SUCCESS)
             {
                 NRF_LOG_INFO("Sent button state change to all connected centrals.");
@@ -834,13 +690,14 @@ int main(void)
     services_init();
     advertising_init();
 
-    //innitPortStatus()
+    initUsbPorts();
 
     conn_params_init();
 
     // Start execution.           
-    NRF_LOG_INFO("mPower started.");
+    NRF_LOG_INFO("%s started.", DEVICE_NAME);
     advertising_start();
+    application_timers_start();
 
     // Enter main loop.
     for (;;)
