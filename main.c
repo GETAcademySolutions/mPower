@@ -108,24 +108,62 @@
 
 //pin change handeler
 #ifdef BSP_BUTTON_0
-    #define PIN_IN BSP_BUTTON_0
+    #define PIN_IN_0 BSP_BUTTON_0
 #endif
-#ifndef PIN_IN
+#ifdef BSP_BUTTON_1
+    #define PIN_IN_1 BSP_BUTTON_1
+#endif
+#ifdef BSP_BUTTON_2
+    #define PIN_IN_2 BSP_BUTTON_2
+#endif
+#ifdef BSP_BUTTON_3
+    #define PIN_IN_3 BSP_BUTTON_3
+#endif
+#ifndef PIN_IN_0
     #error "Please indicate input pin"
 #endif
 
 #ifdef BSP_LED_0
-    #define PIN_OUT BSP_LED_0
+    #define PIN_OUT_0 BSP_LED_0
 #endif
-#ifndef PIN_OUT
+#ifdef BSP_LED_1
+    #define PIN_OUT_1 BSP_LED_1
+#endif
+#ifdef BSP_LED_2
+    #define PIN_OUT_2 BSP_LED_2
+#endif
+#ifdef BSP_LED_3
+    #define PIN_OUT_3 BSP_LED_3
+#endif
+#ifndef PIN_OUT_0
     #error "Please indicate output pin"
 #endif
 
-
+void inPinHandler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
+{
+    NRF_LOG_INFO("in_pin_handler; pin=%d, action=%d", pin, action);
+    
+  switch (pin){
+    case PIN_IN_0:
+      //nrf_drv_gpiote_out_toggle(PIN_OUT_0);
+      break;
+    case PIN_IN_1:
+      //nrf_drv_gpiote_out_toggle(PIN_OUT_1);
+      break;
+    case PIN_IN_2:
+      //nrf_drv_gpiote_out_toggle(PIN_OUT_2);
+      break;
+    case PIN_IN_3:
+      //nrf_drv_gpiote_out_toggle(PIN_OUT_3);
+      break;
+    }
+    //TODO: endring av port status med notifikasjon på ALERT karakteristikk
+}
 /**
  * @brief Function for configuring: PIN_IN pin for input, PIN_OUT pin for output,
  * and configures GPIOTE to give an interrupt on pin change.
  */
+
 static void gpio_init(void)
 {
     ret_code_t err_code;
@@ -135,17 +173,31 @@ static void gpio_init(void)
 
     nrf_drv_gpiote_out_config_t out_config = GPIOTE_CONFIG_OUT_SIMPLE(false);
 
-    // TODO: var det ikke så at man må abonnerer på event fra alle pin's
-    err_code = nrf_drv_gpiote_out_init(PIN_OUT, &out_config);
+    err_code = nrf_drv_gpiote_out_init(PIN_OUT_0, &out_config);
+    APP_ERROR_CHECK(err_code);
+    err_code = nrf_drv_gpiote_out_init(PIN_OUT_1, &out_config);
+    APP_ERROR_CHECK(err_code);
+    err_code = nrf_drv_gpiote_out_init(PIN_OUT_2, &out_config);
+    APP_ERROR_CHECK(err_code);
+    err_code = nrf_drv_gpiote_out_init(PIN_OUT_3, &out_config);
     APP_ERROR_CHECK(err_code);
 
     nrf_drv_gpiote_in_config_t in_config = GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
     in_config.pull = NRF_GPIO_PIN_PULLUP;
 
-    err_code = nrf_drv_gpiote_in_init(PIN_IN, &in_config, inPinHandler);
+    err_code = nrf_drv_gpiote_in_init(PIN_IN_0, &in_config, inPinHandler);
+    APP_ERROR_CHECK(err_code);
+    err_code = nrf_drv_gpiote_in_init(PIN_IN_1, &in_config, inPinHandler);
+    APP_ERROR_CHECK(err_code);
+    err_code = nrf_drv_gpiote_in_init(PIN_IN_2, &in_config, inPinHandler);
+    APP_ERROR_CHECK(err_code);
+    err_code = nrf_drv_gpiote_in_init(PIN_IN_3, &in_config, inPinHandler);
     APP_ERROR_CHECK(err_code);
 
-    nrf_drv_gpiote_in_event_enable(PIN_IN, true);
+    nrf_drv_gpiote_in_event_enable(PIN_IN_0, true);
+    nrf_drv_gpiote_in_event_enable(PIN_IN_1, true);
+    nrf_drv_gpiote_in_event_enable(PIN_IN_2, true);
+    nrf_drv_gpiote_in_event_enable(PIN_IN_3, true);
 }
 
 
@@ -472,18 +524,21 @@ static void on_disconnected(ble_gap_evt_t const * const p_gap_evt)
                  p_gap_evt->conn_handle,
                  p_gap_evt->params.disconnected.reason);
 
+/*
     if (periph_link_cnt == 0)
     {
         bsp_board_led_off(CONNECTED_LED);
         err_code = app_button_disable();
         APP_ERROR_CHECK(err_code);
     }
+*/
 
     if (periph_link_cnt == (NRF_SDH_BLE_PERIPHERAL_LINK_COUNT - 1))
     {
         // Advertising is not running when all connections are taken, and must therefore be started.
         advertising_start();
     }
+    NRF_LOG_INFO("on_disconnected leave");
 }
 
 

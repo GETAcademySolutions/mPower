@@ -91,6 +91,7 @@ void onBleEvent(ble_evt_t const *p_ble_evt, void *p_context)
  */
 static uint32_t addCmdCharacteristic(ble_mp_t *p_ble_mp)
 {
+/*
     uint32_t            err_code;
     ble_uuid_t          char_uuid;
     ble_uuid128_t       base_uuid = BLE_UUID_MP_BASE;
@@ -137,11 +138,59 @@ static uint32_t addCmdCharacteristic(ble_mp_t *p_ble_mp)
     APP_ERROR_CHECK(err_code);
 
     return NRF_SUCCESS;
+*/
+    
+    uint32_t            err_code;
+    ble_gatts_char_md_t char_md;
+    ble_gatts_attr_t    attr_char_value;
+    ble_uuid_t          ble_uuid;
+    ble_uuid128_t       base_uuid = BLE_UUID_MP_BASE;
+    ble_gatts_attr_md_t attr_md;
+
+    memset(&char_md, 0, sizeof(char_md));
+
+    char_md.char_props.read  = 1;
+    char_md.char_props.write = 1;
+    char_md.p_char_user_desc = NULL;
+    char_md.p_char_pf        = NULL;
+    char_md.p_user_desc_md   = NULL;
+    char_md.p_cccd_md        = NULL;
+    char_md.p_sccd_md        = NULL;
+
+    err_code = sd_ble_uuid_vs_add(&base_uuid, &ble_uuid.type);
+    ble_uuid.uuid  = BLE_UUID_MP_CMD_CHAR;
+    NRF_LOG_INFO("cmd ble_uuid=%0x, type=%x\n", ble_uuid.uuid, ble_uuid.type);
+
+    memset(&attr_md, 0, sizeof(attr_md));
+
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.read_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.write_perm);
+    attr_md.vloc    = BLE_GATTS_VLOC_STACK;
+    attr_md.rd_auth = 0;
+    attr_md.wr_auth = 0;
+    attr_md.vlen    = 0;
+
+    memset(&attr_char_value, 0, sizeof(attr_char_value));
+
+    // TODO: vise location_id 
+    uint8_t value[5]            = {0x12,0x34,0x56,0x78};
+    attr_char_value.p_uuid    = &ble_uuid;
+    attr_char_value.p_attr_md = &attr_md;
+    attr_char_value.init_len  = sizeof(value);
+    attr_char_value.init_offs = 0;
+    attr_char_value.max_len   = 20;
+    attr_char_value.p_value   = value;
+
+    return sd_ble_gatts_characteristic_add(p_ble_mp->service_handle,
+                                       &char_md,
+                                       &attr_char_value,
+                                       &p_ble_mp->cmd_char_handles);
 }
 
 /**@brief Function for adding the Button characteristic.
  *
  */
+
 static uint32_t addAlertCharacteristic(ble_mp_t *p_ble_mp)
 {
 /*
@@ -190,8 +239,8 @@ static uint32_t addAlertCharacteristic(ble_mp_t *p_ble_mp)
     APP_ERROR_CHECK(err_code);
 
     return NRF_SUCCESS;
-*/
 
+*/
     uint32_t            err_code;
     ble_gatts_char_md_t char_md;
     ble_gatts_attr_md_t cccd_md;
@@ -218,6 +267,7 @@ static uint32_t addAlertCharacteristic(ble_mp_t *p_ble_mp)
 
     err_code = sd_ble_uuid_vs_add(&base_uuid, &ble_uuid.type);
     ble_uuid.uuid = BLE_UUID_MP_ALERT_CHAR;
+    NRF_LOG_INFO("alert ble_uuid=%0x, type=%x\n", ble_uuid.uuid, ble_uuid.type);
 
     memset(&attr_md, 0, sizeof(attr_md));
 

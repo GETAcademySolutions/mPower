@@ -72,7 +72,7 @@ uint8_t turnOnOffPower(uint8_t port, uint8_t onOff);
 void onNewCommand(ble_evt_t const *p_ble_evt);
 void onBleDisconnect(ble_evt_t const * p_ble_evt);
 void checkUsbPorts();
-void inPinHandler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
+//void inPinHandler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
 
 
 #endif /* OUR_PORT_H */

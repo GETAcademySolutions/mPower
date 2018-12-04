@@ -188,7 +188,7 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
     //ble_gatts_evt_write_t const *p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
 
     uint16_t connHandle = p_ble_evt->evt.gap_evt.conn_handle;
-    uint16_t charHandle = m_ble_mp.cmd_char_handles.value_handle;
+    uint16_t charHandle = m_ble_mp.alert_char_handles.value_handle;
     uint8_t *pData = (uint8_t*) p_ble_evt->evt.gatts_evt.params.write.data;
     uint16_t length = p_ble_evt->evt.gatts_evt.params.write.len;
     uint8_t  command = 0xff;
@@ -292,6 +292,10 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
     NRF_LOG_INFO("onNewCommand() leave");
 }
 
+void onUsbChange(nrf_drv_gpiote_pin_t pin){
+    //TODO add USB status, ack message, ports, turn off power, turn on power, change USB status, get USB status
+}
+
 void onBleDisconnect(ble_evt_t const * p_ble_evt) {
     // Remvove connection handle from UsbPort
     for (int i = MP_FIRST_USB_PORT_NUMBER; i <= MP_MAX_USB_PORT_NUMBER; i++) {
@@ -301,11 +305,7 @@ void onBleDisconnect(ble_evt_t const * p_ble_evt) {
     }
 }
 
-void inPinHandler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
-{
-    NRF_LOG_INFO("in_pin_handler; pin=%d, action=%d", pin, action);
-    //TODO: endring av port status med notifikasjon på ALERT karakteristikk
-}
+
 
 
 
