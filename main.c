@@ -145,15 +145,19 @@ void inPinHandler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
     
   switch (pin){
     case PIN_IN_0:
+    onUsbChange(0x01);
       //nrf_drv_gpiote_out_toggle(PIN_OUT_0);
       break;
     case PIN_IN_1:
+    onUsbChange(0x02);
       //nrf_drv_gpiote_out_toggle(PIN_OUT_1);
       break;
     case PIN_IN_2:
+    onUsbChange(0x03);
       //nrf_drv_gpiote_out_toggle(PIN_OUT_2);
       break;
     case PIN_IN_3:
+    onUsbChange(0x04);
       //nrf_drv_gpiote_out_toggle(PIN_OUT_3);
       break;
     }
@@ -645,50 +649,6 @@ static void ble_stack_init(void)
 }
 
 
-/**@brief Function for handling events from the button handler module.
- *
- * @param[in] pin_no        The pin that the event applies to.
- * @param[in] button_action The button action (press/release).
- */
-static void button_event_handler(uint8_t pin_no, uint8_t button_action)
-{
-    ret_code_t err_code;
-
-    switch (pin_no)
-    {
-        case LEDBUTTON_BUTTON:
-            err_code = sendPortStatusToAll(button_action);
-            if (err_code == NRF_SUCCESS)
-            {
-                NRF_LOG_INFO("Sent button state change to all connected centrals.");
-            }
-            break;
-
-        default:
-            APP_ERROR_HANDLER(pin_no);
-            break;
-    }
-}
-
-
-/**@brief Function for initializing the button handler module.
- */
-static void buttons_init(void)
-{
-    ret_code_t err_code;
-
-    //The array must be static because a pointer to it will be saved in the button handler module.
-    static app_button_cfg_t buttons[] =
-    {
-        {LEDBUTTON_BUTTON, false, BUTTON_PULL, button_event_handler}
-    };
-
-    err_code = app_button_init(buttons, ARRAY_SIZE(buttons),
-                               BUTTON_DETECTION_DELAY);
-    APP_ERROR_CHECK(err_code);
-}
-
-
 /**@brief Function for initializing the logging module.
  */
 static void log_init(void)
@@ -736,7 +696,6 @@ int main(void)
     gpio_init();  
     timers_init();
     leds_init();
-    //buttons_init();
     power_management_init();
     ble_stack_init();
     gap_params_init();

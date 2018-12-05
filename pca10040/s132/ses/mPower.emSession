@@ -69,10 +69,10 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="49" y="25" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../ble_service.c" selected="0" top="15" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="18" y="149" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="136" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="111" y="295" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../usb_port.c" selected="1" top="278" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="2" y="74" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../usb_port.h" selected="0" top="63" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="8" y="53" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../ble_service.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="4" y="147" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="466" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="9" y="338" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../usb_port.c" selected="1" top="308" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="4" y="20" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../usb_port.h" selected="0" top="0" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="71" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../../modules/nrfx/hal/nrf_gpiote.h" selected="0" top="55" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="98" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../../components/libraries/util/app_error_weak.c" selected="0" top="82" codecName=""/>
  </Files>

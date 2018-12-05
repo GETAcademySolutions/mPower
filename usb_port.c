@@ -231,7 +231,7 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
     ret = getPortStatus(port, &portStatus);
 
     if (ret != MP_SUCCESS) {
-        NRF_LOG_INFO("Get port status feiled, %s", ret)
+        NRF_LOG_INFO("Get port status failed, %s", ret)
     } else {
         if (command == MP_TURN_USB_POWER_ON) {
             NRF_LOG_INFO("Turn power ON on port %x", port);
@@ -292,8 +292,69 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
     NRF_LOG_INFO("onNewCommand() leave");
 }
 
-void onUsbChange(nrf_drv_gpiote_pin_t pin){
+void onUsbChange(uint8_t port){
     //TODO add USB status, ack message, ports, turn off power, turn on power, change USB status, get USB status
+    uint16_t connHandle = NULL;
+    uint16_t charHandle = m_ble_mp.alert_char_handles.value_handle;
+    uint32_t ackMsg = 0;
+    uint8_t  len = 4;
+    uint8_t  ret = MP_SUCCESS;
+    UsbPortStatus portStatus;
+    
+    NRF_LOG_INFO("onUsbChange() enter");
+    ret = getConnHandle(port, &connHandle);
+    
+    ret = getPortStatus(port, &portStatus);
+
+    if (ret != MP_SUCCESS) {
+        NRF_LOG_INFO("Get port status failed, %s", ret)
+    } else {
+        if (portStatus==MP_AVAILABLE) {
+            NRF_LOG_INFO("Turn power ON on port %x", port);
+            ret = turnOnOffPower(port, MP_POWER_ON);
+
+            // update port status
+            // TODO CHANGE TIME TO ACTUAL CHARGE TIME
+            ret = initPortStatus(port, MP_FREE_CHARGE, MP_TEST_TIME, connHandle);   
+            NRF_LOG_INFO("Set portStatus to MP_FREE_CHARGE");       
+        
+        } else if (portStatus == MP_ACTIVE_CHARGE) {
+            NRF_LOG_INFO("Turn power OFF on port %x", port);
+
+            ret = turnOnOffPower(port, MP_POWER_OFF);
+
+            // update port status
+            // TODO CHANGE TIME TO ACTUAL CHARGE TIME
+            ret = initPortStatus(port, MP_AVAILABLE, MP_TEST_TIME, connHandle);
+            NRF_LOG_INFO("Set portStatus to MP_AVAILABLE");       
+
+        } else if (portStatus == MP_FREE_CHARGE){
+            NRF_LOG_INFO("Turn power OFF on port %x", port);
+
+            ret = turnOnOffPower(port, MP_POWER_OFF);
+
+            // update port status
+            // TODO CHANGE TIME TO ACTUAL NOT AVAILABLE TIME
+            ret = initPortStatus(port, MP_FREE_CHARGE_NOT_AVAILABLE, MP_TEST_TIME, connHandle);
+            NRF_LOG_INFO("Set portStatus to MP_FREE_CHARGE_NOT_AVAILABLE");              
+        }
+    }
+    // Send ack/nack message
+    if (ret == MP_SUCCESS) {
+        // send ack
+        ackMsg = (port << 8) | MP_SUCCESS; 
+    } else {
+        // send nack
+        ackMsg = (ret << 8) | MP_ERROR; 
+    }
+
+    if(connHandle != NULL) sendNotification(charHandle, connHandle, &ackMsg, len);
+
+    // TODO testStuff status
+    ret = getPortStatus(port, &portStatus);
+    NRF_LOG_INFO("Port status is %x", portStatus);
+
+    NRF_LOG_INFO("onUsbChange() leave");
 }
 
 void onBleDisconnect(ble_evt_t const * p_ble_evt) {

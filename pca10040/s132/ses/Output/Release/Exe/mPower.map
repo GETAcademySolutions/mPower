@@ -3417,8 +3417,6 @@ Discarded input sections
                 0x0000000000000000       0x20 Output/mPower Release/Obj/usb_port.o
  .text.setRamainingChargeTicks
                 0x0000000000000000       0x1c Output/mPower Release/Obj/usb_port.o
- .text.onUsbChange
-                0x0000000000000000        0x2 Output/mPower Release/Obj/usb_port.o
  .debug_macro   0x0000000000000000      0xaae Output/mPower Release/Obj/usb_port.o
  .debug_macro   0x0000000000000000      0x1a3 Output/mPower Release/Obj/usb_port.o
  .debug_macro   0x0000000000000000       0x89 Output/mPower Release/Obj/usb_port.o
@@ -6950,7 +6948,7 @@ Linker script and memory map
                 0x0000000000000001                . = ASSERT (((__init_rodata_start__ == __init_rodata_end__) || ((__init_rodata_end__ >= __FLASH_segment_start__) && (__init_rodata_end__ <= __FLASH_segment_end__))), error: .init_rodata is too large to fit in FLASH memory segment)
                 0x00000000000262f4                __text_load_start__ = ALIGN (__init_rodata_end__, 0x4)
 
-.text           0x00000000000262f4     0x4c4c
+.text           0x00000000000262f4     0x4ddc
                 0x00000000000262f4                __text_start__ = .
  *(.text .text.* .glue_7t .glue_7 .gnu.linkonce.t.* .gcc_except_table .ARM.extab* .gnu.linkonce.armextab.*)
  .glue_7        0x00000000000262f4        0x0 linker stubs
@@ -7312,261 +7310,264 @@ Linker script and memory map
  .text.sd_ble_gatts_sys_attr_set
                 0x0000000000028e9c        0x4 Output/mPower Release/Obj/main.o
  .text.inPinHandler
-                0x0000000000028ea0       0x24 Output/mPower Release/Obj/main.o
+                0x0000000000028ea0       0x48 Output/mPower Release/Obj/main.o
                 0x0000000000028ea0                inPinHandler
  .text.nrf_qwr_error_handler
-                0x0000000000028ec4        0x4 Output/mPower Release/Obj/main.o
+                0x0000000000028ee8        0x4 Output/mPower Release/Obj/main.o
  .text.advertising_start
-                0x0000000000028ec8       0x1c Output/mPower Release/Obj/main.o
+                0x0000000000028eec       0x1c Output/mPower Release/Obj/main.o
  .text.timer_timeout_handler
-                0x0000000000028ee4        0x4 Output/mPower Release/Obj/main.o
+                0x0000000000028f08        0x4 Output/mPower Release/Obj/main.o
  .text.ble_evt_handler
-                0x0000000000028ee8      0x154 Output/mPower Release/Obj/main.o
+                0x0000000000028f0c      0x154 Output/mPower Release/Obj/main.o
  .text.conn_params_error_handler
-                0x000000000002903c        0x4 Output/mPower Release/Obj/main.o
+                0x0000000000029060        0x4 Output/mPower Release/Obj/main.o
  .text.startup.main
-                0x0000000000029040      0x2c8 Output/mPower Release/Obj/main.o
-                0x0000000000029040                main
+                0x0000000000029064      0x2c8 Output/mPower Release/Obj/main.o
+                0x0000000000029064                main
  .text.sd_ble_gatts_service_add
-                0x0000000000029308        0x4 Output/mPower Release/Obj/ble_service.o
+                0x000000000002932c        0x4 Output/mPower Release/Obj/ble_service.o
  .text.sd_ble_gatts_characteristic_add
-                0x000000000002930c        0x4 Output/mPower Release/Obj/ble_service.o
+                0x0000000000029330        0x4 Output/mPower Release/Obj/ble_service.o
  .text.sd_ble_gatts_hvx
-                0x0000000000029310        0x4 Output/mPower Release/Obj/ble_service.o
+                0x0000000000029334        0x4 Output/mPower Release/Obj/ble_service.o
  .text.sd_ble_uuid_vs_add
-                0x0000000000029314        0x4 Output/mPower Release/Obj/ble_service.o
+                0x0000000000029338        0x4 Output/mPower Release/Obj/ble_service.o
  .text.onBleEvent
-                0x0000000000029318       0x6c Output/mPower Release/Obj/ble_service.o
-                0x0000000000029318                onBleEvent
+                0x000000000002933c       0x6c Output/mPower Release/Obj/ble_service.o
+                0x000000000002933c                onBleEvent
  .text.mpServiceInit
-                0x0000000000029384      0x238 Output/mPower Release/Obj/ble_service.o
-                0x0000000000029384                mpServiceInit
+                0x00000000000293a8      0x238 Output/mPower Release/Obj/ble_service.o
+                0x00000000000293a8                mpServiceInit
  .text.sendNotification
-                0x00000000000295bc       0x60 Output/mPower Release/Obj/ble_service.o
-                0x00000000000295bc                sendNotification
+                0x00000000000295e0       0x60 Output/mPower Release/Obj/ble_service.o
+                0x00000000000295e0                sendNotification
  .text.initUsbPorts
-                0x000000000002961c       0x30 Output/mPower Release/Obj/usb_port.o
-                0x000000000002961c                initUsbPorts
+                0x0000000000029640       0x30 Output/mPower Release/Obj/usb_port.o
+                0x0000000000029640                initUsbPorts
  .text.initPortStatus
-                0x000000000002964c       0x44 Output/mPower Release/Obj/usb_port.o
-                0x000000000002964c                initPortStatus
+                0x0000000000029670       0x44 Output/mPower Release/Obj/usb_port.o
+                0x0000000000029670                initPortStatus
  .text.getPortStatus
-                0x0000000000029690       0x1c Output/mPower Release/Obj/usb_port.o
-                0x0000000000029690                getPortStatus
+                0x00000000000296b4       0x1c Output/mPower Release/Obj/usb_port.o
+                0x00000000000296b4                getPortStatus
  .text.getConnHandle
-                0x00000000000296ac       0x1c Output/mPower Release/Obj/usb_port.o
-                0x00000000000296ac                getConnHandle
+                0x00000000000296d0       0x1c Output/mPower Release/Obj/usb_port.o
+                0x00000000000296d0                getConnHandle
  .text.decrementChargingTicks
-                0x00000000000296c8       0x28 Output/mPower Release/Obj/usb_port.o
-                0x00000000000296c8                decrementChargingTicks
+                0x00000000000296ec       0x28 Output/mPower Release/Obj/usb_port.o
+                0x00000000000296ec                decrementChargingTicks
  .text.allocateFreePort
-                0x00000000000296f0       0x28 Output/mPower Release/Obj/usb_port.o
-                0x00000000000296f0                allocateFreePort
+                0x0000000000029714       0x28 Output/mPower Release/Obj/usb_port.o
+                0x0000000000029714                allocateFreePort
  .text.turnOnOffPower
-                0x0000000000029718       0x26 Output/mPower Release/Obj/usb_port.o
-                0x0000000000029718                turnOnOffPower
- *fill*         0x000000000002973e        0x2 
+                0x000000000002973c       0x26 Output/mPower Release/Obj/usb_port.o
+                0x000000000002973c                turnOnOffPower
+ *fill*         0x0000000000029762        0x2 
  .text.freeUsbPort
-                0x0000000000029740       0x84 Output/mPower Release/Obj/usb_port.o
-                0x0000000000029740                freeUsbPort
+                0x0000000000029764       0x84 Output/mPower Release/Obj/usb_port.o
+                0x0000000000029764                freeUsbPort
  .text.checkUsbPorts
-                0x00000000000297c4       0x2a Output/mPower Release/Obj/usb_port.o
-                0x00000000000297c4                checkUsbPorts
- *fill*         0x00000000000297ee        0x2 
+                0x00000000000297e8       0x2a Output/mPower Release/Obj/usb_port.o
+                0x00000000000297e8                checkUsbPorts
+ *fill*         0x0000000000029812        0x2 
  .text.onNewCommand
-                0x00000000000297f0      0x1d8 Output/mPower Release/Obj/usb_port.o
-                0x00000000000297f0                onNewCommand
+                0x0000000000029814      0x1d8 Output/mPower Release/Obj/usb_port.o
+                0x0000000000029814                onNewCommand
+ .text.onUsbChange
+                0x00000000000299ec      0x16c Output/mPower Release/Obj/usb_port.o
+                0x00000000000299ec                onUsbChange
  .text.onBleDisconnect
-                0x00000000000299c8       0x24 Output/mPower Release/Obj/usb_port.o
-                0x00000000000299c8                onBleDisconnect
+                0x0000000000029b58       0x24 Output/mPower Release/Obj/usb_port.o
+                0x0000000000029b58                onBleDisconnect
  .text._GetAvailWriteSpace
-                0x00000000000299ec       0x1c Output/mPower Release/Obj/SEGGER_RTT.o
+                0x0000000000029b7c       0x1c Output/mPower Release/Obj/SEGGER_RTT.o
  .text._WriteNoCheck
-                0x0000000000029a08       0x3a Output/mPower Release/Obj/SEGGER_RTT.o
+                0x0000000000029b98       0x3a Output/mPower Release/Obj/SEGGER_RTT.o
  .text._WriteBlocking
-                0x0000000000029a42       0x52 Output/mPower Release/Obj/SEGGER_RTT.o
- .text._DoInit  0x0000000000029a94       0x60 Output/mPower Release/Obj/SEGGER_RTT.o
+                0x0000000000029bd2       0x52 Output/mPower Release/Obj/SEGGER_RTT.o
+ .text._DoInit  0x0000000000029c24       0x60 Output/mPower Release/Obj/SEGGER_RTT.o
  .text.SEGGER_RTT_WriteNoLock
-                0x0000000000029af4       0x68 Output/mPower Release/Obj/SEGGER_RTT.o
-                0x0000000000029af4                SEGGER_RTT_WriteNoLock
+                0x0000000000029c84       0x68 Output/mPower Release/Obj/SEGGER_RTT.o
+                0x0000000000029c84                SEGGER_RTT_WriteNoLock
  .text.SEGGER_RTT_Init
-                0x0000000000029b5c        0x4 Output/mPower Release/Obj/SEGGER_RTT.o
-                0x0000000000029b5c                SEGGER_RTT_Init
+                0x0000000000029cec        0x4 Output/mPower Release/Obj/SEGGER_RTT.o
+                0x0000000000029cec                SEGGER_RTT_Init
  .text.sd_ble_gap_addr_get
-                0x0000000000029b60        0x4 Output/mPower Release/Obj/ble_advdata.o
+                0x0000000000029cf0        0x4 Output/mPower Release/Obj/ble_advdata.o
  .text.sd_ble_gap_appearance_get
-                0x0000000000029b64        0x4 Output/mPower Release/Obj/ble_advdata.o
+                0x0000000000029cf4        0x4 Output/mPower Release/Obj/ble_advdata.o
  .text.sd_ble_gap_device_name_get
-                0x0000000000029b68        0x4 Output/mPower Release/Obj/ble_advdata.o
+                0x0000000000029cf8        0x4 Output/mPower Release/Obj/ble_advdata.o
  .text.sd_ble_uuid_encode
-                0x0000000000029b6c        0x4 Output/mPower Release/Obj/ble_advdata.o
+                0x0000000000029cfc        0x4 Output/mPower Release/Obj/ble_advdata.o
  .text.uuid_list_sized_encode
-                0x0000000000029b70       0xa4 Output/mPower Release/Obj/ble_advdata.o
+                0x0000000000029d00       0xa4 Output/mPower Release/Obj/ble_advdata.o
  .text.uuid_list_encode
-                0x0000000000029c14       0x34 Output/mPower Release/Obj/ble_advdata.o
+                0x0000000000029da4       0x34 Output/mPower Release/Obj/ble_advdata.o
  .text.ble_advdata_encode
-                0x0000000000029c48      0x37c Output/mPower Release/Obj/ble_advdata.o
-                0x0000000000029c48                ble_advdata_encode
+                0x0000000000029dd8      0x37c Output/mPower Release/Obj/ble_advdata.o
+                0x0000000000029dd8                ble_advdata_encode
  .text.sd_ble_gap_conn_param_update
-                0x0000000000029fc4        0x4 Output/mPower Release/Obj/ble_conn_params.o
+                0x000000000002a154        0x4 Output/mPower Release/Obj/ble_conn_params.o
  .text.sd_ble_gap_disconnect
-                0x0000000000029fc8        0x4 Output/mPower Release/Obj/ble_conn_params.o
+                0x000000000002a158        0x4 Output/mPower Release/Obj/ble_conn_params.o
  .text.sd_ble_gap_ppcp_set
-                0x0000000000029fcc        0x4 Output/mPower Release/Obj/ble_conn_params.o
+                0x000000000002a15c        0x4 Output/mPower Release/Obj/ble_conn_params.o
  .text.sd_ble_gap_ppcp_get
-                0x0000000000029fd0        0x4 Output/mPower Release/Obj/ble_conn_params.o
+                0x000000000002a160        0x4 Output/mPower Release/Obj/ble_conn_params.o
  .text.instance_get
-                0x0000000000029fd4       0x24 Output/mPower Release/Obj/ble_conn_params.o
+                0x000000000002a164       0x24 Output/mPower Release/Obj/ble_conn_params.o
  .text.send_error_evt
-                0x0000000000029ff8       0x10 Output/mPower Release/Obj/ble_conn_params.o
+                0x000000000002a188       0x10 Output/mPower Release/Obj/ble_conn_params.o
  .text.update_timeout_handler
-                0x000000000002a008       0x6c Output/mPower Release/Obj/ble_conn_params.o
+                0x000000000002a198       0x6c Output/mPower Release/Obj/ble_conn_params.o
  .text.conn_params_negotiation
-                0x000000000002a074       0x48 Output/mPower Release/Obj/ble_conn_params.o
+                0x000000000002a204       0x48 Output/mPower Release/Obj/ble_conn_params.o
  .text.is_conn_params_ok.constprop.3
-                0x000000000002a0bc       0x3c Output/mPower Release/Obj/ble_conn_params.o
+                0x000000000002a24c       0x3c Output/mPower Release/Obj/ble_conn_params.o
  .text.ble_evt_handler
-                0x000000000002a0f8       0xe4 Output/mPower Release/Obj/ble_conn_params.o
+                0x000000000002a288       0xe4 Output/mPower Release/Obj/ble_conn_params.o
  .text.ble_conn_params_init
-                0x000000000002a1dc       0x8c Output/mPower Release/Obj/ble_conn_params.o
-                0x000000000002a1dc                ble_conn_params_init
+                0x000000000002a36c       0x8c Output/mPower Release/Obj/ble_conn_params.o
+                0x000000000002a36c                ble_conn_params_init
  .text.conn_handle_list_get
-                0x000000000002a268       0x2e Output/mPower Release/Obj/ble_conn_state.o
-                0x000000000002a268                conn_handle_list_get
- *fill*         0x000000000002a296        0x2 
+                0x000000000002a3f8       0x2e Output/mPower Release/Obj/ble_conn_state.o
+                0x000000000002a3f8                conn_handle_list_get
+ *fill*         0x000000000002a426        0x2 
  .text.ble_evt_handler
-                0x000000000002a298       0xd8 Output/mPower Release/Obj/ble_conn_state.o
+                0x000000000002a428       0xd8 Output/mPower Release/Obj/ble_conn_state.o
  .text.active_flag_count
-                0x000000000002a370       0x24 Output/mPower Release/Obj/ble_conn_state.o
-                0x000000000002a370                active_flag_count
+                0x000000000002a500       0x24 Output/mPower Release/Obj/ble_conn_state.o
+                0x000000000002a500                active_flag_count
  .text.ble_conn_state_peripheral_conn_count
-                0x000000000002a394       0x24 Output/mPower Release/Obj/ble_conn_state.o
-                0x000000000002a394                ble_conn_state_peripheral_conn_count
+                0x000000000002a524       0x24 Output/mPower Release/Obj/ble_conn_state.o
+                0x000000000002a524                ble_conn_state_peripheral_conn_count
  .text.ble_srv_is_notification_enabled
-                0x000000000002a3b8        0x8 Output/mPower Release/Obj/ble_srv_common.o
-                0x000000000002a3b8                ble_srv_is_notification_enabled
+                0x000000000002a548        0x8 Output/mPower Release/Obj/ble_srv_common.o
+                0x000000000002a548                ble_srv_is_notification_enabled
  .text.sd_ble_gap_data_length_update
-                0x000000000002a3c0        0x4 Output/mPower Release/Obj/nrf_ble_gatt.o
+                0x000000000002a550        0x4 Output/mPower Release/Obj/nrf_ble_gatt.o
  .text.sd_ble_gattc_exchange_mtu_request
-                0x000000000002a3c4        0x4 Output/mPower Release/Obj/nrf_ble_gatt.o
+                0x000000000002a554        0x4 Output/mPower Release/Obj/nrf_ble_gatt.o
  .text.sd_ble_gatts_exchange_mtu_reply
-                0x000000000002a3c8        0x4 Output/mPower Release/Obj/nrf_ble_gatt.o
+                0x000000000002a558        0x4 Output/mPower Release/Obj/nrf_ble_gatt.o
  .text.data_length_update
-                0x000000000002a3cc       0x9c Output/mPower Release/Obj/nrf_ble_gatt.o
+                0x000000000002a55c       0x9c Output/mPower Release/Obj/nrf_ble_gatt.o
  .text.nrf_ble_gatt_init
-                0x000000000002a468       0x32 Output/mPower Release/Obj/nrf_ble_gatt.o
-                0x000000000002a468                nrf_ble_gatt_init
- *fill*         0x000000000002a49a        0x2 
+                0x000000000002a5f8       0x32 Output/mPower Release/Obj/nrf_ble_gatt.o
+                0x000000000002a5f8                nrf_ble_gatt_init
+ *fill*         0x000000000002a62a        0x2 
  .text.nrf_ble_gatt_on_ble_evt
-                0x000000000002a49c      0x314 Output/mPower Release/Obj/nrf_ble_gatt.o
-                0x000000000002a49c                nrf_ble_gatt_on_ble_evt
+                0x000000000002a62c      0x314 Output/mPower Release/Obj/nrf_ble_gatt.o
+                0x000000000002a62c                nrf_ble_gatt_on_ble_evt
  .text.sd_ble_gatts_rw_authorize_reply
-                0x000000000002a7b0        0x4 Output/mPower Release/Obj/nrf_ble_qwr.o
+                0x000000000002a940        0x4 Output/mPower Release/Obj/nrf_ble_qwr.o
  .text.sd_ble_user_mem_reply
-                0x000000000002a7b4        0x4 Output/mPower Release/Obj/nrf_ble_qwr.o
+                0x000000000002a944        0x4 Output/mPower Release/Obj/nrf_ble_qwr.o
  .text.user_mem_reply.part.0
-                0x000000000002a7b8       0x24 Output/mPower Release/Obj/nrf_ble_qwr.o
+                0x000000000002a948       0x24 Output/mPower Release/Obj/nrf_ble_qwr.o
  .text.nrf_ble_qwr_init
-                0x000000000002a7dc       0x24 Output/mPower Release/Obj/nrf_ble_qwr.o
-                0x000000000002a7dc                nrf_ble_qwr_init
+                0x000000000002a96c       0x24 Output/mPower Release/Obj/nrf_ble_qwr.o
+                0x000000000002a96c                nrf_ble_qwr_init
  .text.nrf_ble_qwr_conn_handle_assign
-                0x000000000002a800       0x16 Output/mPower Release/Obj/nrf_ble_qwr.o
-                0x000000000002a800                nrf_ble_qwr_conn_handle_assign
+                0x000000000002a990       0x16 Output/mPower Release/Obj/nrf_ble_qwr.o
+                0x000000000002a990                nrf_ble_qwr_conn_handle_assign
  .text.nrf_ble_qwr_on_ble_evt
-                0x000000000002a816       0xa0 Output/mPower Release/Obj/nrf_ble_qwr.o
-                0x000000000002a816                nrf_ble_qwr_on_ble_evt
+                0x000000000002a9a6       0xa0 Output/mPower Release/Obj/nrf_ble_qwr.o
+                0x000000000002a9a6                nrf_ble_qwr_on_ble_evt
  .text.sd_softdevice_enable
-                0x000000000002a8b6        0x4 Output/mPower Release/Obj/nrf_sdh.o
- *fill*         0x000000000002a8ba        0x2 
+                0x000000000002aa46        0x4 Output/mPower Release/Obj/nrf_sdh.o
+ *fill*         0x000000000002aa4a        0x2 
  .text.sdh_request_observer_notify
-                0x000000000002a8bc       0x30 Output/mPower Release/Obj/nrf_sdh.o
+                0x000000000002aa4c       0x30 Output/mPower Release/Obj/nrf_sdh.o
  .text.sdh_state_observer_notify
-                0x000000000002a8ec       0x28 Output/mPower Release/Obj/nrf_sdh.o
+                0x000000000002aa7c       0x28 Output/mPower Release/Obj/nrf_sdh.o
  .text.softdevices_evt_irq_enable
-                0x000000000002a914       0x38 Output/mPower Release/Obj/nrf_sdh.o
+                0x000000000002aaa4       0x38 Output/mPower Release/Obj/nrf_sdh.o
  .text.nrf_sdh_enable_request
-                0x000000000002a94c       0x88 Output/mPower Release/Obj/nrf_sdh.o
-                0x000000000002a94c                nrf_sdh_enable_request
+                0x000000000002aadc       0x88 Output/mPower Release/Obj/nrf_sdh.o
+                0x000000000002aadc                nrf_sdh_enable_request
  .text.nrf_sdh_is_enabled
-                0x000000000002a9d4        0xc Output/mPower Release/Obj/nrf_sdh.o
-                0x000000000002a9d4                nrf_sdh_is_enabled
+                0x000000000002ab64        0xc Output/mPower Release/Obj/nrf_sdh.o
+                0x000000000002ab64                nrf_sdh_is_enabled
  .text.nrf_sdh_evts_poll
-                0x000000000002a9e0       0x28 Output/mPower Release/Obj/nrf_sdh.o
-                0x000000000002a9e0                nrf_sdh_evts_poll
+                0x000000000002ab70       0x28 Output/mPower Release/Obj/nrf_sdh.o
+                0x000000000002ab70                nrf_sdh_evts_poll
  .text.SWI2_EGU2_IRQHandler
-                0x000000000002aa08        0x4 Output/mPower Release/Obj/nrf_sdh.o
-                0x000000000002aa08                SWI2_EGU2_IRQHandler
+                0x000000000002ab98        0x4 Output/mPower Release/Obj/nrf_sdh.o
+                0x000000000002ab98                SWI2_EGU2_IRQHandler
  .text.sd_ble_enable
-                0x000000000002aa0c        0x4 Output/mPower Release/Obj/nrf_sdh_ble.o
+                0x000000000002ab9c        0x4 Output/mPower Release/Obj/nrf_sdh_ble.o
  .text.sd_ble_cfg_set
-                0x000000000002aa10        0x4 Output/mPower Release/Obj/nrf_sdh_ble.o
+                0x000000000002aba0        0x4 Output/mPower Release/Obj/nrf_sdh_ble.o
  .text.sd_ble_evt_get
-                0x000000000002aa14        0x4 Output/mPower Release/Obj/nrf_sdh_ble.o
+                0x000000000002aba4        0x4 Output/mPower Release/Obj/nrf_sdh_ble.o
  .text.nrf_sdh_ble_evts_poll
-                0x000000000002aa18       0x50 Output/mPower Release/Obj/nrf_sdh_ble.o
+                0x000000000002aba8       0x50 Output/mPower Release/Obj/nrf_sdh_ble.o
  .text.nrf_sdh_ble_default_cfg_set
-                0x000000000002aa68      0x154 Output/mPower Release/Obj/nrf_sdh_ble.o
-                0x000000000002aa68                nrf_sdh_ble_default_cfg_set
+                0x000000000002abf8      0x154 Output/mPower Release/Obj/nrf_sdh_ble.o
+                0x000000000002abf8                nrf_sdh_ble_default_cfg_set
  .text.nrf_sdh_ble_enable
-                0x000000000002abbc       0x94 Output/mPower Release/Obj/nrf_sdh_ble.o
-                0x000000000002abbc                nrf_sdh_ble_enable
+                0x000000000002ad4c       0x94 Output/mPower Release/Obj/nrf_sdh_ble.o
+                0x000000000002ad4c                nrf_sdh_ble_enable
  .text.sd_evt_get
-                0x000000000002ac50        0x4 Output/mPower Release/Obj/nrf_sdh_soc.o
+                0x000000000002ade0        0x4 Output/mPower Release/Obj/nrf_sdh_soc.o
  .text.nrf_sdh_soc_evts_poll
-                0x000000000002ac54       0x3c Output/mPower Release/Obj/nrf_sdh_soc.o
+                0x000000000002ade4       0x3c Output/mPower Release/Obj/nrf_sdh_soc.o
  .text.libc.__RAL_ascii_isctype
-                0x000000000002ac90       0x1c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002ae20       0x1c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_toupper
-                0x000000000002acac        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002ae3c        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_tolower
-                0x000000000002acb8        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002ae48        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_iswctype
-                0x000000000002acc4       0x1c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002ae54       0x1c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_towupper
-                0x000000000002ace0        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002ae70        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_towlower
-                0x000000000002acec        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002ae7c        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_wctomb
-                0x000000000002acf8        0xe C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002acf8                __RAL_ascii_wctomb
+                0x000000000002ae88        0xe C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002ae88                __RAL_ascii_wctomb
  .text.libc.__RAL_ascii_mbtowc
-                0x000000000002ad06       0x24 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002ad06                __RAL_ascii_mbtowc
- *fill*         0x000000000002ad2a        0x2 
+                0x000000000002ae96       0x24 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002ae96                __RAL_ascii_mbtowc
+ *fill*         0x000000000002aeba        0x2 
  .text.libc.__RAL_isctype
-                0x000000000002ad2c       0x14 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002ad2c                __RAL_isctype
+                0x000000000002aebc       0x14 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002aebc                __RAL_isctype
  .text.libc.isprint
-                0x000000000002ad40        0xa C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002ad40                isprint
- *fill*         0x000000000002ad4a        0x2 
+                0x000000000002aed0        0xa C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002aed0                isprint
+ *fill*         0x000000000002aeda        0x2 
  .text.libc.malloc
-                0x000000000002ad4c       0x94 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002ad4c                malloc
+                0x000000000002aedc       0x94 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002aedc                malloc
  .text.libc.memcpy
-                0x000000000002ade0       0x52 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x000000000002ade0                __aeabi_memcpy
-                0x000000000002ade0                memcpy
-                0x000000000002adec                __aeabi_memcpy8
-                0x000000000002adec                __aeabi_memcpy4
+                0x000000000002af70       0x52 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x000000000002af70                __aeabi_memcpy
+                0x000000000002af70                memcpy
+                0x000000000002af7c                __aeabi_memcpy8
+                0x000000000002af7c                __aeabi_memcpy4
  .text.libc.memset
-                0x000000000002ae32       0x66 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x000000000002ae32                memset
+                0x000000000002afc2       0x66 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x000000000002afc2                memset
  .text.libc.strcpy
-                0x000000000002ae98       0x44 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x000000000002ae98                strcpy
+                0x000000000002b028       0x44 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x000000000002b028                strcpy
  .text.libc.strlen
-                0x000000000002aedc       0x60 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x000000000002aedc                strlen
+                0x000000000002b06c       0x60 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x000000000002b06c                strlen
  .text.libc.__heap_lock
-                0x000000000002af3c        0x2 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc.o)
-                0x000000000002af3c                __heap_lock
+                0x000000000002b0cc        0x2 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc.o)
+                0x000000000002b0cc                __heap_lock
  .text.libc.__heap_unlock
-                0x000000000002af3e        0x2 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc.o)
-                0x000000000002af3e                __heap_unlock
-                0x000000000002af40                __text_end__ = (__text_start__ + SIZEOF (.text))
-                0x0000000000004c4c                __text_size__ = SIZEOF (.text)
-                0x000000000002af40                __text_load_end__ = __text_end__
+                0x000000000002b0ce        0x2 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc.o)
+                0x000000000002b0ce                __heap_unlock
+                0x000000000002b0d0                __text_end__ = (__text_start__ + SIZEOF (.text))
+                0x0000000000004ddc                __text_size__ = SIZEOF (.text)
+                0x000000000002b0d0                __text_load_end__ = __text_end__
 
 .vfp11_veneer   0x0000000100000000        0x0
  .vfp11_veneer  0x0000000100000000        0x0 linker stubs
@@ -7577,206 +7578,206 @@ Linker script and memory map
 .iplt           0x0000000100000000        0x0
  .iplt          0x0000000100000000        0x0 Output/mPower Release/Obj/thumb_crt0.o
                 0x0000000000000001                . = ASSERT (((__text_start__ == __text_end__) || ((__text_end__ >= __FLASH_segment_start__) && (__text_end__ <= __FLASH_segment_end__))), error: .text is too large to fit in FLASH memory segment)
-                0x000000000002af40                __sdh_soc_observers_load_start__ = ALIGN (__text_end__, 0x4)
+                0x000000000002b0d0                __sdh_soc_observers_load_start__ = ALIGN (__text_end__, 0x4)
 
 .sdh_soc_observers
-                0x000000000002af40        0x8
-                0x000000000002af40                __sdh_soc_observers_start__ = .
-                0x000000000002af40                __start_sdh_soc_observers = __sdh_soc_observers_start__
+                0x000000000002b0d0        0x8
+                0x000000000002b0d0                __sdh_soc_observers_start__ = .
+                0x000000000002b0d0                __start_sdh_soc_observers = __sdh_soc_observers_start__
  *(SORT_BY_NAME(.sdh_soc_observers*))
  .sdh_soc_observers0
-                0x000000000002af40        0x8 Output/mPower Release/Obj/nrf_drv_clock.o
-                0x000000000002af48                __sdh_soc_observers_end__ = (__sdh_soc_observers_start__ + SIZEOF (.sdh_soc_observers))
+                0x000000000002b0d0        0x8 Output/mPower Release/Obj/nrf_drv_clock.o
+                0x000000000002b0d8                __sdh_soc_observers_end__ = (__sdh_soc_observers_start__ + SIZEOF (.sdh_soc_observers))
                 0x0000000000000008                __sdh_soc_observers_size__ = SIZEOF (.sdh_soc_observers)
-                0x000000000002af48                __stop_sdh_soc_observers = __sdh_soc_observers_end__
-                0x000000000002af48                __sdh_soc_observers_load_end__ = __sdh_soc_observers_end__
+                0x000000000002b0d8                __stop_sdh_soc_observers = __sdh_soc_observers_end__
+                0x000000000002b0d8                __sdh_soc_observers_load_end__ = __sdh_soc_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_soc_observers_start__ == __sdh_soc_observers_end__) || ((__sdh_soc_observers_end__ >= __FLASH_segment_start__) && (__sdh_soc_observers_end__ <= __FLASH_segment_end__))), error: .sdh_soc_observers is too large to fit in FLASH memory segment)
-                0x000000000002af48                __sdh_ble_observers_load_start__ = ALIGN (__sdh_soc_observers_end__, 0x4)
+                0x000000000002b0d8                __sdh_ble_observers_load_start__ = ALIGN (__sdh_soc_observers_end__, 0x4)
 
 .sdh_ble_observers
-                0x000000000002af48       0x48
-                0x000000000002af48                __sdh_ble_observers_start__ = .
-                0x000000000002af48                __start_sdh_ble_observers = __sdh_ble_observers_start__
+                0x000000000002b0d8       0x48
+                0x000000000002b0d8                __sdh_ble_observers_start__ = .
+                0x000000000002b0d8                __start_sdh_ble_observers = __sdh_ble_observers_start__
  *(SORT_BY_NAME(.sdh_ble_observers*))
  .sdh_ble_observers0
-                0x000000000002af48        0x8 Output/mPower Release/Obj/ble_conn_state.o
+                0x000000000002b0d8        0x8 Output/mPower Release/Obj/ble_conn_state.o
  .sdh_ble_observers1
-                0x000000000002af50        0x8 Output/mPower Release/Obj/main.o
+                0x000000000002b0e0        0x8 Output/mPower Release/Obj/main.o
  .sdh_ble_observers1
-                0x000000000002af58        0x8 Output/mPower Release/Obj/ble_conn_params.o
+                0x000000000002b0e8        0x8 Output/mPower Release/Obj/ble_conn_params.o
  .sdh_ble_observers2
-                0x000000000002af60       0x20 Output/mPower Release/Obj/main.o
+                0x000000000002b0f0       0x20 Output/mPower Release/Obj/main.o
  .sdh_ble_observers3
-                0x000000000002af80       0x10 Output/mPower Release/Obj/main.o
-                0x000000000002af90                __sdh_ble_observers_end__ = (__sdh_ble_observers_start__ + SIZEOF (.sdh_ble_observers))
+                0x000000000002b110       0x10 Output/mPower Release/Obj/main.o
+                0x000000000002b120                __sdh_ble_observers_end__ = (__sdh_ble_observers_start__ + SIZEOF (.sdh_ble_observers))
                 0x0000000000000048                __sdh_ble_observers_size__ = SIZEOF (.sdh_ble_observers)
-                0x000000000002af90                __stop_sdh_ble_observers = __sdh_ble_observers_end__
-                0x000000000002af90                __sdh_ble_observers_load_end__ = __sdh_ble_observers_end__
+                0x000000000002b120                __stop_sdh_ble_observers = __sdh_ble_observers_end__
+                0x000000000002b120                __sdh_ble_observers_load_end__ = __sdh_ble_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_ble_observers_start__ == __sdh_ble_observers_end__) || ((__sdh_ble_observers_end__ >= __FLASH_segment_start__) && (__sdh_ble_observers_end__ <= __FLASH_segment_end__))), error: .sdh_ble_observers is too large to fit in FLASH memory segment)
-                0x000000000002af90                __pwr_mgmt_data_load_start__ = ALIGN (__sdh_ble_observers_end__, 0x4)
+                0x000000000002b120                __pwr_mgmt_data_load_start__ = ALIGN (__sdh_ble_observers_end__, 0x4)
 
-.pwr_mgmt_data  0x000000000002af90        0x0
-                0x000000000002af90                __pwr_mgmt_data_start__ = .
-                0x000000000002af90                __start_pwr_mgmt_data = __pwr_mgmt_data_start__
+.pwr_mgmt_data  0x000000000002b120        0x0
+                0x000000000002b120                __pwr_mgmt_data_start__ = .
+                0x000000000002b120                __start_pwr_mgmt_data = __pwr_mgmt_data_start__
  *(SORT_BY_NAME(.pwr_mgmt_data*))
-                0x000000000002af90                __pwr_mgmt_data_end__ = (__pwr_mgmt_data_start__ + SIZEOF (.pwr_mgmt_data))
+                0x000000000002b120                __pwr_mgmt_data_end__ = (__pwr_mgmt_data_start__ + SIZEOF (.pwr_mgmt_data))
                 0x0000000000000000                __pwr_mgmt_data_size__ = SIZEOF (.pwr_mgmt_data)
-                0x000000000002af90                __stop_pwr_mgmt_data = __pwr_mgmt_data_end__
-                0x000000000002af90                __pwr_mgmt_data_load_end__ = __pwr_mgmt_data_end__
+                0x000000000002b120                __stop_pwr_mgmt_data = __pwr_mgmt_data_end__
+                0x000000000002b120                __pwr_mgmt_data_load_end__ = __pwr_mgmt_data_end__
                 0x0000000000000001                . = ASSERT (((__pwr_mgmt_data_start__ == __pwr_mgmt_data_end__) || ((__pwr_mgmt_data_end__ >= __FLASH_segment_start__) && (__pwr_mgmt_data_end__ <= __FLASH_segment_end__))), error: .pwr_mgmt_data is too large to fit in FLASH memory segment)
-                0x000000000002af90                __log_const_data_load_start__ = ALIGN (__pwr_mgmt_data_end__, 0x4)
+                0x000000000002b120                __log_const_data_load_start__ = ALIGN (__pwr_mgmt_data_end__, 0x4)
 
 .log_const_data
-                0x000000000002af90       0x68
-                0x000000000002af90                __log_const_data_start__ = .
-                0x000000000002af90                __start_log_const_data = __log_const_data_start__
+                0x000000000002b120       0x68
+                0x000000000002b120                __log_const_data_start__ = .
+                0x000000000002b120                __start_log_const_data = __log_const_data_start__
  *(SORT_BY_NAME(.log_const_data*))
  .log_const_data_CLOCK
-                0x000000000002af90        0x8 Output/mPower Release/Obj/nrfx_clock.o
-                0x000000000002af90                m_nrf_log_CLOCK_logs_data_const
+                0x000000000002b120        0x8 Output/mPower Release/Obj/nrfx_clock.o
+                0x000000000002b120                m_nrf_log_CLOCK_logs_data_const
  .log_const_data_GPIOTE
-                0x000000000002af98        0x8 Output/mPower Release/Obj/nrfx_gpiote.o
-                0x000000000002af98                m_nrf_log_GPIOTE_logs_data_const
+                0x000000000002b128        0x8 Output/mPower Release/Obj/nrfx_gpiote.o
+                0x000000000002b128                m_nrf_log_GPIOTE_logs_data_const
  .log_const_data_PRS
-                0x000000000002afa0        0x8 Output/mPower Release/Obj/nrfx_prs.o
-                0x000000000002afa0                m_nrf_log_PRS_logs_data_const
+                0x000000000002b130        0x8 Output/mPower Release/Obj/nrfx_prs.o
+                0x000000000002b130                m_nrf_log_PRS_logs_data_const
  .log_const_data_UART
-                0x000000000002afa8        0x8 Output/mPower Release/Obj/nrfx_uart.o
-                0x000000000002afa8                m_nrf_log_UART_logs_data_const
+                0x000000000002b138        0x8 Output/mPower Release/Obj/nrfx_uart.o
+                0x000000000002b138                m_nrf_log_UART_logs_data_const
  .log_const_data_UARTE
-                0x000000000002afb0        0x8 Output/mPower Release/Obj/nrfx_uarte.o
-                0x000000000002afb0                m_nrf_log_UARTE_logs_data_const
+                0x000000000002b140        0x8 Output/mPower Release/Obj/nrfx_uarte.o
+                0x000000000002b140                m_nrf_log_UARTE_logs_data_const
  .log_const_data_app
-                0x000000000002afb8        0x8 Output/mPower Release/Obj/nrf_log_frontend.o
-                0x000000000002afb8                m_nrf_log_app_logs_data_const
+                0x000000000002b148        0x8 Output/mPower Release/Obj/nrf_log_frontend.o
+                0x000000000002b148                m_nrf_log_app_logs_data_const
  .log_const_data_balloc_log_mempool
-                0x000000000002afc0        0x8 Output/mPower Release/Obj/nrf_log_frontend.o
-                0x000000000002afc0                m_nrf_log_balloc_log_mempool_logs_data_const
+                0x000000000002b150        0x8 Output/mPower Release/Obj/nrf_log_frontend.o
+                0x000000000002b150                m_nrf_log_balloc_log_mempool_logs_data_const
  .log_const_data_clock
-                0x000000000002afc8        0x8 Output/mPower Release/Obj/nrf_drv_clock.o
-                0x000000000002afc8                m_nrf_log_clock_logs_data_const
+                0x000000000002b158        0x8 Output/mPower Release/Obj/nrf_drv_clock.o
+                0x000000000002b158                m_nrf_log_clock_logs_data_const
  .log_const_data_nrf_ble_gatt
-                0x000000000002afd0        0x8 Output/mPower Release/Obj/nrf_ble_gatt.o
-                0x000000000002afd0                m_nrf_log_nrf_ble_gatt_logs_data_const
+                0x000000000002b160        0x8 Output/mPower Release/Obj/nrf_ble_gatt.o
+                0x000000000002b160                m_nrf_log_nrf_ble_gatt_logs_data_const
  .log_const_data_nrf_sdh
-                0x000000000002afd8        0x8 Output/mPower Release/Obj/nrf_sdh.o
-                0x000000000002afd8                m_nrf_log_nrf_sdh_logs_data_const
+                0x000000000002b168        0x8 Output/mPower Release/Obj/nrf_sdh.o
+                0x000000000002b168                m_nrf_log_nrf_sdh_logs_data_const
  .log_const_data_nrf_sdh_ble
-                0x000000000002afe0        0x8 Output/mPower Release/Obj/nrf_sdh_ble.o
-                0x000000000002afe0                m_nrf_log_nrf_sdh_ble_logs_data_const
+                0x000000000002b170        0x8 Output/mPower Release/Obj/nrf_sdh_ble.o
+                0x000000000002b170                m_nrf_log_nrf_sdh_ble_logs_data_const
  .log_const_data_nrf_sdh_soc
-                0x000000000002afe8        0x8 Output/mPower Release/Obj/nrf_sdh_soc.o
-                0x000000000002afe8                m_nrf_log_nrf_sdh_soc_logs_data_const
+                0x000000000002b178        0x8 Output/mPower Release/Obj/nrf_sdh_soc.o
+                0x000000000002b178                m_nrf_log_nrf_sdh_soc_logs_data_const
  .log_const_data_pwr_mgmt
-                0x000000000002aff0        0x8 Output/mPower Release/Obj/nrf_pwr_mgmt.o
-                0x000000000002aff0                m_nrf_log_pwr_mgmt_logs_data_const
-                0x000000000002aff8                __log_const_data_end__ = (__log_const_data_start__ + SIZEOF (.log_const_data))
+                0x000000000002b180        0x8 Output/mPower Release/Obj/nrf_pwr_mgmt.o
+                0x000000000002b180                m_nrf_log_pwr_mgmt_logs_data_const
+                0x000000000002b188                __log_const_data_end__ = (__log_const_data_start__ + SIZEOF (.log_const_data))
                 0x0000000000000068                __log_const_data_size__ = SIZEOF (.log_const_data)
-                0x000000000002aff8                __stop_log_const_data = __log_const_data_end__
-                0x000000000002aff8                __log_const_data_load_end__ = __log_const_data_end__
+                0x000000000002b188                __stop_log_const_data = __log_const_data_end__
+                0x000000000002b188                __log_const_data_load_end__ = __log_const_data_end__
                 0x0000000000000001                . = ASSERT (((__log_const_data_start__ == __log_const_data_end__) || ((__log_const_data_end__ >= __FLASH_segment_start__) && (__log_const_data_end__ <= __FLASH_segment_end__))), error: .log_const_data is too large to fit in FLASH memory segment)
-                0x000000000002aff8                __nrf_balloc_load_start__ = ALIGN (__log_const_data_end__, 0x4)
+                0x000000000002b188                __nrf_balloc_load_start__ = ALIGN (__log_const_data_end__, 0x4)
 
-.nrf_balloc     0x000000000002aff8       0x18
-                0x000000000002aff8                __nrf_balloc_start__ = .
-                0x000000000002aff8                __start_nrf_balloc = __nrf_balloc_start__
+.nrf_balloc     0x000000000002b188       0x18
+                0x000000000002b188                __nrf_balloc_start__ = .
+                0x000000000002b188                __start_nrf_balloc = __nrf_balloc_start__
  *(.nrf_balloc*)
- .nrf_balloc    0x000000000002aff8       0x18 Output/mPower Release/Obj/nrf_log_frontend.o
-                0x000000000002aff8                log_mempool
-                0x000000000002b010                __nrf_balloc_end__ = (__nrf_balloc_start__ + SIZEOF (.nrf_balloc))
+ .nrf_balloc    0x000000000002b188       0x18 Output/mPower Release/Obj/nrf_log_frontend.o
+                0x000000000002b188                log_mempool
+                0x000000000002b1a0                __nrf_balloc_end__ = (__nrf_balloc_start__ + SIZEOF (.nrf_balloc))
                 0x0000000000000018                __nrf_balloc_size__ = SIZEOF (.nrf_balloc)
-                0x000000000002b010                __stop_nrf_balloc = __nrf_balloc_end__
-                0x000000000002b010                __nrf_balloc_load_end__ = __nrf_balloc_end__
+                0x000000000002b1a0                __stop_nrf_balloc = __nrf_balloc_end__
+                0x000000000002b1a0                __nrf_balloc_load_end__ = __nrf_balloc_end__
                 0x0000000000000001                . = ASSERT (((__nrf_balloc_start__ == __nrf_balloc_end__) || ((__nrf_balloc_end__ >= __FLASH_segment_start__) && (__nrf_balloc_end__ <= __FLASH_segment_end__))), error: .nrf_balloc is too large to fit in FLASH memory segment)
-                0x000000000002b010                __sdh_state_observers_load_start__ = ALIGN (__nrf_balloc_end__, 0x4)
+                0x000000000002b1a0                __sdh_state_observers_load_start__ = ALIGN (__nrf_balloc_end__, 0x4)
 
 .sdh_state_observers
-                0x000000000002b010        0x8
-                0x000000000002b010                __sdh_state_observers_start__ = .
-                0x000000000002b010                __start_sdh_state_observers = __sdh_state_observers_start__
+                0x000000000002b1a0        0x8
+                0x000000000002b1a0                __sdh_state_observers_start__ = .
+                0x000000000002b1a0                __start_sdh_state_observers = __sdh_state_observers_start__
  *(SORT_BY_NAME(.sdh_state_observers*))
  .sdh_state_observers0
-                0x000000000002b010        0x8 Output/mPower Release/Obj/nrf_drv_clock.o
-                0x000000000002b018                __sdh_state_observers_end__ = (__sdh_state_observers_start__ + SIZEOF (.sdh_state_observers))
+                0x000000000002b1a0        0x8 Output/mPower Release/Obj/nrf_drv_clock.o
+                0x000000000002b1a8                __sdh_state_observers_end__ = (__sdh_state_observers_start__ + SIZEOF (.sdh_state_observers))
                 0x0000000000000008                __sdh_state_observers_size__ = SIZEOF (.sdh_state_observers)
-                0x000000000002b018                __stop_sdh_state_observers = __sdh_state_observers_end__
-                0x000000000002b018                __sdh_state_observers_load_end__ = __sdh_state_observers_end__
+                0x000000000002b1a8                __stop_sdh_state_observers = __sdh_state_observers_end__
+                0x000000000002b1a8                __sdh_state_observers_load_end__ = __sdh_state_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_state_observers_start__ == __sdh_state_observers_end__) || ((__sdh_state_observers_end__ >= __FLASH_segment_start__) && (__sdh_state_observers_end__ <= __FLASH_segment_end__))), error: .sdh_state_observers is too large to fit in FLASH memory segment)
-                0x000000000002b018                __sdh_stack_observers_load_start__ = ALIGN (__sdh_state_observers_end__, 0x4)
+                0x000000000002b1a8                __sdh_stack_observers_load_start__ = ALIGN (__sdh_state_observers_end__, 0x4)
 
 .sdh_stack_observers
-                0x000000000002b018       0x10
-                0x000000000002b018                __sdh_stack_observers_start__ = .
-                0x000000000002b018                __start_sdh_stack_observers = __sdh_stack_observers_start__
+                0x000000000002b1a8       0x10
+                0x000000000002b1a8                __sdh_stack_observers_start__ = .
+                0x000000000002b1a8                __start_sdh_stack_observers = __sdh_stack_observers_start__
  *(SORT_BY_NAME(.sdh_stack_observers*))
  .sdh_stack_observers0
-                0x000000000002b018        0x8 Output/mPower Release/Obj/nrf_sdh_ble.o
+                0x000000000002b1a8        0x8 Output/mPower Release/Obj/nrf_sdh_ble.o
  .sdh_stack_observers0
-                0x000000000002b020        0x8 Output/mPower Release/Obj/nrf_sdh_soc.o
-                0x000000000002b028                __sdh_stack_observers_end__ = (__sdh_stack_observers_start__ + SIZEOF (.sdh_stack_observers))
+                0x000000000002b1b0        0x8 Output/mPower Release/Obj/nrf_sdh_soc.o
+                0x000000000002b1b8                __sdh_stack_observers_end__ = (__sdh_stack_observers_start__ + SIZEOF (.sdh_stack_observers))
                 0x0000000000000010                __sdh_stack_observers_size__ = SIZEOF (.sdh_stack_observers)
-                0x000000000002b028                __stop_sdh_stack_observers = __sdh_stack_observers_end__
-                0x000000000002b028                __sdh_stack_observers_load_end__ = __sdh_stack_observers_end__
+                0x000000000002b1b8                __stop_sdh_stack_observers = __sdh_stack_observers_end__
+                0x000000000002b1b8                __sdh_stack_observers_load_end__ = __sdh_stack_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_stack_observers_start__ == __sdh_stack_observers_end__) || ((__sdh_stack_observers_end__ >= __FLASH_segment_start__) && (__sdh_stack_observers_end__ <= __FLASH_segment_end__))), error: .sdh_stack_observers is too large to fit in FLASH memory segment)
-                0x000000000002b028                __sdh_req_observers_load_start__ = ALIGN (__sdh_stack_observers_end__, 0x4)
+                0x000000000002b1b8                __sdh_req_observers_load_start__ = ALIGN (__sdh_stack_observers_end__, 0x4)
 
 .sdh_req_observers
-                0x000000000002b028        0x0
-                0x000000000002b028                __sdh_req_observers_start__ = .
-                0x000000000002b028                __start_sdh_req_observers = __sdh_req_observers_start__
+                0x000000000002b1b8        0x0
+                0x000000000002b1b8                __sdh_req_observers_start__ = .
+                0x000000000002b1b8                __start_sdh_req_observers = __sdh_req_observers_start__
  *(SORT_BY_NAME(.sdh_req_observers*))
-                0x000000000002b028                __sdh_req_observers_end__ = (__sdh_req_observers_start__ + SIZEOF (.sdh_req_observers))
+                0x000000000002b1b8                __sdh_req_observers_end__ = (__sdh_req_observers_start__ + SIZEOF (.sdh_req_observers))
                 0x0000000000000000                __sdh_req_observers_size__ = SIZEOF (.sdh_req_observers)
-                0x000000000002b028                __stop_sdh_req_observers = __sdh_req_observers_end__
-                0x000000000002b028                __sdh_req_observers_load_end__ = __sdh_req_observers_end__
+                0x000000000002b1b8                __stop_sdh_req_observers = __sdh_req_observers_end__
+                0x000000000002b1b8                __sdh_req_observers_load_end__ = __sdh_req_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_req_observers_start__ == __sdh_req_observers_end__) || ((__sdh_req_observers_end__ >= __FLASH_segment_start__) && (__sdh_req_observers_end__ <= __FLASH_segment_end__))), error: .sdh_req_observers is too large to fit in FLASH memory segment)
-                0x000000000002b028                __nrf_queue_load_start__ = ALIGN (__sdh_req_observers_end__, 0x4)
+                0x000000000002b1b8                __nrf_queue_load_start__ = ALIGN (__sdh_req_observers_end__, 0x4)
 
-.nrf_queue      0x000000000002b028        0x0
-                0x000000000002b028                __nrf_queue_start__ = .
-                0x000000000002b028                __start_nrf_queue = __nrf_queue_start__
+.nrf_queue      0x000000000002b1b8        0x0
+                0x000000000002b1b8                __nrf_queue_start__ = .
+                0x000000000002b1b8                __start_nrf_queue = __nrf_queue_start__
  *(.nrf_queue*)
-                0x000000000002b028                __nrf_queue_end__ = (__nrf_queue_start__ + SIZEOF (.nrf_queue))
+                0x000000000002b1b8                __nrf_queue_end__ = (__nrf_queue_start__ + SIZEOF (.nrf_queue))
                 0x0000000000000000                __nrf_queue_size__ = SIZEOF (.nrf_queue)
-                0x000000000002b028                __stop_nrf_queue = __nrf_queue_end__
-                0x000000000002b028                __nrf_queue_load_end__ = __nrf_queue_end__
+                0x000000000002b1b8                __stop_nrf_queue = __nrf_queue_end__
+                0x000000000002b1b8                __nrf_queue_load_end__ = __nrf_queue_end__
                 0x0000000000000001                . = ASSERT (((__nrf_queue_start__ == __nrf_queue_end__) || ((__nrf_queue_end__ >= __FLASH_segment_start__) && (__nrf_queue_end__ <= __FLASH_segment_end__))), error: .nrf_queue is too large to fit in FLASH memory segment)
-                0x000000000002b028                __cli_command_load_start__ = ALIGN (__nrf_queue_end__, 0x4)
+                0x000000000002b1b8                __cli_command_load_start__ = ALIGN (__nrf_queue_end__, 0x4)
 
-.cli_command    0x000000000002b028        0x0
-                0x000000000002b028                __cli_command_start__ = .
-                0x000000000002b028                __start_cli_command = __cli_command_start__
+.cli_command    0x000000000002b1b8        0x0
+                0x000000000002b1b8                __cli_command_start__ = .
+                0x000000000002b1b8                __start_cli_command = __cli_command_start__
  *(.cli_command*)
-                0x000000000002b028                __cli_command_end__ = (__cli_command_start__ + SIZEOF (.cli_command))
+                0x000000000002b1b8                __cli_command_end__ = (__cli_command_start__ + SIZEOF (.cli_command))
                 0x0000000000000000                __cli_command_size__ = SIZEOF (.cli_command)
-                0x000000000002b028                __stop_cli_command = __cli_command_end__
-                0x000000000002b028                __cli_command_load_end__ = __cli_command_end__
+                0x000000000002b1b8                __stop_cli_command = __cli_command_end__
+                0x000000000002b1b8                __cli_command_load_end__ = __cli_command_end__
                 0x0000000000000001                . = ASSERT (((__cli_command_start__ == __cli_command_end__) || ((__cli_command_end__ >= __FLASH_segment_start__) && (__cli_command_end__ <= __FLASH_segment_end__))), error: .cli_command is too large to fit in FLASH memory segment)
-                0x000000000002b028                __crypto_data_load_start__ = ALIGN (__cli_command_end__, 0x4)
+                0x000000000002b1b8                __crypto_data_load_start__ = ALIGN (__cli_command_end__, 0x4)
 
-.crypto_data    0x000000000002b028        0x0
-                0x000000000002b028                __crypto_data_start__ = .
-                0x000000000002b028                __start_crypto_data = __crypto_data_start__
+.crypto_data    0x000000000002b1b8        0x0
+                0x000000000002b1b8                __crypto_data_start__ = .
+                0x000000000002b1b8                __start_crypto_data = __crypto_data_start__
  *(SORT_BY_NAME(.crypto_data*))
-                0x000000000002b028                __crypto_data_end__ = (__crypto_data_start__ + SIZEOF (.crypto_data))
+                0x000000000002b1b8                __crypto_data_end__ = (__crypto_data_start__ + SIZEOF (.crypto_data))
                 0x0000000000000000                __crypto_data_size__ = SIZEOF (.crypto_data)
-                0x000000000002b028                __stop_crypto_data = __crypto_data_end__
-                0x000000000002b028                __crypto_data_load_end__ = __crypto_data_end__
+                0x000000000002b1b8                __stop_crypto_data = __crypto_data_end__
+                0x000000000002b1b8                __crypto_data_load_end__ = __crypto_data_end__
                 0x0000000000000001                . = ASSERT (((__crypto_data_start__ == __crypto_data_end__) || ((__crypto_data_end__ >= __FLASH_segment_start__) && (__crypto_data_end__ <= __FLASH_segment_end__))), error: .crypto_data is too large to fit in FLASH memory segment)
-                0x000000000002b028                __nrf_sections_load_start__ = ALIGN (__crypto_data_end__, 0x4)
+                0x000000000002b1b8                __nrf_sections_load_start__ = ALIGN (__crypto_data_end__, 0x4)
 
-.nrf_sections   0x000000000002b028        0x0
-                0x000000000002b028                __nrf_sections_start__ = .
-                0x000000000002b028                __start_nrf_sections = __nrf_sections_start__
+.nrf_sections   0x000000000002b1b8        0x0
+                0x000000000002b1b8                __nrf_sections_start__ = .
+                0x000000000002b1b8                __start_nrf_sections = __nrf_sections_start__
  *(.nrf_sections .nrf_sections.*)
-                0x000000000002b028                __nrf_sections_end__ = (__nrf_sections_start__ + SIZEOF (.nrf_sections))
+                0x000000000002b1b8                __nrf_sections_end__ = (__nrf_sections_start__ + SIZEOF (.nrf_sections))
                 0x0000000000000000                __nrf_sections_size__ = SIZEOF (.nrf_sections)
-                0x000000000002b028                __nrf_sections_load_end__ = __nrf_sections_end__
+                0x000000000002b1b8                __nrf_sections_load_end__ = __nrf_sections_end__
                 0x0000000000000001                . = ASSERT (((__nrf_sections_start__ == __nrf_sections_end__) || ((__nrf_sections_end__ >= __FLASH_segment_start__) && (__nrf_sections_end__ <= __FLASH_segment_end__))), error: .nrf_sections is too large to fit in FLASH memory segment)
-                0x000000000002b028                __log_dynamic_data_load_start__ = ALIGN (__nrf_sections_end__, 0x4)
+                0x000000000002b1b8                __log_dynamic_data_load_start__ = ALIGN (__nrf_sections_end__, 0x4)
 
 .log_dynamic_data
-                0x0000000020003770       0x34 load address 0x000000000002b028
+                0x0000000020003770       0x34 load address 0x000000000002b1b8
                 0x0000000020003770                __log_dynamic_data_start__ = .
  *(SORT_BY_NAME(.log_dynamic_data*))
  .log_dynamic_data_CLOCK
@@ -7820,11 +7821,11 @@ Linker script and memory map
                 0x00000000200037a0                m_nrf_log_pwr_mgmt_logs_data_dynamic
                 0x00000000200037a4                __log_dynamic_data_end__ = (__log_dynamic_data_start__ + SIZEOF (.log_dynamic_data))
                 0x0000000000000034                __log_dynamic_data_size__ = SIZEOF (.log_dynamic_data)
-                0x000000000002b05c                __log_dynamic_data_load_end__ = (__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data))
+                0x000000000002b1ec                __log_dynamic_data_load_end__ = (__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data))
                 0x0000000000000001                . = ASSERT (((__log_dynamic_data_load_start__ == __log_dynamic_data_load_end__) || ((__log_dynamic_data_load_end__ >= __FLASH_segment_start__) && (__log_dynamic_data_load_end__ <= __FLASH_segment_end__))), error: .log_dynamic_data is too large to fit in FLASH memory segment)
 
 .log_dynamic_data_run
-                0x0000000020003770       0x34 load address 0x000000000002b028
+                0x0000000020003770       0x34 load address 0x000000000002b1b8
                 0x0000000020003770                __log_dynamic_data_run_start__ = .
                 0x0000000020003770                __start_log_dynamic_data = __log_dynamic_data_run_start__
                 0x00000000200037a4                . = MAX ((__log_dynamic_data_run_start__ + SIZEOF (.log_dynamic_data)), .)
@@ -7834,15 +7835,15 @@ Linker script and memory map
                 0x00000000200037a4                __stop_log_dynamic_data = __log_dynamic_data_run_end__
                 0x00000000200037a4                __log_dynamic_data_run_load_end__ = __log_dynamic_data_run_end__
                 0x0000000000000001                . = ASSERT (((__log_dynamic_data_run_start__ == __log_dynamic_data_run_end__) || ((__log_dynamic_data_run_end__ >= __RAM_segment_start__) && (__log_dynamic_data_run_end__ <= __RAM_segment_end__))), error: .log_dynamic_data_run is too large to fit in RAM memory segment)
-                0x000000000002b05c                __cli_sorted_cmd_ptrs_load_start__ = ALIGN ((__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data)), 0x4)
+                0x000000000002b1ec                __cli_sorted_cmd_ptrs_load_start__ = ALIGN ((__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data)), 0x4)
 
 .cli_sorted_cmd_ptrs
-                0x00000000200037a4        0x0 load address 0x000000000002b05c
+                0x00000000200037a4        0x0 load address 0x000000000002b1ec
                 0x00000000200037a4                __cli_sorted_cmd_ptrs_start__ = .
  *(.cli_sorted_cmd_ptrs*)
                 0x00000000200037a4                __cli_sorted_cmd_ptrs_end__ = (__cli_sorted_cmd_ptrs_start__ + SIZEOF (.cli_sorted_cmd_ptrs))
                 0x0000000000000000                __cli_sorted_cmd_ptrs_size__ = SIZEOF (.cli_sorted_cmd_ptrs)
-                0x000000000002b05c                __cli_sorted_cmd_ptrs_load_end__ = (__cli_sorted_cmd_ptrs_load_start__ + SIZEOF (.cli_sorted_cmd_ptrs))
+                0x000000000002b1ec                __cli_sorted_cmd_ptrs_load_end__ = (__cli_sorted_cmd_ptrs_load_start__ + SIZEOF (.cli_sorted_cmd_ptrs))
                 0x0000000000000001                . = ASSERT (((__cli_sorted_cmd_ptrs_load_start__ == __cli_sorted_cmd_ptrs_load_end__) || ((__cli_sorted_cmd_ptrs_load_end__ >= __FLASH_segment_start__) && (__cli_sorted_cmd_ptrs_load_end__ <= __FLASH_segment_end__))), error: .cli_sorted_cmd_ptrs is too large to fit in FLASH memory segment)
 
 .cli_sorted_cmd_ptrs_run
@@ -7855,14 +7856,14 @@ Linker script and memory map
                 0x00000000200037a4                __stop_cli_sorted_cmd_ptrs = __cli_sorted_cmd_ptrs_run_end__
                 0x00000000200037a4                __cli_sorted_cmd_ptrs_run_load_end__ = __cli_sorted_cmd_ptrs_run_end__
                 0x0000000000000001                . = ASSERT (((__cli_sorted_cmd_ptrs_run_start__ == __cli_sorted_cmd_ptrs_run_end__) || ((__cli_sorted_cmd_ptrs_run_end__ >= __RAM_segment_start__) && (__cli_sorted_cmd_ptrs_run_end__ <= __RAM_segment_end__))), error: .cli_sorted_cmd_ptrs_run is too large to fit in RAM memory segment)
-                0x000000000002b05c                __fs_data_load_start__ = ALIGN ((__cli_sorted_cmd_ptrs_load_start__ + SIZEOF (.cli_sorted_cmd_ptrs)), 0x4)
+                0x000000000002b1ec                __fs_data_load_start__ = ALIGN ((__cli_sorted_cmd_ptrs_load_start__ + SIZEOF (.cli_sorted_cmd_ptrs)), 0x4)
 
-.fs_data        0x00000000200037a4        0x0 load address 0x000000000002b05c
+.fs_data        0x00000000200037a4        0x0 load address 0x000000000002b1ec
                 0x00000000200037a4                __fs_data_start__ = .
  *(.fs_data*)
                 0x00000000200037a4                __fs_data_end__ = (__fs_data_start__ + SIZEOF (.fs_data))
                 0x0000000000000000                __fs_data_size__ = SIZEOF (.fs_data)
-                0x000000000002b05c                __fs_data_load_end__ = (__fs_data_load_start__ + SIZEOF (.fs_data))
+                0x000000000002b1ec                __fs_data_load_end__ = (__fs_data_load_start__ + SIZEOF (.fs_data))
                 0x0000000000000001                . = ASSERT (((__fs_data_load_start__ == __fs_data_load_end__) || ((__fs_data_load_end__ >= __FLASH_segment_start__) && (__fs_data_load_end__ <= __FLASH_segment_end__))), error: .fs_data is too large to fit in FLASH memory segment)
 
 .fs_data_run    0x00000000200037a4        0x0
@@ -7885,235 +7886,236 @@ Linker script and memory map
                 0x0000000000000000                __nrf_sections_run_end_size__ = SIZEOF (.nrf_sections_run_end)
                 0x00000000200037a4                __nrf_sections_run_end_load_end__ = __nrf_sections_run_end_end__
                 0x0000000000000001                . = ASSERT (((__nrf_sections_run_end_start__ == __nrf_sections_run_end_end__) || ((__nrf_sections_run_end_end__ >= __RAM_segment_start__) && (__nrf_sections_run_end_end__ <= __RAM_segment_end__))), error: .nrf_sections_run_end is too large to fit in RAM memory segment)
-                0x000000000002b05c                __dtors_load_start__ = ALIGN ((__fs_data_load_start__ + SIZEOF (.fs_data)), 0x4)
+                0x000000000002b1ec                __dtors_load_start__ = ALIGN ((__fs_data_load_start__ + SIZEOF (.fs_data)), 0x4)
 
-.dtors          0x000000000002b05c        0x0
-                0x000000000002b05c                __dtors_start__ = .
+.dtors          0x000000000002b1ec        0x0
+                0x000000000002b1ec                __dtors_start__ = .
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
  *(.fini_array)
  *(SORT_BY_NAME(.fini_array.*))
-                0x000000000002b05c                __dtors_end__ = (__dtors_start__ + SIZEOF (.dtors))
+                0x000000000002b1ec                __dtors_end__ = (__dtors_start__ + SIZEOF (.dtors))
                 0x0000000000000000                __dtors_size__ = SIZEOF (.dtors)
-                0x000000000002b05c                __dtors_load_end__ = __dtors_end__
+                0x000000000002b1ec                __dtors_load_end__ = __dtors_end__
                 0x0000000000000001                . = ASSERT (((__dtors_start__ == __dtors_end__) || ((__dtors_end__ >= __FLASH_segment_start__) && (__dtors_end__ <= __FLASH_segment_end__))), error: .dtors is too large to fit in FLASH memory segment)
-                0x000000000002b05c                __ctors_load_start__ = ALIGN (__dtors_end__, 0x4)
+                0x000000000002b1ec                __ctors_load_start__ = ALIGN (__dtors_end__, 0x4)
 
-.ctors          0x000000000002b05c        0x0
-                0x000000000002b05c                __ctors_start__ = .
+.ctors          0x000000000002b1ec        0x0
+                0x000000000002b1ec                __ctors_start__ = .
  *(SORT_BY_NAME(.ctors.*))
  *(.ctors)
  *(.init_array)
  *(SORT_BY_NAME(.init_array.*))
-                0x000000000002b05c                __ctors_end__ = (__ctors_start__ + SIZEOF (.ctors))
+                0x000000000002b1ec                __ctors_end__ = (__ctors_start__ + SIZEOF (.ctors))
                 0x0000000000000000                __ctors_size__ = SIZEOF (.ctors)
-                0x000000000002b05c                __ctors_load_end__ = __ctors_end__
+                0x000000000002b1ec                __ctors_load_end__ = __ctors_end__
                 0x0000000000000001                . = ASSERT (((__ctors_start__ == __ctors_end__) || ((__ctors_end__ >= __FLASH_segment_start__) && (__ctors_end__ <= __FLASH_segment_end__))), error: .ctors is too large to fit in FLASH memory segment)
-                0x000000000002b05c                __rodata_load_start__ = ALIGN (__ctors_end__, 0x4)
+                0x000000000002b1ec                __rodata_load_start__ = ALIGN (__ctors_end__, 0x4)
 
-.rodata         0x000000000002b05c     0x12c4
-                0x000000000002b05c                __rodata_start__ = .
+.rodata         0x000000000002b1ec     0x1358
+                0x000000000002b1ec                __rodata_start__ = .
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- *fill*         0x000000000002b05c        0x4 
+ *fill*         0x000000000002b1ec        0x4 
  .rodata.delay_bytecode.8486
-                0x000000000002b060        0x6 Output/mPower Release/Obj/nrf_log_backend_rtt.o
- *fill*         0x000000000002b066        0x2 
+                0x000000000002b1f0        0x6 Output/mPower Release/Obj/nrf_log_backend_rtt.o
+ *fill*         0x000000000002b1f6        0x2 
  .rodata.nrf_log_backend_rtt_api
-                0x000000000002b068        0xc Output/mPower Release/Obj/nrf_log_backend_rtt.o
-                0x000000000002b068                nrf_log_backend_rtt_api
- .rodata        0x000000000002b074       0x20 Output/mPower Release/Obj/nrf_log_backend_uart.o
+                0x000000000002b1f8        0xc Output/mPower Release/Obj/nrf_log_backend_rtt.o
+                0x000000000002b1f8                nrf_log_backend_rtt_api
+ .rodata        0x000000000002b204       0x20 Output/mPower Release/Obj/nrf_log_backend_uart.o
  .rodata.nrf_log_backend_uart_api
-                0x000000000002b094        0xc Output/mPower Release/Obj/nrf_log_backend_uart.o
-                0x000000000002b094                nrf_log_backend_uart_api
+                0x000000000002b224        0xc Output/mPower Release/Obj/nrf_log_backend_uart.o
+                0x000000000002b224                nrf_log_backend_uart_api
  .rodata.nrf_log_frontend_dequeue.str1.1
-                0x000000000002b0a0       0x11 Output/mPower Release/Obj/nrf_log_frontend.o
+                0x000000000002b230       0x11 Output/mPower Release/Obj/nrf_log_frontend.o
  .rodata.str1.1
-                0x000000000002b0b1       0x17 Output/mPower Release/Obj/nrf_log_frontend.o
+                0x000000000002b241       0x17 Output/mPower Release/Obj/nrf_log_frontend.o
  .rodata.m_colors
-                0x000000000002b0c8       0x24 Output/mPower Release/Obj/nrf_log_str_formatter.o
+                0x000000000002b258       0x24 Output/mPower Release/Obj/nrf_log_str_formatter.o
  .rodata.nrf_log_hexdump_entry_process.str1.1
-                0x000000000002b0ec        0xf Output/mPower Release/Obj/nrf_log_str_formatter.o
+                0x000000000002b27c        0xf Output/mPower Release/Obj/nrf_log_str_formatter.o
                                          0x11 (size before relaxing)
  .rodata.postfix_process.str1.1
-                0x000000000002b0fb        0x5 Output/mPower Release/Obj/nrf_log_str_formatter.o
+                0x000000000002b28b        0x5 Output/mPower Release/Obj/nrf_log_str_formatter.o
                                           0xb (size before relaxing)
  .rodata.prefix_process.str1.1
-                0x000000000002b100       0x2a Output/mPower Release/Obj/nrf_log_str_formatter.o
- *fill*         0x000000000002b12a        0x2 
+                0x000000000002b290       0x2a Output/mPower Release/Obj/nrf_log_str_formatter.o
+ *fill*         0x000000000002b2ba        0x2 
  .rodata.severity_names
-                0x000000000002b12c       0x14 Output/mPower Release/Obj/nrf_log_str_formatter.o
+                0x000000000002b2bc       0x14 Output/mPower Release/Obj/nrf_log_str_formatter.o
  .rodata.str1.1
-                0x000000000002b140       0x4b Output/mPower Release/Obj/nrf_log_str_formatter.o
+                0x000000000002b2d0       0x4b Output/mPower Release/Obj/nrf_log_str_formatter.o
                                          0x51 (size before relaxing)
  .rodata.app_error_fault_handler.str1.1
-                0x000000000002b18b       0x19 Output/mPower Release/Obj/app_error_weak.o
- *fill*         0x000000000002b1a4        0xc 
+                0x000000000002b31b       0x19 Output/mPower Release/Obj/app_error_weak.o
+ *fill*         0x000000000002b334        0xc 
  .rodata.delay_bytecode.8215
-                0x000000000002b1b0        0x6 Output/mPower Release/Obj/app_timer.o
+                0x000000000002b340        0x6 Output/mPower Release/Obj/app_timer.o
  .rodata._aV2C.7427
-                0x000000000002b1b6       0x10 Output/mPower Release/Obj/nrf_fprintf_format.o
- *fill*         0x000000000002b1c6        0x2 
+                0x000000000002b346       0x10 Output/mPower Release/Obj/nrf_fprintf_format.o
+ *fill*         0x000000000002b356        0x2 
  .rodata.pwr_mgmt_data
-                0x000000000002b1c8        0xc Output/mPower Release/Obj/nrf_pwr_mgmt.o
+                0x000000000002b358        0xc Output/mPower Release/Obj/nrf_pwr_mgmt.o
  .rodata.str1.1
-                0x000000000002b1d4        0x9 Output/mPower Release/Obj/nrf_pwr_mgmt.o
+                0x000000000002b364        0x9 Output/mPower Release/Obj/nrf_pwr_mgmt.o
  .rodata.m_unknown_str
-                0x000000000002b1dd       0x13 Output/mPower Release/Obj/nrf_strerror.o
+                0x000000000002b36d       0x13 Output/mPower Release/Obj/nrf_strerror.o
  .rodata.nrf_strerror_array
-                0x000000000002b1f0      0x128 Output/mPower Release/Obj/nrf_strerror.o
+                0x000000000002b380      0x128 Output/mPower Release/Obj/nrf_strerror.o
  .rodata.str1.1
-                0x000000000002b318      0x3ba Output/mPower Release/Obj/nrf_strerror.o
+                0x000000000002b4a8      0x3ba Output/mPower Release/Obj/nrf_strerror.o
  .rodata.m_board_led_list
-                0x000000000002b6d2        0x4 Output/mPower Release/Obj/boards.o
+                0x000000000002b862        0x4 Output/mPower Release/Obj/boards.o
  .rodata.str1.1
-                0x000000000002b6d6        0x6 Output/mPower Release/Obj/nrf_drv_clock.o
+                0x000000000002b866        0x6 Output/mPower Release/Obj/nrf_drv_clock.o
  .rodata.str1.1
-                0x000000000002b6dc        0x6 Output/mPower Release/Obj/nrfx_clock.o
+                0x000000000002b86c        0x6 Output/mPower Release/Obj/nrfx_clock.o
  .rodata.str1.1
-                0x000000000002b6e2        0x7 Output/mPower Release/Obj/nrfx_gpiote.o
+                0x000000000002b872        0x7 Output/mPower Release/Obj/nrfx_gpiote.o
  .rodata.str1.1
-                0x000000000002b6e9        0x4 Output/mPower Release/Obj/nrfx_prs.o
+                0x000000000002b879        0x4 Output/mPower Release/Obj/nrfx_prs.o
  .rodata.str1.1
-                0x000000000002b6ed        0x5 Output/mPower Release/Obj/nrfx_uart.o
+                0x000000000002b87d        0x5 Output/mPower Release/Obj/nrfx_uart.o
  .rodata.str1.1
-                0x000000000002b6f2        0x6 Output/mPower Release/Obj/nrfx_uarte.o
+                0x000000000002b882        0x6 Output/mPower Release/Obj/nrfx_uarte.o
  .rodata.ble_evt_handler.str1.1
-                0x000000000002b6f8       0xbf Output/mPower Release/Obj/main.o
+                0x000000000002b888       0xbf Output/mPower Release/Obj/main.o
  .rodata.inPinHandler.str1.1
-                0x000000000002b7b7       0x22 Output/mPower Release/Obj/main.o
- *fill*         0x000000000002b7d9        0x3 
+                0x000000000002b947       0x22 Output/mPower Release/Obj/main.o
+ *fill*         0x000000000002b969        0x3 
  .rodata.m_mp_char_timer_id
-                0x000000000002b7dc        0x4 Output/mPower Release/Obj/main.o
+                0x000000000002b96c        0x4 Output/mPower Release/Obj/main.o
  .rodata.main.str1.1
-                0x000000000002b7e0       0x13 Output/mPower Release/Obj/main.o
- .rodata        0x000000000002b7f3       0x10 Output/mPower Release/Obj/ble_service.o
+                0x000000000002b970       0x13 Output/mPower Release/Obj/main.o
+ .rodata        0x000000000002b983       0x10 Output/mPower Release/Obj/ble_service.o
  .rodata.mpServiceInit.str1.1
-                0x000000000002b803       0x38 Output/mPower Release/Obj/ble_service.o
+                0x000000000002b993       0x38 Output/mPower Release/Obj/ble_service.o
  .rodata.onBleEvent.str1.1
-                0x000000000002b83b       0x4f Output/mPower Release/Obj/ble_service.o
+                0x000000000002b9cb       0x4f Output/mPower Release/Obj/ble_service.o
  .rodata.sendNotification.str1.1
-                0x000000000002b88a       0x34 Output/mPower Release/Obj/ble_service.o
+                0x000000000002ba1a       0x34 Output/mPower Release/Obj/ble_service.o
  .rodata.freeUsbPort.str1.1
-                0x000000000002b8be       0x53 Output/mPower Release/Obj/usb_port.o
+                0x000000000002ba4e       0x53 Output/mPower Release/Obj/usb_port.o
  .rodata.initPortStatus.str1.1
-                0x000000000002b911       0x13 Output/mPower Release/Obj/usb_port.o
+                0x000000000002baa1       0x13 Output/mPower Release/Obj/usb_port.o
  .rodata.onNewCommand.str1.1
-                0x000000000002b924      0x166 Output/mPower Release/Obj/usb_port.o
+                0x000000000002bab4      0x166 Output/mPower Release/Obj/usb_port.o
+ .rodata.onUsbChange.str1.1
+                0x000000000002bc1a       0x97 Output/mPower Release/Obj/usb_port.o
  .rodata._DoInit.str1.1
-                0x000000000002ba8a       0x14 Output/mPower Release/Obj/SEGGER_RTT.o
+                0x000000000002bcb1       0x14 Output/mPower Release/Obj/SEGGER_RTT.o
  .rodata.data_length_update.str1.1
-                0x000000000002ba9e      0x10e Output/mPower Release/Obj/nrf_ble_gatt.o
+                0x000000000002bcc5      0x10e Output/mPower Release/Obj/nrf_ble_gatt.o
  .rodata.nrf_ble_gatt_on_ble_evt.str1.1
-                0x000000000002bbac      0x298 Output/mPower Release/Obj/nrf_ble_gatt.o
+                0x000000000002bdd3      0x298 Output/mPower Release/Obj/nrf_ble_gatt.o
  .rodata.str1.1
-                0x000000000002be44        0xd Output/mPower Release/Obj/nrf_ble_gatt.o
- .rodata        0x000000000002be51        0x4 Output/mPower Release/Obj/nrf_sdh.o
- *fill*         0x000000000002be55        0x3 
+                0x000000000002c06b        0xd Output/mPower Release/Obj/nrf_ble_gatt.o
+ .rodata        0x000000000002c078        0x4 Output/mPower Release/Obj/nrf_sdh.o
  .rodata.sdh_req_observers
-                0x000000000002be58        0xc Output/mPower Release/Obj/nrf_sdh.o
+                0x000000000002c07c        0xc Output/mPower Release/Obj/nrf_sdh.o
  .rodata.sdh_stack_observers
-                0x000000000002be64        0xc Output/mPower Release/Obj/nrf_sdh.o
+                0x000000000002c088        0xc Output/mPower Release/Obj/nrf_sdh.o
  .rodata.sdh_state_observers
-                0x000000000002be70        0xc Output/mPower Release/Obj/nrf_sdh.o
+                0x000000000002c094        0xc Output/mPower Release/Obj/nrf_sdh.o
  .rodata.str1.1
-                0x000000000002be7c        0x8 Output/mPower Release/Obj/nrf_sdh.o
+                0x000000000002c0a0        0x8 Output/mPower Release/Obj/nrf_sdh.o
  .rodata.nrf_sdh_ble_default_cfg_set.str1.1
-                0x000000000002be84      0x182 Output/mPower Release/Obj/nrf_sdh_ble.o
+                0x000000000002c0a8      0x182 Output/mPower Release/Obj/nrf_sdh_ble.o
  .rodata.nrf_sdh_ble_enable.str1.1
-                0x000000000002c006       0xa7 Output/mPower Release/Obj/nrf_sdh_ble.o
- *fill*         0x000000000002c0ad        0x3 
+                0x000000000002c22a       0xa7 Output/mPower Release/Obj/nrf_sdh_ble.o
+ *fill*         0x000000000002c2d1        0x3 
  .rodata.sdh_ble_observers
-                0x000000000002c0b0        0xc Output/mPower Release/Obj/nrf_sdh_ble.o
+                0x000000000002c2d4        0xc Output/mPower Release/Obj/nrf_sdh_ble.o
  .rodata.str1.1
-                0x000000000002c0bc        0xc Output/mPower Release/Obj/nrf_sdh_ble.o
+                0x000000000002c2e0        0xc Output/mPower Release/Obj/nrf_sdh_ble.o
  .rodata.sdh_soc_observers
-                0x000000000002c0c8        0xc Output/mPower Release/Obj/nrf_sdh_soc.o
+                0x000000000002c2ec        0xc Output/mPower Release/Obj/nrf_sdh_soc.o
  .rodata.str1.1
-                0x000000000002c0d4        0xc Output/mPower Release/Obj/nrf_sdh_soc.o
+                0x000000000002c2f8        0xc Output/mPower Release/Obj/nrf_sdh_soc.o
  .rodata.libc.__RAL_ascii_ctype_map
-                0x000000000002c0e0       0x80 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002c0e0                __RAL_ascii_ctype_map
+                0x000000000002c304       0x80 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002c304                __RAL_ascii_ctype_map
  .rodata.libc.__RAL_ascii_ctype_mask
-                0x000000000002c160        0xd C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- *fill*         0x000000000002c16d        0x3 
+                0x000000000002c384        0xd C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+ *fill*         0x000000000002c391        0x3 
  .rodata.libc.__RAL_c_locale
-                0x000000000002c170        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002c170                __RAL_c_locale
+                0x000000000002c394        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002c394                __RAL_c_locale
  .rodata.libc.__RAL_c_locale_abbrev_day_names
-                0x000000000002c17c       0x1d C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002c17c                __RAL_c_locale_abbrev_day_names
- *fill*         0x000000000002c199        0x3 
+                0x000000000002c3a0       0x1d C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002c3a0                __RAL_c_locale_abbrev_day_names
+ *fill*         0x000000000002c3bd        0x3 
  .rodata.libc.__RAL_c_locale_abbrev_month_names
-                0x000000000002c19c       0x31 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002c19c                __RAL_c_locale_abbrev_month_names
- *fill*         0x000000000002c1cd        0x3 
+                0x000000000002c3c0       0x31 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002c3c0                __RAL_c_locale_abbrev_month_names
+ *fill*         0x000000000002c3f1        0x3 
  .rodata.libc.__RAL_c_locale_am_pm_indicator
-                0x000000000002c1d0        0x7 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002c1d0                __RAL_c_locale_am_pm_indicator
- *fill*         0x000000000002c1d7        0x1 
+                0x000000000002c3f4        0x7 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002c3f4                __RAL_c_locale_am_pm_indicator
+ *fill*         0x000000000002c3fb        0x1 
  .rodata.libc.__RAL_c_locale_data
-                0x000000000002c1d8       0x58 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002c1d8                __RAL_c_locale_data
+                0x000000000002c3fc       0x58 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002c3fc                __RAL_c_locale_data
  .rodata.libc.__RAL_c_locale_date_format
-                0x000000000002c230        0x9 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002c230                __RAL_c_locale_date_format
- *fill*         0x000000000002c239        0x3 
+                0x000000000002c454        0x9 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002c454                __RAL_c_locale_date_format
+ *fill*         0x000000000002c45d        0x3 
  .rodata.libc.__RAL_c_locale_date_time_format
-                0x000000000002c23c        0xf C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002c23c                __RAL_c_locale_date_time_format
- *fill*         0x000000000002c24b        0x1 
+                0x000000000002c460        0xf C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002c460                __RAL_c_locale_date_time_format
+ *fill*         0x000000000002c46f        0x1 
  .rodata.libc.__RAL_c_locale_day_names
-                0x000000000002c24c       0x3a C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002c24c                __RAL_c_locale_day_names
- *fill*         0x000000000002c286        0x2 
+                0x000000000002c470       0x3a C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002c470                __RAL_c_locale_day_names
+ *fill*         0x000000000002c4aa        0x2 
  .rodata.libc.__RAL_c_locale_month_names
-                0x000000000002c288       0x57 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002c288                __RAL_c_locale_month_names
- *fill*         0x000000000002c2df        0x1 
+                0x000000000002c4ac       0x57 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002c4ac                __RAL_c_locale_month_names
+ *fill*         0x000000000002c503        0x1 
  .rodata.libc.__RAL_c_locale_time_format
-                0x000000000002c2e0        0x9 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002c2e0                __RAL_c_locale_time_format
- *fill*         0x000000000002c2e9        0x3 
+                0x000000000002c504        0x9 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002c504                __RAL_c_locale_time_format
+ *fill*         0x000000000002c50d        0x3 
  .rodata.libc.__RAL_codeset_ascii
-                0x000000000002c2ec       0x20 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002c2ec                __RAL_codeset_ascii
+                0x000000000002c510       0x20 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002c510                __RAL_codeset_ascii
  .rodata.libc.__RAL_data_empty_string
-                0x000000000002c30c        0x1 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002c30c                __RAL_data_empty_string
- *fill*         0x000000000002c30d        0x3 
+                0x000000000002c530        0x1 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002c530                __RAL_data_empty_string
+ *fill*         0x000000000002c531        0x3 
  .rodata.libc.__RAL_data_utf8_period
-                0x000000000002c310        0x2 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002c310                __RAL_data_utf8_period
- *fill*         0x000000000002c312        0x2 
+                0x000000000002c534        0x2 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002c534                __RAL_data_utf8_period
+ *fill*         0x000000000002c536        0x2 
  .rodata.libc.__RAL_find_locale.str1.4
-                0x000000000002c314        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002c538        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
                                           0xa (size before relaxing)
-                0x000000000002c320                __rodata_end__ = (__rodata_start__ + SIZEOF (.rodata))
-                0x00000000000012c4                __rodata_size__ = SIZEOF (.rodata)
-                0x000000000002c320                __rodata_load_end__ = __rodata_end__
+                0x000000000002c544                __rodata_end__ = (__rodata_start__ + SIZEOF (.rodata))
+                0x0000000000001358                __rodata_size__ = SIZEOF (.rodata)
+                0x000000000002c544                __rodata_load_end__ = __rodata_end__
 
-.rel.dyn        0x000000000002c320        0x0
- .rel.iplt      0x000000000002c320        0x0 Output/mPower Release/Obj/thumb_crt0.o
+.rel.dyn        0x000000000002c544        0x0
+ .rel.iplt      0x000000000002c544        0x0 Output/mPower Release/Obj/thumb_crt0.o
                 0x0000000000000001                . = ASSERT (((__rodata_start__ == __rodata_end__) || ((__rodata_end__ >= __FLASH_segment_start__) && (__rodata_end__ <= __FLASH_segment_end__))), error: .rodata is too large to fit in FLASH memory segment)
-                0x000000000002c320                __ARM.exidx_load_start__ = ALIGN (__rodata_end__, 0x4)
+                0x000000000002c544                __ARM.exidx_load_start__ = ALIGN (__rodata_end__, 0x4)
 
-.ARM.exidx      0x000000000002c320        0x0
-                0x000000000002c320                __ARM.exidx_start__ = .
-                0x000000000002c320                __exidx_start = __ARM.exidx_start__
+.ARM.exidx      0x000000000002c544        0x0
+                0x000000000002c544                __ARM.exidx_start__ = .
+                0x000000000002c544                __exidx_start = __ARM.exidx_start__
  *(.ARM.exidx .ARM.exidx.*)
-                0x000000000002c320                __ARM.exidx_end__ = (__ARM.exidx_start__ + SIZEOF (.ARM.exidx))
+                0x000000000002c544                __ARM.exidx_end__ = (__ARM.exidx_start__ + SIZEOF (.ARM.exidx))
                 0x0000000000000000                __ARM.exidx_size__ = SIZEOF (.ARM.exidx)
-                0x000000000002c320                __exidx_end = __ARM.exidx_end__
-                0x000000000002c320                __ARM.exidx_load_end__ = __ARM.exidx_end__
+                0x000000000002c544                __exidx_end = __ARM.exidx_end__
+                0x000000000002c544                __ARM.exidx_load_end__ = __ARM.exidx_end__
                 0x0000000000000001                . = ASSERT (((__ARM.exidx_start__ == __ARM.exidx_end__) || ((__ARM.exidx_end__ >= __FLASH_segment_start__) && (__ARM.exidx_end__ <= __FLASH_segment_end__))), error: .ARM.exidx is too large to fit in FLASH memory segment)
-                0x000000000002c320                __fast_load_start__ = ALIGN (__ARM.exidx_end__, 0x4)
+                0x000000000002c544                __fast_load_start__ = ALIGN (__ARM.exidx_end__, 0x4)
 
-.fast           0x00000000200037a4        0x0 load address 0x000000000002c320
+.fast           0x00000000200037a4        0x0 load address 0x000000000002c544
                 0x00000000200037a4                __fast_start__ = .
  *(.fast .fast.*)
                 0x00000000200037a4                __fast_end__ = (__fast_start__ + SIZEOF (.fast))
                 0x0000000000000000                __fast_size__ = SIZEOF (.fast)
-                0x000000000002c320                __fast_load_end__ = (__fast_load_start__ + SIZEOF (.fast))
+                0x000000000002c544                __fast_load_end__ = (__fast_load_start__ + SIZEOF (.fast))
                 0x0000000000000001                . = ASSERT (((__fast_load_start__ == __fast_load_end__) || ((__fast_load_end__ >= __FLASH_segment_start__) && (__fast_load_end__ <= __FLASH_segment_end__))), error: .fast is too large to fit in FLASH memory segment)
 
 .fast_run       0x00000000200037a4        0x0
@@ -8123,9 +8125,9 @@ Linker script and memory map
                 0x0000000000000000                __fast_run_size__ = SIZEOF (.fast_run)
                 0x00000000200037a4                __fast_run_load_end__ = __fast_run_end__
                 0x0000000000000001                . = ASSERT (((__fast_run_start__ == __fast_run_end__) || ((__fast_run_end__ >= __RAM_segment_start__) && (__fast_run_end__ <= __RAM_segment_end__))), error: .fast_run is too large to fit in RAM memory segment)
-                0x000000000002c320                __data_load_start__ = ALIGN ((__fast_load_start__ + SIZEOF (.fast)), 0x4)
+                0x000000000002c544                __data_load_start__ = ALIGN ((__fast_load_start__ + SIZEOF (.fast)), 0x4)
 
-.data           0x00000000200037a4       0x60 load address 0x000000000002c320
+.data           0x00000000200037a4       0x60 load address 0x000000000002c544
                 0x00000000200037a4                __data_start__ = .
  *(.data .data.* .gnu.linkonce.d.*)
  .data.m_uart   0x00000000200037a4       0x14 Output/mPower Release/Obj/nrf_log_backend_uart.o
@@ -8152,13 +8154,13 @@ Linker script and memory map
                 0x0000000020003800        0x4 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
                 0x0000000020003804                __data_end__ = (__data_start__ + SIZEOF (.data))
                 0x0000000000000060                __data_size__ = SIZEOF (.data)
-                0x000000000002c380                __data_load_end__ = (__data_load_start__ + SIZEOF (.data))
+                0x000000000002c5a4                __data_load_end__ = (__data_load_start__ + SIZEOF (.data))
 
 .igot.plt       0x0000000100000000        0x0
  .igot.plt      0x0000000100000000        0x0 Output/mPower Release/Obj/thumb_crt0.o
                 0x0000000000000001                . = ASSERT (((__data_load_start__ == __data_load_end__) || ((__data_load_end__ >= __FLASH_segment_start__) && (__data_load_end__ <= __FLASH_segment_end__))), error: .data is too large to fit in FLASH memory segment)
 
-.data_run       0x00000000200037a4       0x60 load address 0x000000000002c320
+.data_run       0x00000000200037a4       0x60 load address 0x000000000002c544
                 0x00000000200037a4                __data_run_start__ = .
                 0x0000000020003804                . = MAX ((__data_run_start__ + SIZEOF (.data)), .)
  *fill*         0x00000000200037a4       0x60 
@@ -8166,16 +8168,16 @@ Linker script and memory map
                 0x0000000000000060                __data_run_size__ = SIZEOF (.data_run)
                 0x0000000020003804                __data_run_load_end__ = __data_run_end__
                 0x0000000000000001                . = ASSERT (((__data_run_start__ == __data_run_end__) || ((__data_run_end__ >= __RAM_segment_start__) && (__data_run_end__ <= __RAM_segment_end__))), error: .data_run is too large to fit in RAM memory segment)
-                0x000000000002c380                __tdata_load_start__ = ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4)
+                0x000000000002c5a4                __tdata_load_start__ = ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4)
 
-.tdata          0x0000000020003804        0x0 load address 0x000000000002c380
+.tdata          0x0000000020003804        0x0 load address 0x000000000002c5a4
                 0x0000000020003804                __tdata_start__ = .
  *(.tdata .tdata.*)
                 0x0000000020003804                __tdata_end__ = (__tdata_start__ + SIZEOF (.tdata))
                 0x0000000000000000                __tdata_size__ = SIZEOF (.tdata)
-                0x000000000002c380                __tdata_load_end__ = (__tdata_load_start__ + SIZEOF (.tdata))
-                0x000000000002c380                __FLASH_segment_used_end__ = (ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4) + SIZEOF (.tdata))
-                0x000000000002c380                __FLASH_segment_used_size__ = (__FLASH_segment_used_end__ - __FLASH_segment_start__)
+                0x000000000002c5a4                __tdata_load_end__ = (__tdata_load_start__ + SIZEOF (.tdata))
+                0x000000000002c5a4                __FLASH_segment_used_end__ = (ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4) + SIZEOF (.tdata))
+                0x000000000002c5a4                __FLASH_segment_used_size__ = (__FLASH_segment_used_end__ - __FLASH_segment_start__)
                 0x0000000000000001                . = ASSERT (((__tdata_load_start__ == __tdata_load_end__) || ((__tdata_load_end__ >= __FLASH_segment_start__) && (__tdata_load_end__ <= __FLASH_segment_end__))), error: .tdata is too large to fit in FLASH memory segment)
 
 .tdata_run      0x0000000020003804        0x0
@@ -8566,7 +8568,7 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .comment       0x000000000000004c       0x4d C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .comment       0x000000000000004c       0x4d C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.52a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc.o)
 
-.debug_line     0x0000000000000000    0x136a4
+.debug_line     0x0000000000000000    0x1372d
  .debug_line    0x0000000000000000      0x1ed Output/mPower Release/Obj/thumb_crt0.o
  .debug_line    0x00000000000001ed      0x8e9 Output/mPower Release/Obj/nrf_log_backend_rtt.o
  .debug_line    0x0000000000000ad6      0x67f Output/mPower Release/Obj/nrf_log_backend_serial.o
@@ -8599,21 +8601,21 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_line    0x000000000000b082      0x724 Output/mPower Release/Obj/nrfx_prs.o
  .debug_line    0x000000000000b7a6      0xc8e Output/mPower Release/Obj/nrfx_uart.o
  .debug_line    0x000000000000c434      0xb8c Output/mPower Release/Obj/nrfx_uarte.o
- .debug_line    0x000000000000cfc0      0xe3f Output/mPower Release/Obj/main.o
- .debug_line    0x000000000000ddff      0xa2c Output/mPower Release/Obj/ble_service.o
- .debug_line    0x000000000000e82b      0xbca Output/mPower Release/Obj/usb_port.o
- .debug_line    0x000000000000f3f5      0x852 Output/mPower Release/Obj/SEGGER_RTT.o
- .debug_line    0x000000000000fc47      0x6ef Output/mPower Release/Obj/ble_advdata.o
- .debug_line    0x0000000000010336      0x759 Output/mPower Release/Obj/ble_conn_params.o
- .debug_line    0x0000000000010a8f      0x805 Output/mPower Release/Obj/ble_conn_state.o
- .debug_line    0x0000000000011294      0x4c7 Output/mPower Release/Obj/ble_srv_common.o
- .debug_line    0x000000000001175b      0x733 Output/mPower Release/Obj/nrf_ble_gatt.o
- .debug_line    0x0000000000011e8e      0x4dd Output/mPower Release/Obj/nrf_ble_qwr.o
- .debug_line    0x000000000001236b      0x727 Output/mPower Release/Obj/nrf_sdh.o
- .debug_line    0x0000000000012a92      0x6bb Output/mPower Release/Obj/nrf_sdh_ble.o
- .debug_line    0x000000000001314d      0x557 Output/mPower Release/Obj/nrf_sdh_soc.o
+ .debug_line    0x000000000000cfc0      0xe47 Output/mPower Release/Obj/main.o
+ .debug_line    0x000000000000de07      0xa2c Output/mPower Release/Obj/ble_service.o
+ .debug_line    0x000000000000e833      0xc4b Output/mPower Release/Obj/usb_port.o
+ .debug_line    0x000000000000f47e      0x852 Output/mPower Release/Obj/SEGGER_RTT.o
+ .debug_line    0x000000000000fcd0      0x6ef Output/mPower Release/Obj/ble_advdata.o
+ .debug_line    0x00000000000103bf      0x759 Output/mPower Release/Obj/ble_conn_params.o
+ .debug_line    0x0000000000010b18      0x805 Output/mPower Release/Obj/ble_conn_state.o
+ .debug_line    0x000000000001131d      0x4c7 Output/mPower Release/Obj/ble_srv_common.o
+ .debug_line    0x00000000000117e4      0x733 Output/mPower Release/Obj/nrf_ble_gatt.o
+ .debug_line    0x0000000000011f17      0x4dd Output/mPower Release/Obj/nrf_ble_qwr.o
+ .debug_line    0x00000000000123f4      0x727 Output/mPower Release/Obj/nrf_sdh.o
+ .debug_line    0x0000000000012b1b      0x6bb Output/mPower Release/Obj/nrf_sdh_ble.o
+ .debug_line    0x00000000000131d6      0x557 Output/mPower Release/Obj/nrf_sdh_soc.o
 
-.debug_info     0x0000000000000000    0x40008
+.debug_info     0x0000000000000000    0x4024e
  .debug_info    0x0000000000000000       0x22 Output/mPower Release/Obj/thumb_crt0.o
  .debug_info    0x0000000000000022      0xc07 Output/mPower Release/Obj/nrf_log_backend_rtt.o
  .debug_info    0x0000000000000c29      0xd47 Output/mPower Release/Obj/nrf_log_backend_serial.o
@@ -8646,21 +8648,21 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_info    0x000000000001b8eb      0xd46 Output/mPower Release/Obj/nrfx_prs.o
  .debug_info    0x000000000001c631     0x3104 Output/mPower Release/Obj/nrfx_uart.o
  .debug_info    0x000000000001f735     0x3022 Output/mPower Release/Obj/nrfx_uarte.o
- .debug_info    0x0000000000022757     0x42e3 Output/mPower Release/Obj/main.o
- .debug_info    0x0000000000026a3a     0x2b33 Output/mPower Release/Obj/ble_service.o
- .debug_info    0x000000000002956d     0x2a24 Output/mPower Release/Obj/usb_port.o
- .debug_info    0x000000000002bf91     0x1a71 Output/mPower Release/Obj/SEGGER_RTT.o
- .debug_info    0x000000000002da02     0x1cc3 Output/mPower Release/Obj/ble_advdata.o
- .debug_info    0x000000000002f6c5     0x2b3f Output/mPower Release/Obj/ble_conn_params.o
- .debug_info    0x0000000000032204     0x2b55 Output/mPower Release/Obj/ble_conn_state.o
- .debug_info    0x0000000000034d59     0x11b2 Output/mPower Release/Obj/ble_srv_common.o
- .debug_info    0x0000000000035f0b     0x2cfa Output/mPower Release/Obj/nrf_ble_gatt.o
- .debug_info    0x0000000000038c05     0x238b Output/mPower Release/Obj/nrf_ble_qwr.o
- .debug_info    0x000000000003af90     0x17d0 Output/mPower Release/Obj/nrf_sdh.o
- .debug_info    0x000000000003c760     0x2da6 Output/mPower Release/Obj/nrf_sdh_ble.o
- .debug_info    0x000000000003f506      0xb02 Output/mPower Release/Obj/nrf_sdh_soc.o
+ .debug_info    0x0000000000022757     0x4314 Output/mPower Release/Obj/main.o
+ .debug_info    0x0000000000026a6b     0x2b33 Output/mPower Release/Obj/ble_service.o
+ .debug_info    0x000000000002959e     0x2c39 Output/mPower Release/Obj/usb_port.o
+ .debug_info    0x000000000002c1d7     0x1a71 Output/mPower Release/Obj/SEGGER_RTT.o
+ .debug_info    0x000000000002dc48     0x1cc3 Output/mPower Release/Obj/ble_advdata.o
+ .debug_info    0x000000000002f90b     0x2b3f Output/mPower Release/Obj/ble_conn_params.o
+ .debug_info    0x000000000003244a     0x2b55 Output/mPower Release/Obj/ble_conn_state.o
+ .debug_info    0x0000000000034f9f     0x11b2 Output/mPower Release/Obj/ble_srv_common.o
+ .debug_info    0x0000000000036151     0x2cfa Output/mPower Release/Obj/nrf_ble_gatt.o
+ .debug_info    0x0000000000038e4b     0x238b Output/mPower Release/Obj/nrf_ble_qwr.o
+ .debug_info    0x000000000003b1d6     0x17d0 Output/mPower Release/Obj/nrf_sdh.o
+ .debug_info    0x000000000003c9a6     0x2da6 Output/mPower Release/Obj/nrf_sdh_ble.o
+ .debug_info    0x000000000003f74c      0xb02 Output/mPower Release/Obj/nrf_sdh_soc.o
 
-.debug_abbrev   0x0000000000000000     0x88d1
+.debug_abbrev   0x0000000000000000     0x8912
  .debug_abbrev  0x0000000000000000       0x12 Output/mPower Release/Obj/thumb_crt0.o
  .debug_abbrev  0x0000000000000012      0x28d Output/mPower Release/Obj/nrf_log_backend_rtt.o
  .debug_abbrev  0x000000000000029f      0x237 Output/mPower Release/Obj/nrf_log_backend_serial.o
@@ -8693,19 +8695,19 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_abbrev  0x000000000000498b      0x2a9 Output/mPower Release/Obj/nrfx_prs.o
  .debug_abbrev  0x0000000000004c34      0x52e Output/mPower Release/Obj/nrfx_uart.o
  .debug_abbrev  0x0000000000005162      0x4ef Output/mPower Release/Obj/nrfx_uarte.o
- .debug_abbrev  0x0000000000005651      0x45f Output/mPower Release/Obj/main.o
- .debug_abbrev  0x0000000000005ab0      0x3b9 Output/mPower Release/Obj/ble_service.o
- .debug_abbrev  0x0000000000005e69      0x449 Output/mPower Release/Obj/usb_port.o
- .debug_abbrev  0x00000000000062b2      0x2fe Output/mPower Release/Obj/SEGGER_RTT.o
- .debug_abbrev  0x00000000000065b0      0x403 Output/mPower Release/Obj/ble_advdata.o
- .debug_abbrev  0x00000000000069b3      0x4f6 Output/mPower Release/Obj/ble_conn_params.o
- .debug_abbrev  0x0000000000006ea9      0x492 Output/mPower Release/Obj/ble_conn_state.o
- .debug_abbrev  0x000000000000733b      0x2b2 Output/mPower Release/Obj/ble_srv_common.o
- .debug_abbrev  0x00000000000075ed      0x46e Output/mPower Release/Obj/nrf_ble_gatt.o
- .debug_abbrev  0x0000000000007a5b      0x36d Output/mPower Release/Obj/nrf_ble_qwr.o
- .debug_abbrev  0x0000000000007dc8      0x4bb Output/mPower Release/Obj/nrf_sdh.o
- .debug_abbrev  0x0000000000008283      0x40f Output/mPower Release/Obj/nrf_sdh_ble.o
- .debug_abbrev  0x0000000000008692      0x23f Output/mPower Release/Obj/nrf_sdh_soc.o
+ .debug_abbrev  0x0000000000005651      0x491 Output/mPower Release/Obj/main.o
+ .debug_abbrev  0x0000000000005ae2      0x3b9 Output/mPower Release/Obj/ble_service.o
+ .debug_abbrev  0x0000000000005e9b      0x458 Output/mPower Release/Obj/usb_port.o
+ .debug_abbrev  0x00000000000062f3      0x2fe Output/mPower Release/Obj/SEGGER_RTT.o
+ .debug_abbrev  0x00000000000065f1      0x403 Output/mPower Release/Obj/ble_advdata.o
+ .debug_abbrev  0x00000000000069f4      0x4f6 Output/mPower Release/Obj/ble_conn_params.o
+ .debug_abbrev  0x0000000000006eea      0x492 Output/mPower Release/Obj/ble_conn_state.o
+ .debug_abbrev  0x000000000000737c      0x2b2 Output/mPower Release/Obj/ble_srv_common.o
+ .debug_abbrev  0x000000000000762e      0x46e Output/mPower Release/Obj/nrf_ble_gatt.o
+ .debug_abbrev  0x0000000000007a9c      0x36d Output/mPower Release/Obj/nrf_ble_qwr.o
+ .debug_abbrev  0x0000000000007e09      0x4bb Output/mPower Release/Obj/nrf_sdh.o
+ .debug_abbrev  0x00000000000082c4      0x40f Output/mPower Release/Obj/nrf_sdh_ble.o
+ .debug_abbrev  0x00000000000086d3      0x23f Output/mPower Release/Obj/nrf_sdh_soc.o
 
 .debug_aranges  0x0000000000000000     0x1148
  .debug_aranges
@@ -8863,12 +8865,12 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
                                       0x758b3 (size before relaxing)
  .debug_str     0x0000000000080275      0x8e8 Output/mPower Release/Obj/nrfx_uarte.o
                                       0x75ca4 (size before relaxing)
- .debug_str     0x0000000000080b5d     0x9d2e Output/mPower Release/Obj/main.o
-                                      0x81cba (size before relaxing)
- .debug_str     0x000000000008a88b      0x41e Output/mPower Release/Obj/ble_service.o
+ .debug_str     0x0000000000080b5d     0x9d3a Output/mPower Release/Obj/main.o
+                                      0x81cc6 (size before relaxing)
+ .debug_str     0x000000000008a897      0x41e Output/mPower Release/Obj/ble_service.o
                                       0x7d477 (size before relaxing)
- .debug_str     0x000000000008aca9      0x536 Output/mPower Release/Obj/usb_port.o
-                                      0x7dde4 (size before relaxing)
+ .debug_str     0x000000000008acb5      0x52a Output/mPower Release/Obj/usb_port.o
+                                      0x7ddbd (size before relaxing)
  .debug_str     0x000000000008b1df      0x529 Output/mPower Release/Obj/SEGGER_RTT.o
                                       0x669e0 (size before relaxing)
  .debug_str     0x000000000008b708      0x4a2 Output/mPower Release/Obj/ble_advdata.o
@@ -8890,7 +8892,7 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_str     0x000000000008dc93      0x199 Output/mPower Release/Obj/nrf_sdh_soc.o
                                       0x6d85d (size before relaxing)
 
-.debug_ranges   0x0000000000000000     0x24e0
+.debug_ranges   0x0000000000000000     0x24f8
  .debug_ranges  0x0000000000000000       0x78 Output/mPower Release/Obj/thumb_crt0.o
  .debug_ranges  0x0000000000000078       0x60 Output/mPower Release/Obj/nrf_log_backend_rtt.o
  .debug_ranges  0x00000000000000d8       0x28 Output/mPower Release/Obj/nrf_log_backend_serial.o
@@ -8921,21 +8923,21 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_ranges  0x00000000000014b8       0x50 Output/mPower Release/Obj/nrfx_prs.o
  .debug_ranges  0x0000000000001508      0x248 Output/mPower Release/Obj/nrfx_uart.o
  .debug_ranges  0x0000000000001750      0x1a8 Output/mPower Release/Obj/nrfx_uarte.o
- .debug_ranges  0x00000000000018f8       0xf8 Output/mPower Release/Obj/main.o
- .debug_ranges  0x00000000000019f0       0x78 Output/mPower Release/Obj/ble_service.o
- .debug_ranges  0x0000000000001a68       0xe8 Output/mPower Release/Obj/usb_port.o
- .debug_ranges  0x0000000000001b50      0x170 Output/mPower Release/Obj/SEGGER_RTT.o
- .debug_ranges  0x0000000000001cc0      0x1b8 Output/mPower Release/Obj/ble_advdata.o
- .debug_ranges  0x0000000000001e78      0x1c0 Output/mPower Release/Obj/ble_conn_params.o
- .debug_ranges  0x0000000000002038      0x1d0 Output/mPower Release/Obj/ble_conn_state.o
- .debug_ranges  0x0000000000002208       0x50 Output/mPower Release/Obj/ble_srv_common.o
- .debug_ranges  0x0000000000002258       0xf0 Output/mPower Release/Obj/nrf_ble_gatt.o
- .debug_ranges  0x0000000000002348       0x58 Output/mPower Release/Obj/nrf_ble_qwr.o
- .debug_ranges  0x00000000000023a0       0xb0 Output/mPower Release/Obj/nrf_sdh.o
- .debug_ranges  0x0000000000002450       0x78 Output/mPower Release/Obj/nrf_sdh_ble.o
- .debug_ranges  0x00000000000024c8       0x18 Output/mPower Release/Obj/nrf_sdh_soc.o
+ .debug_ranges  0x00000000000018f8      0x110 Output/mPower Release/Obj/main.o
+ .debug_ranges  0x0000000000001a08       0x78 Output/mPower Release/Obj/ble_service.o
+ .debug_ranges  0x0000000000001a80       0xe8 Output/mPower Release/Obj/usb_port.o
+ .debug_ranges  0x0000000000001b68      0x170 Output/mPower Release/Obj/SEGGER_RTT.o
+ .debug_ranges  0x0000000000001cd8      0x1b8 Output/mPower Release/Obj/ble_advdata.o
+ .debug_ranges  0x0000000000001e90      0x1c0 Output/mPower Release/Obj/ble_conn_params.o
+ .debug_ranges  0x0000000000002050      0x1d0 Output/mPower Release/Obj/ble_conn_state.o
+ .debug_ranges  0x0000000000002220       0x50 Output/mPower Release/Obj/ble_srv_common.o
+ .debug_ranges  0x0000000000002270       0xf0 Output/mPower Release/Obj/nrf_ble_gatt.o
+ .debug_ranges  0x0000000000002360       0x58 Output/mPower Release/Obj/nrf_ble_qwr.o
+ .debug_ranges  0x00000000000023b8       0xb0 Output/mPower Release/Obj/nrf_sdh.o
+ .debug_ranges  0x0000000000002468       0x78 Output/mPower Release/Obj/nrf_sdh_ble.o
+ .debug_ranges  0x00000000000024e0       0x18 Output/mPower Release/Obj/nrf_sdh_soc.o
 
-.debug_frame    0x0000000000000000     0x311c
+.debug_frame    0x0000000000000000     0x3144
  .debug_frame   0x0000000000000000       0x88 Output/mPower Release/Obj/nrf_log_backend_rtt.o
  .debug_frame   0x0000000000000088       0x48 Output/mPower Release/Obj/nrf_log_backend_serial.o
  .debug_frame   0x00000000000000d0       0xdc Output/mPower Release/Obj/nrf_log_backend_uart.o
@@ -8965,21 +8967,21 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_frame   0x000000000000179c       0x5c Output/mPower Release/Obj/nrfx_prs.o
  .debug_frame   0x00000000000017f8      0x21c Output/mPower Release/Obj/nrfx_uart.o
  .debug_frame   0x0000000000001a14      0x17c Output/mPower Release/Obj/nrfx_uarte.o
- .debug_frame   0x0000000000001b90      0x174 Output/mPower Release/Obj/main.o
- .debug_frame   0x0000000000001d04      0x120 Output/mPower Release/Obj/ble_service.o
- .debug_frame   0x0000000000001e24      0x1c4 Output/mPower Release/Obj/usb_port.o
- .debug_frame   0x0000000000001fe8      0x4c0 Output/mPower Release/Obj/SEGGER_RTT.o
- .debug_frame   0x00000000000024a8      0x21c Output/mPower Release/Obj/ble_advdata.o
- .debug_frame   0x00000000000026c4      0x1a0 Output/mPower Release/Obj/ble_conn_params.o
- .debug_frame   0x0000000000002864      0x340 Output/mPower Release/Obj/ble_conn_state.o
- .debug_frame   0x0000000000002ba4       0xf0 Output/mPower Release/Obj/ble_srv_common.o
- .debug_frame   0x0000000000002c94      0x11c Output/mPower Release/Obj/nrf_ble_gatt.o
- .debug_frame   0x0000000000002db0       0xac Output/mPower Release/Obj/nrf_ble_qwr.o
- .debug_frame   0x0000000000002e5c      0x1a8 Output/mPower Release/Obj/nrf_sdh.o
- .debug_frame   0x0000000000003004       0xd4 Output/mPower Release/Obj/nrf_sdh_ble.o
- .debug_frame   0x00000000000030d8       0x44 Output/mPower Release/Obj/nrf_sdh_soc.o
+ .debug_frame   0x0000000000001b90      0x17c Output/mPower Release/Obj/main.o
+ .debug_frame   0x0000000000001d0c      0x120 Output/mPower Release/Obj/ble_service.o
+ .debug_frame   0x0000000000001e2c      0x1e4 Output/mPower Release/Obj/usb_port.o
+ .debug_frame   0x0000000000002010      0x4c0 Output/mPower Release/Obj/SEGGER_RTT.o
+ .debug_frame   0x00000000000024d0      0x21c Output/mPower Release/Obj/ble_advdata.o
+ .debug_frame   0x00000000000026ec      0x1a0 Output/mPower Release/Obj/ble_conn_params.o
+ .debug_frame   0x000000000000288c      0x340 Output/mPower Release/Obj/ble_conn_state.o
+ .debug_frame   0x0000000000002bcc       0xf0 Output/mPower Release/Obj/ble_srv_common.o
+ .debug_frame   0x0000000000002cbc      0x11c Output/mPower Release/Obj/nrf_ble_gatt.o
+ .debug_frame   0x0000000000002dd8       0xac Output/mPower Release/Obj/nrf_ble_qwr.o
+ .debug_frame   0x0000000000002e84      0x1a8 Output/mPower Release/Obj/nrf_sdh.o
+ .debug_frame   0x000000000000302c       0xd4 Output/mPower Release/Obj/nrf_sdh_ble.o
+ .debug_frame   0x0000000000003100       0x44 Output/mPower Release/Obj/nrf_sdh_soc.o
 
-.debug_loc      0x0000000000000000     0xe0e9
+.debug_loc      0x0000000000000000     0xe199
  .debug_loc     0x0000000000000000      0x181 Output/mPower Release/Obj/nrf_log_backend_rtt.o
  .debug_loc     0x0000000000000181      0x145 Output/mPower Release/Obj/nrf_log_backend_serial.o
  .debug_loc     0x00000000000002c6      0x218 Output/mPower Release/Obj/nrf_log_backend_uart.o
@@ -9007,22 +9009,22 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_loc     0x0000000000006c5e       0x8f Output/mPower Release/Obj/nrfx_prs.o
  .debug_loc     0x0000000000006ced     0x110c Output/mPower Release/Obj/nrfx_uart.o
  .debug_loc     0x0000000000007df9      0xfd9 Output/mPower Release/Obj/nrfx_uarte.o
- .debug_loc     0x0000000000008dd2      0x781 Output/mPower Release/Obj/main.o
- .debug_loc     0x0000000000009553      0x397 Output/mPower Release/Obj/ble_service.o
- .debug_loc     0x00000000000098ea      0x4b7 Output/mPower Release/Obj/usb_port.o
- .debug_loc     0x0000000000009da1     0x12c7 Output/mPower Release/Obj/SEGGER_RTT.o
- .debug_loc     0x000000000000b068      0xdf6 Output/mPower Release/Obj/ble_advdata.o
- .debug_loc     0x000000000000be5e      0x85a Output/mPower Release/Obj/ble_conn_params.o
- .debug_loc     0x000000000000c6b8      0x636 Output/mPower Release/Obj/ble_conn_state.o
- .debug_loc     0x000000000000ccee      0x1dc Output/mPower Release/Obj/ble_srv_common.o
- .debug_loc     0x000000000000ceca      0xaa2 Output/mPower Release/Obj/nrf_ble_gatt.o
- .debug_loc     0x000000000000d96c      0x287 Output/mPower Release/Obj/nrf_ble_qwr.o
- .debug_loc     0x000000000000dbf3      0x232 Output/mPower Release/Obj/nrf_sdh.o
- .debug_loc     0x000000000000de25      0x250 Output/mPower Release/Obj/nrf_sdh_ble.o
- .debug_loc     0x000000000000e075       0x74 Output/mPower Release/Obj/nrf_sdh_soc.o
+ .debug_loc     0x0000000000008dd2      0x799 Output/mPower Release/Obj/main.o
+ .debug_loc     0x000000000000956b      0x397 Output/mPower Release/Obj/ble_service.o
+ .debug_loc     0x0000000000009902      0x54f Output/mPower Release/Obj/usb_port.o
+ .debug_loc     0x0000000000009e51     0x12c7 Output/mPower Release/Obj/SEGGER_RTT.o
+ .debug_loc     0x000000000000b118      0xdf6 Output/mPower Release/Obj/ble_advdata.o
+ .debug_loc     0x000000000000bf0e      0x85a Output/mPower Release/Obj/ble_conn_params.o
+ .debug_loc     0x000000000000c768      0x636 Output/mPower Release/Obj/ble_conn_state.o
+ .debug_loc     0x000000000000cd9e      0x1dc Output/mPower Release/Obj/ble_srv_common.o
+ .debug_loc     0x000000000000cf7a      0xaa2 Output/mPower Release/Obj/nrf_ble_gatt.o
+ .debug_loc     0x000000000000da1c      0x287 Output/mPower Release/Obj/nrf_ble_qwr.o
+ .debug_loc     0x000000000000dca3      0x232 Output/mPower Release/Obj/nrf_sdh.o
+ .debug_loc     0x000000000000ded5      0x250 Output/mPower Release/Obj/nrf_sdh_ble.o
+ .debug_loc     0x000000000000e125       0x74 Output/mPower Release/Obj/nrf_sdh_soc.o
 
 .debug_pubnames
-                0x0000000000000000     0xf2e0
+                0x0000000000000000     0xf2f0
  .debug_pubnames
                 0x0000000000000000      0x12a Output/mPower Release/Obj/nrf_log_backend_rtt.o
  .debug_pubnames
@@ -9082,34 +9084,34 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_pubnames
                 0x0000000000007790      0xcc3 Output/mPower Release/Obj/nrfx_uarte.o
  .debug_pubnames
-                0x0000000000008453     0x1281 Output/mPower Release/Obj/main.o
+                0x0000000000008453     0x1291 Output/mPower Release/Obj/main.o
  .debug_pubnames
-                0x00000000000096d4      0x835 Output/mPower Release/Obj/ble_service.o
+                0x00000000000096e4      0x835 Output/mPower Release/Obj/ble_service.o
  .debug_pubnames
-                0x0000000000009f09      0x2ff Output/mPower Release/Obj/usb_port.o
+                0x0000000000009f19      0x2ff Output/mPower Release/Obj/usb_port.o
  .debug_pubnames
-                0x000000000000a208      0x3c3 Output/mPower Release/Obj/SEGGER_RTT.o
+                0x000000000000a218      0x3c3 Output/mPower Release/Obj/SEGGER_RTT.o
  .debug_pubnames
-                0x000000000000a5cb      0x7da Output/mPower Release/Obj/ble_advdata.o
+                0x000000000000a5db      0x7da Output/mPower Release/Obj/ble_advdata.o
  .debug_pubnames
-                0x000000000000ada5      0xb4b Output/mPower Release/Obj/ble_conn_params.o
+                0x000000000000adb5      0xb4b Output/mPower Release/Obj/ble_conn_params.o
  .debug_pubnames
-                0x000000000000b8f0      0x9b4 Output/mPower Release/Obj/ble_conn_state.o
+                0x000000000000b900      0x9b4 Output/mPower Release/Obj/ble_conn_state.o
  .debug_pubnames
-                0x000000000000c2a4      0x338 Output/mPower Release/Obj/ble_srv_common.o
+                0x000000000000c2b4      0x338 Output/mPower Release/Obj/ble_srv_common.o
  .debug_pubnames
-                0x000000000000c5dc     0x10c5 Output/mPower Release/Obj/nrf_ble_gatt.o
+                0x000000000000c5ec     0x10c5 Output/mPower Release/Obj/nrf_ble_gatt.o
  .debug_pubnames
-                0x000000000000d6a1      0x7a1 Output/mPower Release/Obj/nrf_ble_qwr.o
+                0x000000000000d6b1      0x7a1 Output/mPower Release/Obj/nrf_ble_qwr.o
  .debug_pubnames
-                0x000000000000de42      0xa12 Output/mPower Release/Obj/nrf_sdh.o
+                0x000000000000de52      0xa12 Output/mPower Release/Obj/nrf_sdh.o
  .debug_pubnames
-                0x000000000000e854      0x45d Output/mPower Release/Obj/nrf_sdh_ble.o
+                0x000000000000e864      0x45d Output/mPower Release/Obj/nrf_sdh_ble.o
  .debug_pubnames
-                0x000000000000ecb1      0x62f Output/mPower Release/Obj/nrf_sdh_soc.o
+                0x000000000000ecc1      0x62f Output/mPower Release/Obj/nrf_sdh_soc.o
 
 .debug_pubtypes
-                0x0000000000000000     0xcf51
+                0x0000000000000000     0xcf22
  .debug_pubtypes
                 0x0000000000000000      0x2ab Output/mPower Release/Obj/nrf_log_backend_rtt.o
  .debug_pubtypes
@@ -9173,27 +9175,27 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_pubtypes
                 0x000000000000632e      0xd15 Output/mPower Release/Obj/ble_service.o
  .debug_pubtypes
-                0x0000000000007043      0xc9f Output/mPower Release/Obj/usb_port.o
+                0x0000000000007043      0xc70 Output/mPower Release/Obj/usb_port.o
  .debug_pubtypes
-                0x0000000000007ce2      0x1f4 Output/mPower Release/Obj/SEGGER_RTT.o
+                0x0000000000007cb3      0x1f4 Output/mPower Release/Obj/SEGGER_RTT.o
  .debug_pubtypes
-                0x0000000000007ed6      0x30c Output/mPower Release/Obj/ble_advdata.o
+                0x0000000000007ea7      0x30c Output/mPower Release/Obj/ble_advdata.o
  .debug_pubtypes
-                0x00000000000081e2      0xd30 Output/mPower Release/Obj/ble_conn_params.o
+                0x00000000000081b3      0xd30 Output/mPower Release/Obj/ble_conn_params.o
  .debug_pubtypes
-                0x0000000000008f12      0xd02 Output/mPower Release/Obj/ble_conn_state.o
+                0x0000000000008ee3      0xd02 Output/mPower Release/Obj/ble_conn_state.o
  .debug_pubtypes
-                0x0000000000009c14      0x340 Output/mPower Release/Obj/ble_srv_common.o
+                0x0000000000009be5      0x340 Output/mPower Release/Obj/ble_srv_common.o
  .debug_pubtypes
-                0x0000000000009f54      0xd53 Output/mPower Release/Obj/nrf_ble_gatt.o
+                0x0000000000009f25      0xd53 Output/mPower Release/Obj/nrf_ble_gatt.o
  .debug_pubtypes
-                0x000000000000aca7      0xcd2 Output/mPower Release/Obj/nrf_ble_qwr.o
+                0x000000000000ac78      0xcd2 Output/mPower Release/Obj/nrf_ble_qwr.o
  .debug_pubtypes
-                0x000000000000b979      0x3c8 Output/mPower Release/Obj/nrf_sdh.o
+                0x000000000000b94a      0x3c8 Output/mPower Release/Obj/nrf_sdh.o
  .debug_pubtypes
-                0x000000000000bd41      0xf1b Output/mPower Release/Obj/nrf_sdh_ble.o
+                0x000000000000bd12      0xf1b Output/mPower Release/Obj/nrf_sdh_ble.o
  .debug_pubtypes
-                0x000000000000cc5c      0x2f5 Output/mPower Release/Obj/nrf_sdh_soc.o
+                0x000000000000cc2d      0x2f5 Output/mPower Release/Obj/nrf_sdh_soc.o
 
 .debug_macro    0x0000000000000000    0x1c84a
  .debug_macro   0x0000000000000000      0x313 Output/mPower Release/Obj/nrf_log_backend_rtt.o
