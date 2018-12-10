@@ -28,10 +28,6 @@
   <ProjectSessionItem path="Pure Charging"/>
   <ProjectSessionItem path="Pure Charging;mPower"/>
   <ProjectSessionItem path="Pure Charging;mPower;Application"/>
-  <ProjectSessionItem path="Pure Charging;mPower;nRF_Drivers"/>
-  <ProjectSessionItem path="Pure Charging;mPower;nRF_Libraries"/>
-  <ProjectSessionItem path="Pure Charging;mPower;nRF_Log"/>
-  <ProjectSessionItem path="Pure Charging;mPower;nRF_Segger_RTT"/>
   <ProjectSessionItem path="Pure Charging;mPower;nRF_SoftDevice"/>
  </Project>
  <Register1>
@@ -69,12 +65,11 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="8" y="53" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../ble_service.c" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="4" y="147" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="466" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="9" y="338" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../usb_port.c" selected="1" top="308" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="4" y="20" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../usb_port.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="71" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../../modules/nrfx/hal/nrf_gpiote.h" selected="0" top="55" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="98" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../../components/libraries/util/app_error_weak.c" selected="0" top="82" codecName=""/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="53" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../ble_service.c" selected="0" top="24" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="689" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="673" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="339" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../usb_port.c" selected="0" top="340" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="17" y="38" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../usb_port.h" selected="1" top="15" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="12" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../ble_service.h" selected="0" top="0" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="mPower" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" debugSearchFileMap="" fileDialogInitialDirectory="C:/Nordic_Semi/nRF5_SDK_15.0.0_a53641a/examples/ble_peripheral/experimental/mPower" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>

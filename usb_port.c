@@ -151,7 +151,7 @@ uint8_t freeUsbPort(uint8_t port) {
         
     ret = getConnHandle(port, &connHandle);
     if (ret == MP_SUCCESS) {
-        if (connHandle != BLE_CONN_HANDLE_INVALID) {
+        if (connHandle != BLE_CONN_HANDLE_INVALID && usbPorts[port]-> status != MP_FREE_CHARGE_NOT_AVAILABLE) {
             // send USB port disconnect
             alertMsg = (port << 8) | MP_USB_PORT_CHARGING_STOPPED; 
             sendNotification(charHandle, connHandle, &alertMsg, len);
@@ -159,7 +159,12 @@ uint8_t freeUsbPort(uint8_t port) {
     } else {
         NRF_LOG_INFO("freeUsbPort: getConnHandle failed withe error code %d", ret);
     }
-    initPortStatus(port, MP_AVAILABLE, 0, BLE_CONN_HANDLE_INVALID);
+    NRF_LOG_INFO("port %x = %x", port, usbPorts[port]-> status);
+    if(usbPorts[port]-> status == MP_FREE_CHARGE){
+        initPortStatus(port, MP_FREE_CHARGE_NOT_AVAILABLE, MP_FREE_CHARGE_NOT_AVAILABLE_TIME, BLE_CONN_HANDLE_INVALID);
+    }else{
+        initPortStatus(port, MP_AVAILABLE, 0, BLE_CONN_HANDLE_INVALID);
+    }
 }
 
 void checkUsbPorts() {
@@ -244,7 +249,7 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
       
               // update port status
               // TODO CHANGE TIME TO ACTUAL CHARGE TIME
-              ret = initPortStatus(port, MP_ACTIVE_CHARGE, MP_TEST_TIME, connHandle);
+              ret = initPortStatus(port, MP_ACTIVE_CHARGE, MP_MAX_CHARGE_TIME, connHandle);
             }
 
         } else if (command == MP_TURN_USB_POWER_OFF) {
@@ -267,7 +272,7 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
 
             // update port status
             // TODO CHANGE TIME TO ACTUAL CHARGE TIME
-            ret = initPortStatus(port, MP_AVAILABLE, MP_TEST_TIME, connHandle);
+            ret = initPortStatus(port, MP_AVAILABLE, 0, connHandle);
 
         } else {
             NRF_LOG_INFO("Illegal command %d", port);        
@@ -315,7 +320,7 @@ void onUsbChange(uint8_t port){
 
             // update port status
             // TODO CHANGE TIME TO ACTUAL CHARGE TIME
-            ret = initPortStatus(port, MP_FREE_CHARGE, MP_TEST_TIME, connHandle);   
+            ret = initPortStatus(port, MP_FREE_CHARGE, MP_MAX_FREE_TIME, connHandle);   
             NRF_LOG_INFO("Set portStatus to MP_FREE_CHARGE");       
         
         } else if (portStatus == MP_ACTIVE_CHARGE) {
@@ -325,7 +330,7 @@ void onUsbChange(uint8_t port){
 
             // update port status
             // TODO CHANGE TIME TO ACTUAL CHARGE TIME
-            ret = initPortStatus(port, MP_AVAILABLE, MP_TEST_TIME, connHandle);
+            ret = initPortStatus(port, MP_AVAILABLE, 0, connHandle);
             NRF_LOG_INFO("Set portStatus to MP_AVAILABLE");       
 
         } else if (portStatus == MP_FREE_CHARGE){
@@ -335,7 +340,7 @@ void onUsbChange(uint8_t port){
 
             // update port status
             // TODO CHANGE TIME TO ACTUAL NOT AVAILABLE TIME
-            ret = initPortStatus(port, MP_FREE_CHARGE_NOT_AVAILABLE, MP_TEST_TIME, connHandle);
+            ret = initPortStatus(port, MP_FREE_CHARGE_NOT_AVAILABLE, MP_FREE_CHARGE_NOT_AVAILABLE_TIME, connHandle);
             NRF_LOG_INFO("Set portStatus to MP_FREE_CHARGE_NOT_AVAILABLE");              
         }
     }

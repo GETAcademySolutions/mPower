@@ -27,10 +27,10 @@ typedef struct {
 /** MP_ALERT_xx Alert definitions
  **/
 #define MP_ALERT_BASE_NUM             (0x0)       /// Alert base
-#define MP_USB_PORT_CONNECTED         (MP_ALERT_BASE_NUM + 1) 
-#define MP_USB_PORT_DISCONNECTED      (MP_ALERT_BASE_NUM + 2) 
-#define MP_USB_PORT_CHARGING_STARTED  (MP_ALERT_BASE_NUM + 3) 
-#define MP_USB_PORT_CHARGING_STOPPED  (MP_ALERT_BASE_NUM + 4) 
+#define MP_USB_PORT_CONNECTED         (MP_ALERT_BASE_NUM + 2) 
+#define MP_USB_PORT_DISCONNECTED      (MP_ALERT_BASE_NUM + 3) 
+#define MP_USB_PORT_CHARGING_STARTED  (MP_ALERT_BASE_NUM + 4) 
+#define MP_USB_PORT_CHARGING_STOPPED  (MP_ALERT_BASE_NUM + 5) 
 
 /** MP_ERRORS_xx Error Codes definitions
  **/
@@ -47,10 +47,11 @@ typedef struct {
 #define MP_FIRST_USB_PORT_NUMBER   1
 #define MP_MAX_USB_PORT_NUMBER     4
 
-#define MP_MAX_CHARGE_TIME         (60*60) // 1 time
-#define MP_MAX_FREE_TIME           (5*60)  // 5 min
 //TODO Test data
-#define MP_TEST_TIME               (1*60)  // 1 min
+#define MP_TEST_TIME                        (0.1*60)  // 6 sek
+#define MP_MAX_CHARGE_TIME                  (MP_TEST_TIME)//(60*60) // 1 time
+#define MP_MAX_FREE_TIME                    (MP_TEST_TIME)//(5*60)  // 5 min
+#define MP_FREE_CHARGE_NOT_AVAILABLE_TIME   (MP_TEST_TIME)//(60*60) // 1 time
 
 #define MP_POWER_ON                 1
 #define MP_POWER_OFF                0
