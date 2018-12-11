@@ -31,6 +31,7 @@ typedef struct {
 #define MP_USB_PORT_DISCONNECTED      (MP_ALERT_BASE_NUM + 3) 
 #define MP_USB_PORT_CHARGING_STARTED  (MP_ALERT_BASE_NUM + 4) 
 #define MP_USB_PORT_CHARGING_STOPPED  (MP_ALERT_BASE_NUM + 5) 
+#define MP_PORT_STATUS_ALERT          (MP_ALERT_BASE_NUM + 6)
 
 /** MP_ERRORS_xx Error Codes definitions
  **/

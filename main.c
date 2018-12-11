@@ -274,12 +274,19 @@ static void leds_init(void)
 APP_TIMER_DEF(m_mp_char_timer_id);
 #define MP_CHAR_TIMER_INTERVAL     APP_TIMER_TICKS(1000) // 1000 ms intervals
 
+uint8_t port_status_announcer_counter = 5; 
 
 /**@brief Function for Timer event handler
  */
 static void timer_timeout_handler(void * p_context)
 {
     checkUsbPorts();
+/*    if(port_status_announcer_counter == 0){
+      sendPortStatusToAll();
+      port_status_announcer_counter = 5;
+    }else{
+      port_status_announcer_counter--;
+    }*/
 }
 
 

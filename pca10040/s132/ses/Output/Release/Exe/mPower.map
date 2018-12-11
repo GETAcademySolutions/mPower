@@ -3140,6 +3140,8 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 Output/mPower Release/Obj/main.o
  .text.assert_nrf_callback
                 0x0000000000000000       0x10 Output/mPower Release/Obj/main.o
+ .data.port_status_announcer_counter
+                0x0000000000000000        0x1 Output/mPower Release/Obj/main.o
  .debug_macro   0x0000000000000000      0xaae Output/mPower Release/Obj/main.o
  .debug_macro   0x0000000000000000       0x22 Output/mPower Release/Obj/main.o
  .debug_macro   0x0000000000000000      0x1a3 Output/mPower Release/Obj/main.o
@@ -3335,7 +3337,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x25 Output/mPower Release/Obj/ble_service.o
  .debug_macro   0x0000000000000000       0x44 Output/mPower Release/Obj/ble_service.o
  .debug_macro   0x0000000000000000       0xcc Output/mPower Release/Obj/ble_service.o
- .debug_macro   0x0000000000000000       0x9a Output/mPower Release/Obj/ble_service.o
+ .debug_macro   0x0000000000000000       0xa0 Output/mPower Release/Obj/ble_service.o
  .debug_macro   0x0000000000000000       0x22 Output/mPower Release/Obj/ble_service.o
  .group         0x0000000000000000        0xc Output/mPower Release/Obj/usb_port.o
  .group         0x0000000000000000        0xc Output/mPower Release/Obj/usb_port.o
@@ -3483,7 +3485,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x9a Output/mPower Release/Obj/usb_port.o
  .debug_macro   0x0000000000000000      0x343 Output/mPower Release/Obj/usb_port.o
  .debug_macro   0x0000000000000000       0x22 Output/mPower Release/Obj/usb_port.o
- .debug_macro   0x0000000000000000       0x9a Output/mPower Release/Obj/usb_port.o
+ .debug_macro   0x0000000000000000       0xa0 Output/mPower Release/Obj/usb_port.o
  .group         0x0000000000000000        0xc Output/mPower Release/Obj/SEGGER_RTT.o
  .group         0x0000000000000000        0xc Output/mPower Release/Obj/SEGGER_RTT.o
  .group         0x0000000000000000        0xc Output/mPower Release/Obj/SEGGER_RTT.o
@@ -8616,7 +8618,7 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_line    0x0000000000012b41      0x6bb Output/mPower Release/Obj/nrf_sdh_ble.o
  .debug_line    0x00000000000131fc      0x557 Output/mPower Release/Obj/nrf_sdh_soc.o
 
-.debug_info     0x0000000000000000    0x4025f
+.debug_info     0x0000000000000000    0x40271
  .debug_info    0x0000000000000000       0x22 Output/mPower Release/Obj/thumb_crt0.o
  .debug_info    0x0000000000000022      0xc07 Output/mPower Release/Obj/nrf_log_backend_rtt.o
  .debug_info    0x0000000000000c29      0xd47 Output/mPower Release/Obj/nrf_log_backend_serial.o
@@ -8649,21 +8651,21 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_info    0x000000000001b8eb      0xd46 Output/mPower Release/Obj/nrfx_prs.o
  .debug_info    0x000000000001c631     0x3104 Output/mPower Release/Obj/nrfx_uart.o
  .debug_info    0x000000000001f735     0x3022 Output/mPower Release/Obj/nrfx_uarte.o
- .debug_info    0x0000000000022757     0x4314 Output/mPower Release/Obj/main.o
- .debug_info    0x0000000000026a6b     0x2b33 Output/mPower Release/Obj/ble_service.o
- .debug_info    0x000000000002959e     0x2c4a Output/mPower Release/Obj/usb_port.o
- .debug_info    0x000000000002c1e8     0x1a71 Output/mPower Release/Obj/SEGGER_RTT.o
- .debug_info    0x000000000002dc59     0x1cc3 Output/mPower Release/Obj/ble_advdata.o
- .debug_info    0x000000000002f91c     0x2b3f Output/mPower Release/Obj/ble_conn_params.o
- .debug_info    0x000000000003245b     0x2b55 Output/mPower Release/Obj/ble_conn_state.o
- .debug_info    0x0000000000034fb0     0x11b2 Output/mPower Release/Obj/ble_srv_common.o
- .debug_info    0x0000000000036162     0x2cfa Output/mPower Release/Obj/nrf_ble_gatt.o
- .debug_info    0x0000000000038e5c     0x238b Output/mPower Release/Obj/nrf_ble_qwr.o
- .debug_info    0x000000000003b1e7     0x17d0 Output/mPower Release/Obj/nrf_sdh.o
- .debug_info    0x000000000003c9b7     0x2da6 Output/mPower Release/Obj/nrf_sdh_ble.o
- .debug_info    0x000000000003f75d      0xb02 Output/mPower Release/Obj/nrf_sdh_soc.o
+ .debug_info    0x0000000000022757     0x4326 Output/mPower Release/Obj/main.o
+ .debug_info    0x0000000000026a7d     0x2b33 Output/mPower Release/Obj/ble_service.o
+ .debug_info    0x00000000000295b0     0x2c4a Output/mPower Release/Obj/usb_port.o
+ .debug_info    0x000000000002c1fa     0x1a71 Output/mPower Release/Obj/SEGGER_RTT.o
+ .debug_info    0x000000000002dc6b     0x1cc3 Output/mPower Release/Obj/ble_advdata.o
+ .debug_info    0x000000000002f92e     0x2b3f Output/mPower Release/Obj/ble_conn_params.o
+ .debug_info    0x000000000003246d     0x2b55 Output/mPower Release/Obj/ble_conn_state.o
+ .debug_info    0x0000000000034fc2     0x11b2 Output/mPower Release/Obj/ble_srv_common.o
+ .debug_info    0x0000000000036174     0x2cfa Output/mPower Release/Obj/nrf_ble_gatt.o
+ .debug_info    0x0000000000038e6e     0x238b Output/mPower Release/Obj/nrf_ble_qwr.o
+ .debug_info    0x000000000003b1f9     0x17d0 Output/mPower Release/Obj/nrf_sdh.o
+ .debug_info    0x000000000003c9c9     0x2da6 Output/mPower Release/Obj/nrf_sdh_ble.o
+ .debug_info    0x000000000003f76f      0xb02 Output/mPower Release/Obj/nrf_sdh_soc.o
 
-.debug_abbrev   0x0000000000000000     0x8912
+.debug_abbrev   0x0000000000000000     0x8923
  .debug_abbrev  0x0000000000000000       0x12 Output/mPower Release/Obj/thumb_crt0.o
  .debug_abbrev  0x0000000000000012      0x28d Output/mPower Release/Obj/nrf_log_backend_rtt.o
  .debug_abbrev  0x000000000000029f      0x237 Output/mPower Release/Obj/nrf_log_backend_serial.o
@@ -8696,19 +8698,19 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_abbrev  0x000000000000498b      0x2a9 Output/mPower Release/Obj/nrfx_prs.o
  .debug_abbrev  0x0000000000004c34      0x52e Output/mPower Release/Obj/nrfx_uart.o
  .debug_abbrev  0x0000000000005162      0x4ef Output/mPower Release/Obj/nrfx_uarte.o
- .debug_abbrev  0x0000000000005651      0x491 Output/mPower Release/Obj/main.o
- .debug_abbrev  0x0000000000005ae2      0x3b9 Output/mPower Release/Obj/ble_service.o
- .debug_abbrev  0x0000000000005e9b      0x458 Output/mPower Release/Obj/usb_port.o
- .debug_abbrev  0x00000000000062f3      0x2fe Output/mPower Release/Obj/SEGGER_RTT.o
- .debug_abbrev  0x00000000000065f1      0x403 Output/mPower Release/Obj/ble_advdata.o
- .debug_abbrev  0x00000000000069f4      0x4f6 Output/mPower Release/Obj/ble_conn_params.o
- .debug_abbrev  0x0000000000006eea      0x492 Output/mPower Release/Obj/ble_conn_state.o
- .debug_abbrev  0x000000000000737c      0x2b2 Output/mPower Release/Obj/ble_srv_common.o
- .debug_abbrev  0x000000000000762e      0x46e Output/mPower Release/Obj/nrf_ble_gatt.o
- .debug_abbrev  0x0000000000007a9c      0x36d Output/mPower Release/Obj/nrf_ble_qwr.o
- .debug_abbrev  0x0000000000007e09      0x4bb Output/mPower Release/Obj/nrf_sdh.o
- .debug_abbrev  0x00000000000082c4      0x40f Output/mPower Release/Obj/nrf_sdh_ble.o
- .debug_abbrev  0x00000000000086d3      0x23f Output/mPower Release/Obj/nrf_sdh_soc.o
+ .debug_abbrev  0x0000000000005651      0x4a2 Output/mPower Release/Obj/main.o
+ .debug_abbrev  0x0000000000005af3      0x3b9 Output/mPower Release/Obj/ble_service.o
+ .debug_abbrev  0x0000000000005eac      0x458 Output/mPower Release/Obj/usb_port.o
+ .debug_abbrev  0x0000000000006304      0x2fe Output/mPower Release/Obj/SEGGER_RTT.o
+ .debug_abbrev  0x0000000000006602      0x403 Output/mPower Release/Obj/ble_advdata.o
+ .debug_abbrev  0x0000000000006a05      0x4f6 Output/mPower Release/Obj/ble_conn_params.o
+ .debug_abbrev  0x0000000000006efb      0x492 Output/mPower Release/Obj/ble_conn_state.o
+ .debug_abbrev  0x000000000000738d      0x2b2 Output/mPower Release/Obj/ble_srv_common.o
+ .debug_abbrev  0x000000000000763f      0x46e Output/mPower Release/Obj/nrf_ble_gatt.o
+ .debug_abbrev  0x0000000000007aad      0x36d Output/mPower Release/Obj/nrf_ble_qwr.o
+ .debug_abbrev  0x0000000000007e1a      0x4bb Output/mPower Release/Obj/nrf_sdh.o
+ .debug_abbrev  0x00000000000082d5      0x40f Output/mPower Release/Obj/nrf_sdh_ble.o
+ .debug_abbrev  0x00000000000086e4      0x23f Output/mPower Release/Obj/nrf_sdh_soc.o
 
 .debug_aranges  0x0000000000000000     0x1148
  .debug_aranges
@@ -8802,7 +8804,7 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_aranges
                 0x0000000000001120       0x28 Output/mPower Release/Obj/nrf_sdh_soc.o
 
-.debug_str      0x0000000000000000    0x8de6e
+.debug_str      0x0000000000000000    0x8deb9
  .debug_str     0x0000000000000000       0xc4 Output/mPower Release/Obj/thumb_crt0.o
  .debug_str     0x00000000000000c4    0x732d4 Output/mPower Release/Obj/nrf_log_backend_rtt.o
                                       0x75325 (size before relaxing)
@@ -8866,31 +8868,31 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
                                       0x758b3 (size before relaxing)
  .debug_str     0x0000000000080275      0x8e8 Output/mPower Release/Obj/nrfx_uarte.o
                                       0x75ca4 (size before relaxing)
- .debug_str     0x0000000000080b5d     0x9d7c Output/mPower Release/Obj/main.o
-                                      0x81d08 (size before relaxing)
- .debug_str     0x000000000008a8d9      0x41e Output/mPower Release/Obj/ble_service.o
-                                      0x7d4b9 (size before relaxing)
- .debug_str     0x000000000008acf7      0x52a Output/mPower Release/Obj/usb_port.o
-                                      0x7ddff (size before relaxing)
- .debug_str     0x000000000008b221      0x529 Output/mPower Release/Obj/SEGGER_RTT.o
+ .debug_str     0x0000000000080b5d     0x9dc7 Output/mPower Release/Obj/main.o
+                                      0x81d53 (size before relaxing)
+ .debug_str     0x000000000008a924      0x41e Output/mPower Release/Obj/ble_service.o
+                                      0x7d4e6 (size before relaxing)
+ .debug_str     0x000000000008ad42      0x52a Output/mPower Release/Obj/usb_port.o
+                                      0x7de2c (size before relaxing)
+ .debug_str     0x000000000008b26c      0x529 Output/mPower Release/Obj/SEGGER_RTT.o
                                       0x669e0 (size before relaxing)
- .debug_str     0x000000000008b74a      0x4a2 Output/mPower Release/Obj/ble_advdata.o
+ .debug_str     0x000000000008b795      0x4a2 Output/mPower Release/Obj/ble_advdata.o
                                       0x70a0b (size before relaxing)
- .debug_str     0x000000000008bbec      0x30e Output/mPower Release/Obj/ble_conn_params.o
+ .debug_str     0x000000000008bc37      0x30e Output/mPower Release/Obj/ble_conn_params.o
                                       0x727c4 (size before relaxing)
- .debug_str     0x000000000008befa      0x81f Output/mPower Release/Obj/ble_conn_state.o
+ .debug_str     0x000000000008bf45      0x81f Output/mPower Release/Obj/ble_conn_state.o
                                       0x71d10 (size before relaxing)
- .debug_str     0x000000000008c719      0x2f4 Output/mPower Release/Obj/ble_srv_common.o
+ .debug_str     0x000000000008c764      0x2f4 Output/mPower Release/Obj/ble_srv_common.o
                                       0x68248 (size before relaxing)
- .debug_str     0x000000000008ca0d      0x4dd Output/mPower Release/Obj/nrf_ble_gatt.o
+ .debug_str     0x000000000008ca58      0x4dd Output/mPower Release/Obj/nrf_ble_gatt.o
                                       0x7321f (size before relaxing)
- .debug_str     0x000000000008ceea      0x22f Output/mPower Release/Obj/nrf_ble_qwr.o
+ .debug_str     0x000000000008cf35      0x22f Output/mPower Release/Obj/nrf_ble_qwr.o
                                       0x71537 (size before relaxing)
- .debug_str     0x000000000008d119      0x53f Output/mPower Release/Obj/nrf_sdh.o
+ .debug_str     0x000000000008d164      0x53f Output/mPower Release/Obj/nrf_sdh.o
                                       0x6e8c4 (size before relaxing)
- .debug_str     0x000000000008d658      0x67d Output/mPower Release/Obj/nrf_sdh_ble.o
+ .debug_str     0x000000000008d6a3      0x67d Output/mPower Release/Obj/nrf_sdh_ble.o
                                       0x737c3 (size before relaxing)
- .debug_str     0x000000000008dcd5      0x199 Output/mPower Release/Obj/nrf_sdh_soc.o
+ .debug_str     0x000000000008dd20      0x199 Output/mPower Release/Obj/nrf_sdh_soc.o
                                       0x6d85d (size before relaxing)
 
 .debug_ranges   0x0000000000000000     0x24f8
@@ -9025,7 +9027,7 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_loc     0x000000000000e125       0x74 Output/mPower Release/Obj/nrf_sdh_soc.o
 
 .debug_pubnames
-                0x0000000000000000     0xf2f0
+                0x0000000000000000     0xf312
  .debug_pubnames
                 0x0000000000000000      0x12a Output/mPower Release/Obj/nrf_log_backend_rtt.o
  .debug_pubnames
@@ -9085,31 +9087,31 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_pubnames
                 0x0000000000007790      0xcc3 Output/mPower Release/Obj/nrfx_uarte.o
  .debug_pubnames
-                0x0000000000008453     0x1291 Output/mPower Release/Obj/main.o
+                0x0000000000008453     0x12b3 Output/mPower Release/Obj/main.o
  .debug_pubnames
-                0x00000000000096e4      0x835 Output/mPower Release/Obj/ble_service.o
+                0x0000000000009706      0x835 Output/mPower Release/Obj/ble_service.o
  .debug_pubnames
-                0x0000000000009f19      0x2ff Output/mPower Release/Obj/usb_port.o
+                0x0000000000009f3b      0x2ff Output/mPower Release/Obj/usb_port.o
  .debug_pubnames
-                0x000000000000a218      0x3c3 Output/mPower Release/Obj/SEGGER_RTT.o
+                0x000000000000a23a      0x3c3 Output/mPower Release/Obj/SEGGER_RTT.o
  .debug_pubnames
-                0x000000000000a5db      0x7da Output/mPower Release/Obj/ble_advdata.o
+                0x000000000000a5fd      0x7da Output/mPower Release/Obj/ble_advdata.o
  .debug_pubnames
-                0x000000000000adb5      0xb4b Output/mPower Release/Obj/ble_conn_params.o
+                0x000000000000add7      0xb4b Output/mPower Release/Obj/ble_conn_params.o
  .debug_pubnames
-                0x000000000000b900      0x9b4 Output/mPower Release/Obj/ble_conn_state.o
+                0x000000000000b922      0x9b4 Output/mPower Release/Obj/ble_conn_state.o
  .debug_pubnames
-                0x000000000000c2b4      0x338 Output/mPower Release/Obj/ble_srv_common.o
+                0x000000000000c2d6      0x338 Output/mPower Release/Obj/ble_srv_common.o
  .debug_pubnames
-                0x000000000000c5ec     0x10c5 Output/mPower Release/Obj/nrf_ble_gatt.o
+                0x000000000000c60e     0x10c5 Output/mPower Release/Obj/nrf_ble_gatt.o
  .debug_pubnames
-                0x000000000000d6b1      0x7a1 Output/mPower Release/Obj/nrf_ble_qwr.o
+                0x000000000000d6d3      0x7a1 Output/mPower Release/Obj/nrf_ble_qwr.o
  .debug_pubnames
-                0x000000000000de52      0xa12 Output/mPower Release/Obj/nrf_sdh.o
+                0x000000000000de74      0xa12 Output/mPower Release/Obj/nrf_sdh.o
  .debug_pubnames
-                0x000000000000e864      0x45d Output/mPower Release/Obj/nrf_sdh_ble.o
+                0x000000000000e886      0x45d Output/mPower Release/Obj/nrf_sdh_ble.o
  .debug_pubnames
-                0x000000000000ecc1      0x62f Output/mPower Release/Obj/nrf_sdh_soc.o
+                0x000000000000ece3      0x62f Output/mPower Release/Obj/nrf_sdh_soc.o
 
 .debug_pubtypes
                 0x0000000000000000     0xcf22
@@ -9198,7 +9200,7 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_pubtypes
                 0x000000000000cc2d      0x2f5 Output/mPower Release/Obj/nrf_sdh_soc.o
 
-.debug_macro    0x0000000000000000    0x1c850
+.debug_macro    0x0000000000000000    0x1c856
  .debug_macro   0x0000000000000000      0x313 Output/mPower Release/Obj/nrf_log_backend_rtt.o
  .debug_macro   0x0000000000000313      0xaae Output/mPower Release/Obj/nrf_log_backend_rtt.o
  .debug_macro   0x0000000000000dc1      0x1a3 Output/mPower Release/Obj/nrf_log_backend_rtt.o
@@ -9352,25 +9354,25 @@ OUTPUT(Output/Release/Exe/mPower.elf elf32-littlearm)
  .debug_macro   0x000000000001a870       0x1c Output/mPower Release/Obj/main.o
  .debug_macro   0x000000000001a88c       0x10 Output/mPower Release/Obj/main.o
  .debug_macro   0x000000000001a89c       0x10 Output/mPower Release/Obj/main.o
- .debug_macro   0x000000000001a8ac       0x9a Output/mPower Release/Obj/main.o
- .debug_macro   0x000000000001a946       0x22 Output/mPower Release/Obj/main.o
- .debug_macro   0x000000000001a968      0x3a6 Output/mPower Release/Obj/ble_service.o
- .debug_macro   0x000000000001ad0e       0x1c Output/mPower Release/Obj/ble_service.o
- .debug_macro   0x000000000001ad2a      0x3a8 Output/mPower Release/Obj/usb_port.o
- .debug_macro   0x000000000001b0d2       0x1c Output/mPower Release/Obj/usb_port.o
- .debug_macro   0x000000000001b0ee      0x1be Output/mPower Release/Obj/SEGGER_RTT.o
- .debug_macro   0x000000000001b2ac       0x47 Output/mPower Release/Obj/SEGGER_RTT.o
- .debug_macro   0x000000000001b2f3      0x1f6 Output/mPower Release/Obj/ble_advdata.o
- .debug_macro   0x000000000001b4e9      0x267 Output/mPower Release/Obj/ble_conn_params.o
- .debug_macro   0x000000000001b750       0x40 Output/mPower Release/Obj/ble_conn_params.o
- .debug_macro   0x000000000001b790       0x1c Output/mPower Release/Obj/ble_conn_params.o
- .debug_macro   0x000000000001b7ac      0x269 Output/mPower Release/Obj/ble_conn_state.o
- .debug_macro   0x000000000001ba15      0x1ac Output/mPower Release/Obj/ble_srv_common.o
- .debug_macro   0x000000000001bbc1      0x228 Output/mPower Release/Obj/nrf_ble_gatt.o
- .debug_macro   0x000000000001bde9       0x10 Output/mPower Release/Obj/nrf_ble_gatt.o
- .debug_macro   0x000000000001bdf9      0x1e9 Output/mPower Release/Obj/nrf_ble_qwr.o
- .debug_macro   0x000000000001bfe2       0x16 Output/mPower Release/Obj/nrf_ble_qwr.o
- .debug_macro   0x000000000001bff8      0x24d Output/mPower Release/Obj/nrf_sdh.o
- .debug_macro   0x000000000001c245      0x16f Output/mPower Release/Obj/nrf_sdh.o
- .debug_macro   0x000000000001c3b4      0x278 Output/mPower Release/Obj/nrf_sdh_ble.o
- .debug_macro   0x000000000001c62c      0x224 Output/mPower Release/Obj/nrf_sdh_soc.o
+ .debug_macro   0x000000000001a8ac       0xa0 Output/mPower Release/Obj/main.o
+ .debug_macro   0x000000000001a94c       0x22 Output/mPower Release/Obj/main.o
+ .debug_macro   0x000000000001a96e      0x3a6 Output/mPower Release/Obj/ble_service.o
+ .debug_macro   0x000000000001ad14       0x1c Output/mPower Release/Obj/ble_service.o
+ .debug_macro   0x000000000001ad30      0x3a8 Output/mPower Release/Obj/usb_port.o
+ .debug_macro   0x000000000001b0d8       0x1c Output/mPower Release/Obj/usb_port.o
+ .debug_macro   0x000000000001b0f4      0x1be Output/mPower Release/Obj/SEGGER_RTT.o
+ .debug_macro   0x000000000001b2b2       0x47 Output/mPower Release/Obj/SEGGER_RTT.o
+ .debug_macro   0x000000000001b2f9      0x1f6 Output/mPower Release/Obj/ble_advdata.o
+ .debug_macro   0x000000000001b4ef      0x267 Output/mPower Release/Obj/ble_conn_params.o
+ .debug_macro   0x000000000001b756       0x40 Output/mPower Release/Obj/ble_conn_params.o
+ .debug_macro   0x000000000001b796       0x1c Output/mPower Release/Obj/ble_conn_params.o
+ .debug_macro   0x000000000001b7b2      0x269 Output/mPower Release/Obj/ble_conn_state.o
+ .debug_macro   0x000000000001ba1b      0x1ac Output/mPower Release/Obj/ble_srv_common.o
+ .debug_macro   0x000000000001bbc7      0x228 Output/mPower Release/Obj/nrf_ble_gatt.o
+ .debug_macro   0x000000000001bdef       0x10 Output/mPower Release/Obj/nrf_ble_gatt.o
+ .debug_macro   0x000000000001bdff      0x1e9 Output/mPower Release/Obj/nrf_ble_qwr.o
+ .debug_macro   0x000000000001bfe8       0x16 Output/mPower Release/Obj/nrf_ble_qwr.o
+ .debug_macro   0x000000000001bffe      0x24d Output/mPower Release/Obj/nrf_sdh.o
+ .debug_macro   0x000000000001c24b      0x16f Output/mPower Release/Obj/nrf_sdh.o
+ .debug_macro   0x000000000001c3ba      0x278 Output/mPower Release/Obj/nrf_sdh_ble.o
+ .debug_macro   0x000000000001c632      0x224 Output/mPower Release/Obj/nrf_sdh_soc.o
