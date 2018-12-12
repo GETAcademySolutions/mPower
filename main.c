@@ -281,12 +281,12 @@ uint8_t port_status_announcer_counter = 5;
 static void timer_timeout_handler(void * p_context)
 {
     checkUsbPorts();
-/*    if(port_status_announcer_counter == 0){
-      sendPortStatusToAll();
-      port_status_announcer_counter = 5;
+    if(port_status_announcer_counter == 0){
+      sendPortStatusToAll(&m_ble_mp);
+      port_status_announcer_counter = 6;
     }else{
       port_status_announcer_counter--;
-    }*/
+    }
 }
 
 

@@ -349,21 +349,31 @@ uint32_t onPortStatusChange(ble_mp_t *p_ble_mp, uint8_t port_state)
  *
  * @return If successful NRF_SUCCESS is returned. Otherwise, the error code from @ref ble_lbs_led_status_send.
  */
-static uint32_t sendPortStatusToAll()
+void sendPortStatusToAll(ble_mp_t *p_ble_mp)
 {
-/*
     ret_code_t                        err_code;
     ble_conn_state_conn_handle_list_t conn_handles = ble_conn_state_periph_handles();
-    uint32_t ackMsg = 0;
-    uint8_t  len = 4;
-    uint8_t  ret = MP_SUCCESS;
-    UsbPort* port;
+    uint16_t alert_handler = p_ble_mp->alert_char_handles.value_handle;
+    uint8_t ackMsg[20];
+    uint8_t byte_counter = 0;
+    uint8_t ret = MP_SUCCESS;
+    uint8_t port_status;
 
-    ackMsg = (MP_PORT_STATUS_ALERT << 8);
-    for(int i = MP_FIRST_USB_PORT_NUMBER; i <= MP_MAX_USB_PORT_NUMBER; i++){
-      ackMsg += 0 + usbPorts[i] -> status;
+    //ackMsg = (MP_PORT_STATUS_ALERT << 8);
+    for(uint8_t i = 0; i < conn_handles.len; i++) {
+      ackMsg[byte_counter++] = MP_PORT_STATUS_ALERT;
+      
+      for(int i = MP_FIRST_USB_PORT_NUMBER; i <= MP_MAX_USB_PORT_NUMBER; i++){
+        ret = getPortStatus(i,&port_status);
+        if(ret == MP_SUCCESS){
+          ackMsg[byte_counter++] = port_status;
+        }
+      }
+      sendNotification(alert_handler,conn_handles.conn_handles[i],&ackMsg,byte_counter);
+      byte_counter = 0;
     }
 
+/*
     // TODO: Skal vi sende endring i port status til alle som er oppkoblet eller bare den som 'eier' porten?
     for (uint8_t i = 0; i < conn_handles.len; i++)
     {
