@@ -67,12 +67,11 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="29" y="367" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../ble_service.c" selected="1" top="349" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="10" y="286" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="271" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="49" y="245" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../usb_port.c" selected="0" top="337" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="17" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../usb_port.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="57" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../ble_service.h" selected="0" top="43" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="282" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../../components/softdevice/s132/headers/ble_gatts.h" selected="0" top="262" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="4" y="45" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../ble_service.c" selected="1" top="39" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="28" y="269" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="249" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="66" y="186" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../usb_port.c" selected="0" top="167" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="66" y="73" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../usb_port.h" selected="0" top="51" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="2" y="48" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../ble_service.h" selected="0" top="43" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="mPower" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" debugSearchFileMap="" fileDialogInitialDirectory="C:/Nordic_Semi/nRF5_SDK_15.0.0_a53641a/examples/ble_peripheral/experimental/mPower" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="mPower" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" debugSearchFileMap="" fileDialogInitialDirectory="C:/Nordic_Semi/nRF5_SDK_15.0.0_a53641a/examples/ble_peripheral/experimental/mPower" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>

@@ -49,7 +49,7 @@ typedef struct {
 #define MP_MAX_USB_PORT_NUMBER     4
 
 //TODO Test data
-#define MP_TEST_TIME                        (0.1*60)  // 6 sek
+#define MP_TEST_TIME                        (0.5*60)  // 6 sek
 #define MP_MAX_CHARGE_TIME                  (MP_TEST_TIME)//(60*60) // 1 time
 #define MP_MAX_FREE_TIME                    (MP_TEST_TIME)//(5*60)  // 5 min
 #define MP_FREE_CHARGE_NOT_AVAILABLE_TIME   (MP_TEST_TIME)//(60*60) // 1 time
@@ -73,6 +73,7 @@ uint8_t turnOnOffPower(uint8_t port, uint8_t onOff);
 
 void onNewCommand(ble_evt_t const *p_ble_evt);
 void onBleDisconnect(ble_evt_t const * p_ble_evt);
+uint8_t freeUsbPort(uint8_t port);
 void checkUsbPorts();
 //void inPinHandler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
 

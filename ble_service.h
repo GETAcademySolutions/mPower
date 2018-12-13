@@ -55,6 +55,6 @@ void mpServiceInit(ble_mp_t *p_ble_mp);
 
 void sendNotification(uint16_t charHandle, uint16_t connHandle, uint32_t *p_data, uint8_t length);
 
-void sendPortStatusToAll(ble_mp_t *p_ble_mp);
+void sendPortStatusToAll(ble_mp_t *p_ble_mp, uint8_t mp_device_id);
 
 #endif  /* _ OUR_SERVICE_H__ */
