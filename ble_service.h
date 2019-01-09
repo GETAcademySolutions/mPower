@@ -27,6 +27,7 @@ typedef struct
     ble_gatts_char_handles_t    cmd_char_handles;
     ble_gatts_char_handles_t    alert_char_handles;
     uint8_t                     uuid_type;            /**< UUID type for the MP Service. */
+    uint8_t                     location_id;
 } ble_mp_t;
 
 
@@ -55,6 +56,6 @@ void mpServiceInit(ble_mp_t *p_ble_mp);
 
 void sendNotification(uint16_t charHandle, uint16_t connHandle, uint32_t *p_data, uint8_t length);
 
-void sendPortStatusToAll(ble_mp_t *p_ble_mp, uint8_t mp_device_id);
+void sendPortStatusToAll(ble_mp_t *p_ble_mp);
 
 #endif  /* _ OUR_SERVICE_H__ */

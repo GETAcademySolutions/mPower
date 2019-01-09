@@ -269,7 +269,7 @@ uint8_t port_status_announcer_counter = 5;
 static void timer_timeout_handler(void *p_context) {
   checkUsbPorts();
   if (port_status_announcer_counter == 0) {
-    sendPortStatusToAll(&m_ble_mp, MP_DEVICE_ID);
+    sendPortStatusToAll(&m_ble_mp);
     port_status_announcer_counter = 10;
   } else {
     port_status_announcer_counter--;
@@ -387,6 +387,8 @@ static void nrf_qwr_error_handler(uint32_t nrf_error) {
 /**@brief Function for initializing services that will be used by the application.
  */
 static void services_init(void) {
+
+  m_ble_mp.location_id = MP_DEVICE_ID;
   ret_code_t err_code;
   ble_lbs_init_t init;
   nrf_ble_qwr_init_t qwr_init = {0};

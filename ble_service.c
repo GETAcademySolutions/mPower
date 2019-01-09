@@ -330,7 +330,7 @@ uint32_t onPortStatusChange(ble_mp_t *p_ble_mp, uint8_t port_state) {
  *
  * @return If successful NRF_SUCCESS is returned. Otherwise, the error code from @ref ble_lbs_led_status_send.
  */
-void sendPortStatusToAll(ble_mp_t *p_ble_mp, uint8_t mp_device_id) {
+void sendPortStatusToAll(ble_mp_t *p_ble_mp) {
   ret_code_t err_code;
   ble_conn_state_conn_handle_list_t conn_handles = ble_conn_state_periph_handles();
   uint16_t alert_handler = p_ble_mp->alert_char_handles.value_handle;
@@ -340,7 +340,7 @@ void sendPortStatusToAll(ble_mp_t *p_ble_mp, uint8_t mp_device_id) {
   uint8_t port_status;
 
   //ackMsg = (MP_PORT_STATUS_ALERT << 8);
-  ackMsg[byte_counter++] = mp_device_id;
+  ackMsg[byte_counter++] = p_ble_mp->location_id;
   ackMsg[byte_counter++] = MP_PORT_STATUS_ALERT;
 
   for (int i = MP_FIRST_USB_PORT_NUMBER; i <= MP_MAX_USB_PORT_NUMBER; i++) {

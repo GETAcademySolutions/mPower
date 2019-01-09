@@ -151,7 +151,7 @@ uint8_t freeUsbPort(uint8_t port) {
   if (ret == MP_SUCCESS) {
     if (connHandle != BLE_CONN_HANDLE_INVALID && usbPorts[port]->status != MP_FREE_CHARGE_NOT_AVAILABLE) {
       // send USB port disconnect
-      alertMsg = (port<<8) | MP_USB_PORT_CHARGING_STOPPED;
+      alertMsg = (port << 8) | MP_USB_PORT_CHARGING_STOPPED;
       sendNotification(charHandle, connHandle, &alertMsg, len);
     }
   } else {
@@ -195,12 +195,15 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
   uint16_t length = p_ble_evt->evt.gatts_evt.params.write.len;
   uint8_t command = 0xff;
   uint8_t port = MP_CHOOSE_AVAILABLE_PORT;
-  uint32_t ackMsg = 0;
+  uint8_t ackMsg[20];
+  uint8_t byte_counter = 0;
   uint8_t len = 4;
   uint8_t ret = MP_SUCCESS;
   UsbPortStatus portStatus;
 
   NRF_LOG_INFO("onNewCommand() enter");
+
+  ackMsg[byte_counter++] = m_ble_mp.location_id;
 
   if (length >= 2) {
     command = pData[0];
@@ -214,7 +217,8 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
     NRF_LOG_INFO("data received: length=%0x, command=%0x, port=allocate", length, command);
   } else {
     NRF_LOG_INFO("data received: length=%0x, illegal command=%0x", length, command);
-    ackMsg = (MP_ILLEGAL_COMMAND << 8) | MP_ERROR;
+    ackMsg[byte_counter++] = MP_ILLEGAL_COMMAND;
+    ackMsg[byte_counter++] = MP_ERROR;
     sendNotification(charHandle, connHandle, &ackMsg, len);
     return;
   }
@@ -225,7 +229,8 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
 
   if (ret != MP_SUCCESS) {
     NRF_LOG_INFO("No available port")
-    ackMsg = (MP_ERROR_NO_AVAILABLE_PORT << 8) | MP_ERROR;
+    ackMsg[byte_counter++] = MP_ERROR_NO_AVAILABLE_PORT;
+    ackMsg[byte_counter++] = MP_ERROR;
     sendNotification(charHandle, connHandle, &ackMsg, len);
     return;
   }
@@ -280,10 +285,12 @@ void onNewCommand(ble_evt_t const *p_ble_evt) {
   // Send ack/nack message
   if (ret == MP_SUCCESS) {
     // send ack
-    ackMsg = (port << 8) | MP_SUCCESS;
+    ackMsg[byte_counter++] = port,
+    ackMsg[byte_counter++] = MP_SUCCESS;
   } else {
     // send nack
-    ackMsg = (ret << 8) | MP_ERROR;
+    ackMsg[byte_counter++] = ret;
+    ackMsg[byte_counter++] = MP_ERROR;
   }
   sendNotification(charHandle, connHandle, &ackMsg, len);
 
@@ -298,10 +305,13 @@ void onUsbChange(uint8_t port) {
   //TODO add USB status, ack message, ports, turn off power, turn on power, change USB status, get USB status
   uint16_t connHandle = NULL;
   uint16_t charHandle = m_ble_mp.alert_char_handles.value_handle;
-  uint32_t ackMsg = 0;
+  uint8_t ackMsg[20];
+  uint8_t byte_counter = 0;
   uint8_t len = 4;
   uint8_t ret = MP_SUCCESS;
   UsbPortStatus portStatus;
+
+  ackMsg[byte_counter++] = m_ble_mp.location_id;
 
   NRF_LOG_INFO("onUsbChange() enter");
   ret = getConnHandle(port, &connHandle);
@@ -344,12 +354,13 @@ void onUsbChange(uint8_t port) {
   // Send ack/nack message
   if (ret == MP_SUCCESS) {
     // send ack
-    ackMsg = (port << 8) | MP_SUCCESS;
+    ackMsg[byte_counter++] = port,
+    ackMsg[byte_counter++] = MP_SUCCESS;
   } else {
     // send nack
-    ackMsg = (ret << 8) | MP_ERROR;
+    ackMsg[byte_counter++] = ret;
+    ackMsg[byte_counter++] = MP_ERROR;
   }
-
   if (connHandle != NULL)
     sendNotification(charHandle, connHandle, &ackMsg, len);
 
